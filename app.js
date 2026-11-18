@@ -49,27 +49,30 @@
     return `<a class="${cls}" href="${menuHref(d, m)}">${inner}</a>`;
   };
 
+  /* 칸이 없으면 건너뛴다. 옛 index.html 과 새 app.js 가 섞여도 화면 전체가 멈추지 않게 */
+  const fill = (sel, html) => { const el = $(sel); if (el) el.innerHTML = html; };
+
   /* ───── 머리, 전체 메뉴, 바닥글 ───── */
 
   function renderChrome() {
     gnb.style.setProperty('--cols', SITE.depts.length);
-    $('#gnb-list').innerHTML = SITE.depts.map((d) => `
+    fill('#gnb-list', SITE.depts.map((d) => `
       <li class="gnb__item">
         <a class="gnb__link" href="#/${d.id}" data-dept="${d.id}">${esc(d.name)}</a>
         <ul class="gnb__sub">${d.menus.map((m) => `<li>${menuItem(d, m, 'gnb__sublink')}</li>`).join('')}</ul>
-      </li>`).join('');
+      </li>`).join(''));
 
-    $('#sheet-list').innerHTML = SITE.depts.map((d) => `
+    fill('#sheet-list', SITE.depts.map((d) => `
       <li class="sheet__dept">
         <a class="sheet__name" href="#/${d.id}">${esc(d.name)}</a>
         <ul class="sheet__menus">${d.menus.map((m) => `<li>${menuItem(d, m, 'sheet__menu')}</li>`).join('')}</ul>
-      </li>`).join('');
+      </li>`).join(''));
 
-    $('#foot-depts').innerHTML = SITE.depts.map((d) => `<li><a href="#/${d.id}">${esc(d.name)}</a></li>`).join('');
+    fill('#foot-depts', SITE.depts.map((d) => `<li><a href="#/${d.id}">${esc(d.name)}</a></li>`).join(''));
 
     /* 첫 화면 오른쪽: 다른 주소에 있는 부서 웹앱 */
-    $('#apps-list').innerHTML = SITE.depts.flatMap((d) => d.menus.filter((m) => kind(m) === 'ext').map((m) => `
-      <li><a class="apps__link" href="${esc(m.url)}"${NEW_TAB}><span class="apps__name">${esc(m.name)}${EXT}</span><span class="apps__dept">${esc(d.name)}</span></a></li>`)).join('');
+    fill('#apps-list', SITE.depts.flatMap((d) => d.menus.filter((m) => kind(m) === 'ext').map((m) => `
+      <li><a class="apps__link" href="${esc(m.url)}"${NEW_TAB}><span class="apps__name">${esc(m.name)}${EXT}</span><span class="apps__dept">${esc(d.name)}</span></a></li>`)).join(''));
 
     $$('[data-find]').forEach((box, i) => renderFind(box, i));
   }
