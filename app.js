@@ -31,6 +31,24 @@
     return `<a class="${cls}" href="${menuHref(d, m)}">${esc(m.name)}</a>`;
   }
 
+  const MARK = '<svg class="mark" aria-hidden="true" focusable="false"><use href="#furnace"/></svg>';
+
+  /* '부서/메뉴' 로 메뉴를 찾는다 */
+  const find = (to) => {
+    const [dId, mId] = String(to).split('/');
+    const d = SITE.depts.find((x) => x.id === dId);
+    const m = d && d.menus.find((x) => x.id === mId);
+    return d && m ? { d, m } : null;
+  };
+
+  /* 메뉴 하나를 링크로. 바깥 주소면 새 창, 준비 중이면 링크 없이 */
+  const linkTo = (d, m, cls, inner) => {
+    const k = kind(m);
+    if (k === 'pending') return `<span class="${cls} is-pending">${inner}<span class="visually-hidden"> (준비 중)</span></span>`;
+    if (k === 'ext') return `<a class="${cls}" href="${esc(m.url)}"${NEW_TAB}>${inner}${EXT}</a>`;
+    return `<a class="${cls}" href="${menuHref(d, m)}">${inner}</a>`;
+  };
+
   /* ───── 머리, 전체 메뉴, 바닥글 ───── */
 
   function renderChrome() {
@@ -43,11 +61,79 @@
 
     $('#sheet-list').innerHTML = SITE.depts.map((d) => `
       <li class="sheet__dept">
-        <a class="sheet__name" href="#/${d.id}">${plate(d.name)}</a>
+        <a class="sheet__name" href="#/${d.id}">${esc(d.name)}</a>
         <ul class="sheet__menus">${d.menus.map((m) => `<li>${menuItem(d, m, 'sheet__menu')}</li>`).join('')}</ul>
       </li>`).join('');
 
+    $('#jump-list').innerHTML = SITE.depts.map((d) => `<li><a href="#/${d.id}">${esc(d.name)}</a></li>`).join('');
     $('#foot-depts').innerHTML = SITE.depts.map((d) => `<li><a href="#/${d.id}">${esc(d.name)}</a></li>`).join('');
+
+    /* 첫 화면 오른쪽: 다른 주소에 있는 부서 웹앱 */
+    $('#apps-list').innerHTML = SITE.depts.flatMap((d) => d.menus.filter((m) => kind(m) === 'ext').map((m) => `
+      <li><a class="apps__link" href="${esc(m.url)}"${NEW_TAB}><span class="apps__name">${esc(m.name)}${EXT}</span><span class="apps__dept">${esc(d.name)}</span></a></li>`)).join('');
+
+    /* 머리의 구인구직 단추는 인력풀의 구인구직 웹앱으로 바로 간다 */
+    const jobs = find('pool/jobs');
+    const btn = $('#jobs-btn');
+    if (jobs && kind(jobs.m) === 'ext') {
+      btn.href = jobs.m.url;
+      btn.target = '_blank';
+      btn.rel = 'noopener noreferrer';
+      btn.insertAdjacentHTML('beforeend', EXT);
+    }
+
+    $$('[data-find]').forEach((box, i) => renderFind(box, i));
+  }
+
+  /* ───── 메뉴 찾기: 부서, 메뉴 이름, 설명에서 찾는다 ───── */
+
+  const INDEX = SITE.depts.flatMap((d) => d.menus.map((m) => ({ d, m, text: `${d.name} ${m.name} ${m.desc || ''}`.toLowerCase().replace(/\s+/g, '') })));
+
+  function renderFind(box, i) {
+    const id = `find-${i}`;
+    box.innerHTML = `
+      <form class="find" role="search" action="#" data-find-form>
+        <label class="visually-hidden" for="${id}">메뉴 찾기</label>
+        <input class="find__input" id="${id}" type="search" placeholder="메뉴를 찾아보세요. 예: 자동차, 노량진" autocomplete="off" aria-controls="${id}-list" aria-describedby="${id}-count">
+        <button class="find__go" type="submit"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="10.5" cy="10.5" r="6.5" fill="none" stroke="currentColor" stroke-width="2.25"/><path d="M15.5 15.5 21 21" stroke="currentColor" stroke-width="2.25"/></svg><span class="visually-hidden">찾기</span></button>
+        <div class="find__pop" hidden>
+          <p class="find__count" id="${id}-count" role="status"></p>
+          <ul class="find__list" id="${id}-list"></ul>
+        </div>
+      </form>`;
+
+    const form = $('[data-find-form]', box);
+    const input = $('.find__input', box);
+    const pop = $('.find__pop', box);
+    const list = $('.find__list', box);
+    const count = $('.find__count', box);
+
+    const update = () => {
+      const q = input.value.toLowerCase().replace(/\s+/g, '');
+      if (!q) { pop.hidden = true; count.textContent = ''; return; }
+      const hits = INDEX.filter((x) => x.text.includes(q)).slice(0, 8);
+      count.textContent = hits.length ? `${hits.length}개 찾음` : '맞는 메뉴가 없습니다.';
+      list.innerHTML = hits.map(({ d, m }) => `<li>${linkTo(d, m, 'find__hit', `<span class="find__dept">${esc(d.name)}</span><span class="find__name">${esc(m.name)}</span>`)}</li>`).join('');
+      pop.hidden = false;
+    };
+    input.addEventListener('input', update);
+    input.addEventListener('focus', update);
+    input.addEventListener('keydown', (e) => { if (e.key === 'Escape') { input.value = ''; update(); } });
+    /* 엔터: 첫 번째로 찾은 열린 메뉴로 간다 */
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const a = $('a.find__hit', list);
+      if (a) a.click();
+    });
+    form.addEventListener('focusout', (e) => { if (!form.contains(e.relatedTarget)) pop.hidden = true; });
+    list.addEventListener('click', (e) => { if (e.target.closest('a')) { input.value = ''; pop.hidden = true; } });
+  }
+
+  /* 맨 위 붉은 띠의 부서 바로가기: 밖을 누르거나 Esc 로 닫는다 */
+  function bindJump() {
+    const jump = $('#jump');
+    document.addEventListener('click', (e) => { if (jump.open && (!jump.contains(e.target) || e.target.closest('a'))) jump.open = false; });
+    jump.addEventListener('keydown', (e) => { if (e.key === 'Escape' && jump.open) { jump.open = false; $('summary', jump).focus(); } });
   }
 
   /* 넓은 화면: 부서에 마우스를 올리거나 키보드로 들어오면 전체 메뉴가 한 번에 펼쳐진다 */
@@ -70,12 +156,14 @@
     gnb.addEventListener('click', (e) => { if (e.target.closest('a')) close(); });
   }
 
-  /* 좁은 화면: 메뉴 버튼이 전체 메뉴를 연다 */
+  /* 전체메뉴 단추(좁은 화면은 머리 오른쪽, 넓은 화면은 부서 줄 오른쪽)가 전체 메뉴를 연다 */
   function bindSheet() {
-    $('#menu-btn').addEventListener('click', () => {
+    const openSheet = () => {
       if (typeof sheet.showModal === 'function') sheet.showModal();
       else sheet.setAttribute('open', '');
-    });
+    };
+    $('#menu-btn').addEventListener('click', openSheet);
+    $('#all-btn').addEventListener('click', openSheet);
     const close = () => {
       if (typeof sheet.close === 'function') sheet.close();
       else sheet.removeAttribute('open');
@@ -86,58 +174,92 @@
 
   /* 로고: 이미 첫 화면이면 맨 위로 올린다 */
   function bindBrand() {
-    $('.masthead .brand').addEventListener('click', () => {
+    $('.top .brand').addEventListener('click', () => {
       if (!hero.hidden) window.scrollTo({ top: 0 });
     });
   }
 
   /* ───── 첫 화면 ───── */
 
-  const COUNT = ['', '한', '두', '세', '네', '다섯', '여섯', '일곱', '여덟', '아홉', '열'];
+  /* 자주 찾는 메뉴의 그림 (24 x 24 선 그림) */
+  const ICONS = {
+    org: '<rect x="9" y="2.5" width="6" height="5"/><rect x="2.5" y="16.5" width="5" height="5"/><rect x="9.5" y="16.5" width="5" height="5"/><rect x="16.5" y="16.5" width="5" height="5"/><path d="M12 7.5v9M5 16.5V12h14v4.5"/>',
+    coin: '<rect x="4.5" y="2.5" width="15" height="19"/><path d="M8 6.5h8v3.5H8zM8 14h1.5M11.25 14h1.5M14.5 14h1.5M8 17.5h1.5M11.25 17.5h1.5M14.5 17.5h1.5"/>',
+    pin: '<path d="M12 21.5s-7-6.3-7-11.8a7 7 0 0 1 14 0c0 5.5-7 11.8-7 11.8z"/><circle cx="12" cy="9.5" r="2.5"/>',
+    board: '<rect x="2.5" y="3.5" width="19" height="12.5"/><path d="M8 21.5l4-5.5 4 5.5M6.5 8h7M6.5 11.5h4.5"/>',
+    pen: '<path d="M16 3.5l4.5 4.5L8.5 20H4v-4.5z"/><path d="M13.5 6l4.5 4.5"/>',
+    car: '<path d="M2.5 16.5v-4.5l2.5-5.5h14l2.5 5.5v4.5z"/><path d="M2.5 12h19"/><circle cx="7" cy="17.5" r="2"/><circle cx="17" cy="17.5" r="2"/>',
+    box: '<path d="M1.5 5.5h12.5v11H1.5zM14 9h4.5l4 4v3.5H14"/><circle cx="6" cy="18" r="2"/><circle cx="18" cy="18" r="2"/>',
+    case: '<rect x="2.5" y="7" width="19" height="13.5"/><path d="M8.5 7V3.5h7V7M2.5 12.5h19"/>',
+  };
+  const icon = (name) => `<svg class="quick__icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">${ICONS[name] || ICONS.org}</svg>`;
 
-  function viewHome() {
-    const dir = SITE.depts.map((d) => `
-      <li class="dir__row">
-        <div class="dir__sign">
-          <h3 class="dir__name"><a href="#/${d.id}">${plate(d.name)}</a></h3>
-          <p class="dir__desc">${esc(d.desc)}</p>
-        </div>
-        <ul class="dir__menus">${d.menus.map((m) => `<li class="dir__item">${menuItem(d, m, 'dir__menu')}${m.desc ? `<span class="dir__what">${esc(m.desc)}</span>` : ''}</li>`).join('')}</ul>
-      </li>`).join('');
-
-    const open = SITE.depts.flatMap((d) => d.menus.filter((m) => kind(m) !== 'pending').map((m) => {
-      const ext = kind(m) === 'ext';
-      return `
-      <li>
-        <a class="open__link" href="${esc(menuHref(d, m))}"${ext ? NEW_TAB : ''}>
-          <span class="open__name">${esc(m.name)}${ext ? EXT : ''}</span>
-          <span class="open__what">${esc(m.desc || '')}</span>
-          <span class="open__dept">${esc(d.name)}</span>
-        </a>
-      </li>`;
-    })).join('');
-
+  /* 자주 찾는 메뉴: 동그라미 아이콘 한 줄 */
+  function quick() {
+    const items = (SITE.quick || []).map((q) => {
+      const inner = `<span class="quick__ring">${icon(q.icon)}</span><span class="quick__name">${esc(q.name)}</span>`;
+      if (q.href) return `<li><a class="quick__item" href="${esc(q.href)}">${inner}</a></li>`;
+      const hit = find(q.to);
+      return hit ? `<li>${linkTo(hit.d, hit.m, 'quick__item', inner)}</li>` : '';
+    }).join('');
     return `
-      <section class="depts" id="depts" aria-labelledby="depts-h">
+      <section class="quick" aria-labelledby="quick-h">
         <div class="container">
-          <div class="depts__head">
-            <h2 id="depts-h">${COUNT[SITE.depts.length] || SITE.depts.length} 부서, 어디부터 갈까요?</h2>
-            <p class="depts__note">흐린 이름은 준비 중입니다.</p>
+          <div class="quick__box">
+            <h2 class="quick__title" id="quick-h">자주 찾는 메뉴</h2>
+            <ul class="quick__list">${items}</ul>
           </div>
-          <ul class="dir">${dir}</ul>
-        </div>
-      </section>
-      <section class="open" id="open" aria-labelledby="open-h">
-        <div class="container">
-          <h2 id="open-h">지금 문이 열린 곳</h2>
-          <ul class="open__list">${open}</ul>
-        </div>
-      </section>
-      <section class="creed" aria-label="구호">
-        <div class="container">
-          <p class="creed__line">교사는 태어나지 않는다.<br>만들어진다.</p>
         </div>
       </section>`;
+  }
+
+  /* 조직도: 맨 위 용광로, 줄기 양옆 작은 부서, 맨 아래 큰 부서 카드 */
+  function org() {
+    const byId = (id) => SITE.depts.find((d) => d.id === id);
+    const cfg = SITE.org || {};
+    const side = (cfg.side || []).map(byId).filter(Boolean);
+    const placed = new Set(side.map((d) => d.id));
+    const main = [...(cfg.main || []).map(byId).filter(Boolean), ...SITE.depts.filter((d) => !placed.has(d.id) && !(cfg.main || []).includes(d.id))];
+
+    const menuLi = (d, m, cls) => `<li>${linkTo(d, m, cls, esc(m.name))}</li>`;
+
+    const branches = side.map((d, i) => `
+      <li class="org__branch org__branch--${i % 2 ? 'r' : 'l'}">
+        <div class="org__box">
+          <h3 class="org__boxname"><a href="#/${d.id}">${esc(d.name)}</a></h3>
+          <ul class="org__chips">${d.menus.map((m) => menuLi(d, m, 'org__chip')).join('')}</ul>
+        </div>
+      </li>`).join('');
+
+    const units = main.map((d) => `
+      <li class="org__unit">
+        <h3 class="org__head"><a href="#/${d.id}">${esc(d.name)}</a></h3>
+        <div class="org__body">
+          <p class="org__desc">${esc(d.desc)}</p>
+          <ul class="org__list">${d.menus.map((m) => menuLi(d, m, 'org__item')).join('')}</ul>
+        </div>
+      </li>`).join('');
+
+    return `
+      <section class="orgs" id="org" aria-labelledby="org-h">
+        <div class="container">
+          <div class="sec-head">
+            <h2 id="org-h">조직도</h2>
+            <p class="sec-head__note">부서 이름을 누르면 부서 홈으로, 메뉴를 누르면 바로 열립니다. 흐린 메뉴는 준비 중입니다.</p>
+          </div>
+          <div class="org" style="--n:${main.length}">
+            <div class="org__top">
+              <div class="org__root">${MARK}<span class="org__rootname">${esc(cfg.top || SITE.name)}</span></div>
+            </div>
+            <ul class="org__side">${branches}</ul>
+            <ul class="org__main">${units}</ul>
+          </div>
+        </div>
+      </section>`;
+  }
+
+  function viewHome() {
+    return quick() + org();
   }
 
   /* ───── 부서 페이지 ───── */
@@ -152,45 +274,62 @@
     return `<li class="door"><a class="door__row" href="${menuHref(d, m)}">${text}<span class="door__go">들어가기</span></a></li>`;
   }
 
-  function viewDept(d) {
-    const shut = d.menus.every((m) => kind(m) === 'pending');
+  /* 부서 페이지와 메뉴 페이지의 틀: 위 회색 띠(위치, 제목), 왼쪽 부서 메뉴, 오른쪽 본문 */
+  function lnb(d, current) {
+    const items = d.menus.map((m) => {
+      const k = kind(m);
+      if (k === 'pending') return `<li><span class="lnb__item is-pending">${esc(m.name)}<span class="visually-hidden"> (준비 중)</span></span></li>`;
+      if (k === 'ext') return `<li><a class="lnb__item" href="${esc(m.url)}"${NEW_TAB}>${esc(m.name)}${EXT}</a></li>`;
+      return `<li><a class="lnb__item" href="${menuHref(d, m)}"${current && m.id === current.id ? ' aria-current="page"' : ''}>${esc(m.name)}</a></li>`;
+    }).join('');
+    return `
+      <nav class="lnb" aria-label="${esc(d.name)} 메뉴">
+        <a class="lnb__head" href="#/${d.id}"${current ? '' : ' aria-current="page"'}>${esc(d.name)}<span class="lnb__home">부서 홈</span></a>
+        <ul class="lnb__list">${items}</ul>
+      </nav>`;
+  }
+
+  function frame(d, { trail, title, lede, body, current = null, data = false }) {
     return `
       <article class="page">
-        <header class="page__head container">
-          ${crumbs([{ name: '홈', href: '#/' }, { name: d.name }])}
-          <h1 class="page__title" id="page-h" tabindex="-1">${plate(d.name)}</h1>
-          <p class="page__lede">${esc(d.desc)}</p>
+        <header class="band">
+          <div class="container band__in">
+            ${crumbs(trail)}
+            <h1 class="page__title" id="page-h" tabindex="-1">${title}</h1>
+            ${lede ? `<p class="page__lede">${esc(lede)}</p>` : ''}
+          </div>
         </header>
-        <div class="container">
-          <ul class="doors">${d.menus.map((m) => door(d, m)).join('')}</ul>
-          ${shut ? '<div class="doors__empty"><p>이 부서는 아직 문을 열지 않았습니다. 열려 있는 곳부터 둘러보세요.</p><a class="btn" href="#open">지금 열린 곳 보기</a></div>' : ''}
+        <div class="container sub">
+          ${lnb(d, current)}
+          <div class="sub__body"${data ? ' data-page' : ''}>${body}</div>
         </div>
       </article>`;
   }
 
-  /* ───── 메뉴 페이지 ───── */
-
-  function tabs(d, current) {
-    return `<nav class="tabs" aria-label="${esc(d.name)} 메뉴">${d.menus.map((m) => {
-      const k = kind(m);
-      if (k === 'pending') return `<span class="tabs__item is-pending">${esc(m.name)}<span class="visually-hidden"> (준비 중)</span></span>`;
-      if (k === 'ext') return `<a class="tabs__item" href="${esc(m.url)}"${NEW_TAB}>${esc(m.name)}${EXT}</a>`;
-      return `<a class="tabs__item" href="${menuHref(d, m)}"${m.id === current.id ? ' aria-current="page"' : ''}>${esc(m.name)}</a>`;
-    }).join('')}</nav>`;
+  function viewDept(d) {
+    const shut = d.menus.every((m) => kind(m) === 'pending');
+    return frame(d, {
+      trail: [{ name: '홈', href: '#/' }, { name: d.name }],
+      title: plate(d.name),
+      lede: d.desc,
+      body: `
+        <ul class="doors">${d.menus.map((m) => door(d, m)).join('')}</ul>
+        ${shut ? '<div class="doors__empty"><p>이 부서는 아직 문을 열지 않았습니다. 조직도에서 열려 있는 곳부터 둘러보세요.</p><a class="btn" href="#org">조직도 보기</a></div>' : ''}`,
+    });
   }
+
+  /* ───── 메뉴 페이지 ───── */
 
   function viewPage(d, m) {
     const cfg = SITE.pages[m.page] || {};
-    return `
-      <article class="page">
-        <header class="page__head container">
-          ${crumbs([{ name: '홈', href: '#/' }, { name: d.name, href: `#/${d.id}` }, { name: m.name }])}
-          <h1 class="page__title" id="page-h" tabindex="-1">${esc(m.name)}</h1>
-          <p class="page__lede">${esc(cfg.lede || m.desc || '')}</p>
-          ${tabs(d, m)}
-        </header>
-        <div class="container" data-page>${PAGES[m.page].render(cfg)}</div>
-      </article>`;
+    return frame(d, {
+      trail: [{ name: '홈', href: '#/' }, { name: d.name, href: `#/${d.id}` }, { name: m.name }],
+      title: esc(m.name),
+      lede: cfg.lede || m.desc || '',
+      body: PAGES[m.page].render(cfg),
+      current: m,
+      data: true,
+    });
   }
 
   /* 임용부 > 1년 공부비용: 세 가지 길, 다섯 항목. 넣는 대로 1년 합계를 비교한다 */
@@ -583,6 +722,7 @@
   document.documentElement.classList.add('js');
   renderChrome();
   bindNav();
+  bindJump();
   bindSheet();
   bindBrand();
   window.addEventListener('hashchange', route);

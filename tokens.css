@@ -11,17 +11,15 @@
   --container: 1440px; --gutter: 64px; --gap-columns: 32px; --section-gap-s: 120px; --section-gap: 144px; --section-gap-l: 176px;
   --z-base: 1; --z-raised: 10; --z-dropdown: 100; --z-sticky: 200; --z-sticky-nav: 300; --z-modal: 400; --z-toast: 500; --z-tooltip: 600;
 
-  /* 벽: 사진에서 뽑은 콘크리트. paper 벽면, paper-2 엠블럼 뒤 밝은 판, paper-3 그늘진 면 */
-  --color-paper: #D4CBB9; --color-paper-2: #DED7C8; --color-paper-3: #C6BCA8;
+  /* 바탕: 흰 벽. paper-2 간판 뒤 회색 판과 바닥글, paper-3 눌렀을 때 */
+  --color-paper: #FFFFFF; --color-paper-2: #F4F3F1; --color-paper-3: #E9E7E4;
   /* 글자: 타일 옆 그림자에서 뽑은 그을음 */
-  --color-ink: #231F1C; --color-ink-2: #453D37; --color-muted: #574E46;
-  --color-rule: #A69B87;
-  /* 간판: 타일 붉은색은 장소 이름에만, 노란색은 붉은 면 위에만 */
-  --color-accent: #B31B1B; --color-accent-ink: #F4D53A; --color-focus: #231F1C;
-  --color-field: #B31B1B; --color-field-2: #8F1414; --color-field-ink: #F4D53A; --color-field-paper: #F6F0E2;
+  --color-ink: #1E1B19; --color-ink-2: #45403B; --color-muted: #625C56;
+  --color-rule: #DAD6D1; --color-line: #8E8780;
+  /* 간판: 붉은 타일, 노란 글자. 노란색은 붉은 면 위에만 */
+  --color-accent: #B31B1B; --color-accent-ink: #F4D53A; --color-focus: #1E1B19;
+  --color-field: #B31B1B; --color-field-2: #8F1414; --color-field-ink: #F4D53A; --color-field-paper: #FFFFFF;
   --color-shade: #3B3633;
-  /* 바닥글: 식은 그을음 */
-  --color-soot: #231F1C; --color-soot-rule: #5E554C; --color-soot-ink: #E9E2D2; --color-soot-muted: #B8AE9C;
 
   /* 서체 네 가지, 자리별 역할 */
   --font-display: "SUIT", "Pretendard Variable", Pretendard, ui-sans-serif, system-ui, sans-serif;

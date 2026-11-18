@@ -14,14 +14,14 @@
 <meta property="og:title" content="교사개조 용광로">
 <meta property="og:description" content="교사는 태어나지 않는다. 만들어진다. 임용부터 첫 발령까지, 부서별로 모은 교사 도구.">
 <meta property="og:url" content="https://cogns0302-lab.github.io/yonggwangro/">
-<meta property="og:image" content="https://cogns0302-lab.github.io/yonggwangro/assets/og-image.png">
+<meta property="og:image" content="https://cogns0302-lab.github.io/yonggwangro/assets/og-image.png?v=2">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
-<meta property="og:image:alt" content="붉은 타일 여덟 장에 노란 글씨로 쓴 교사개조 용광로 간판">
+<meta property="og:image:alt" content="붉은 타일에 노란 글씨로 쓴 교사개조 용광로 간판과 용광로 마크">
 <meta name="twitter:card" content="summary_large_image">
 
-<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
-<link rel="apple-touch-icon" href="assets/icon-180.png">
+<link rel="icon" href="assets/favicon.svg?v=2" type="image/svg+xml">
+<link rel="apple-touch-icon" href="assets/icon-180.png?v=2">
 
 <!-- 서체 네 종: 프리텐다드(화면 전반), 노토 산스 KR(설명글), 스포카 한 산스 네오(숫자), SUIT(제목과 간판, tokens.css 에서 불러옴) -->
 <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
@@ -31,65 +31,95 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700&display=swap">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/spoqa/spoqa-han-sans@latest/css/SpoqaHanSansNeo.css">
 <!-- 파일을 고친 뒤 방문자에게 바로 반영되게 하려면 아래 ?v= 뒤 숫자를 올리세요. -->
-<link rel="stylesheet" href="styles.css?v=20261118">
+<link rel="stylesheet" href="styles.css?v=20261118b">
 </head>
 <body>
+<!-- 용광로 마크: 로고, 간판, 조직도에서 <use href="#furnace"> 로 불러 씁니다 -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+  <symbol id="furnace" viewBox="0 0 100 100">
+    <rect x="40" y="2" width="20" height="8"/>
+    <path fill-rule="evenodd" d="M27 10H73V20H70L80 56V90H20V56L30 20H27ZM29 31H71V36H29ZM25 45H75V50H25ZM36 90V73C36 65 42 59 50 59S64 65 64 73V90Z"/>
+    <path d="M50 89C42 89 38 83 40.5 76.5 42.3 72.5 45.5 70.5 45.5 65.5 49.5 68 51.5 72 51 75.5 53.5 74 55 71 54.5 67.5 59.5 71.5 61.5 77.5 59.5 82.5 57.8 86.5 54.3 89 50 89Z"/>
+    <rect x="8" y="90" width="84" height="7"/>
+  </symbol>
+</svg>
+
 <a class="skip" href="#main">본문으로 건너뛰기</a>
 
 <header class="masthead">
-  <div class="container masthead__in">
+  <!-- 맨 위 붉은 띠: 부서 바로가기 -->
+  <div class="util">
+    <div class="container util__in">
+      <details class="jump" id="jump">
+        <summary class="jump__btn">부서 바로가기</summary>
+        <ul class="jump__list" id="jump-list"></ul>
+      </details>
+      <p class="util__motto">교사는 태어나지 않는다. 만들어진다.</p>
+      <a class="util__link" href="#org">조직도</a>
+    </div>
+  </div>
+
+  <!-- 로고, 메뉴 찾기, 구인구직 -->
+  <div class="container top">
     <a class="brand" href="#/" aria-label="교사개조 용광로 홈">
-      <span class="tile brand__tile" aria-hidden="true">!</span>
+      <span class="tile brand__tile" aria-hidden="true"><svg class="mark" focusable="false"><use href="#furnace"/></svg></span>
       <span class="brand__name">교사개조 용광로</span>
     </a>
-    <nav class="gnb" id="gnb" aria-label="부서 메뉴">
-      <ul class="gnb__list" id="gnb-list"></ul>
-      <div class="gnb__bg" id="gnb-bg" aria-hidden="true"></div>
-    </nav>
-    <button class="btn btn--quiet menu-btn" id="menu-btn" type="button" aria-haspopup="dialog" aria-controls="sheet">메뉴</button>
+    <div class="top__find" data-find></div>
+    <a class="btn btn--hot top__jobs" id="jobs-btn" href="#/pool">구인구직</a>
+    <button class="btn btn--quiet menu-btn" id="menu-btn" type="button" aria-haspopup="dialog" aria-controls="sheet">전체메뉴</button>
+  </div>
+
+  <!-- 부서 일곱 칸과 펼침 메뉴 -->
+  <div class="navrow">
+    <div class="container navrow__in">
+      <nav class="gnb" id="gnb" aria-label="부서 메뉴">
+        <ul class="gnb__list" id="gnb-list"></ul>
+        <div class="gnb__bg" id="gnb-bg" aria-hidden="true"></div>
+      </nav>
+      <button class="allmenu" id="all-btn" type="button" aria-haspopup="dialog" aria-controls="sheet">
+        <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M3 6h18M3 12h18M3 18h18" fill="none" stroke="currentColor" stroke-width="2"/></svg>
+        <span class="visually-hidden">전체메뉴</span>
+      </button>
+    </div>
   </div>
 </header>
 
 <main id="main">
-  <section class="hero" id="hero" aria-labelledby="hero-h">
+  <div class="visual" id="hero">
     <div class="container hero__in">
-      <h1 class="sign" id="hero-h" tabindex="-1">
-        <span class="visually-hidden">교사개조 용광로</span>
-        <span class="sign__crest" aria-hidden="true">
-          <span class="tile" style="--i:0">
-            <svg class="crest" viewBox="0 0 100 100" aria-hidden="true" focusable="false">
-              <polygon points="50,8 58.2,30.7 82.3,31.5 63.3,46.3 70,69.5 50,56 30,69.5 36.7,46.3 17.7,31.5 41.8,30.7"/>
-              <rect x="29.5" y="60" width="8" height="13" rx="4"/>
-              <rect x="46" y="50" width="8" height="43" rx="4"/>
-              <rect x="62.5" y="60" width="8" height="24" rx="4"/>
-              <circle cx="33.5" cy="84" r="4"/>
-            </svg>
+      <section class="hero__stage" aria-labelledby="hero-h">
+        <h1 class="sign" id="hero-h" tabindex="-1">
+          <span class="visually-hidden">교사개조 용광로</span>
+          <span class="sign__row" aria-hidden="true">
+            <span class="tile" style="--i:0">교</span>
+            <span class="tile" style="--i:1">사</span>
+            <span class="tile" style="--i:2">개</span>
+            <span class="tile" style="--i:3">조</span>
           </span>
-        </span>
-        <span class="sign__row" aria-hidden="true">
-          <span class="tile" style="--i:1">교</span>
-          <span class="tile" style="--i:2">사</span>
-          <span class="tile" style="--i:3">개</span>
-          <span class="tile" style="--i:4">조</span>
-        </span>
-        <span class="sign__row" aria-hidden="true">
-          <span class="tile" style="--i:5">용</span>
-          <span class="tile" style="--i:6">광</span>
-          <span class="tile" style="--i:7">로</span>
-          <span class="tile" style="--i:8">!</span>
-        </span>
-      </h1>
-      <div class="hero__foot">
-        <p class="hero__lede">임용 준비부터 첫 발령까지 필요한 도구를 학교 부서처럼 나눠 모았습니다.</p>
-        <div class="hero__actions">
-          <a class="btn" href="#depts">부서 고르기</a>
-          <a class="btn btn--quiet" href="#open">지금 열린 곳 보기</a>
+          <span class="sign__row" aria-hidden="true">
+            <span class="tile" style="--i:4">용</span>
+            <span class="tile" style="--i:5">광</span>
+            <span class="tile" style="--i:6">로</span>
+            <span class="tile" style="--i:7"><svg class="mark" focusable="false"><use href="#furnace"/></svg></span>
+          </span>
+        </h1>
+        <div class="hero__foot">
+          <p class="hero__lede">임용 준비부터 첫 발령까지 필요한 도구를 학교 부서처럼 나눠 모았습니다.</p>
+          <div class="hero__actions">
+            <a class="btn" href="#org">조직도 보기</a>
+            <a class="hero__link" href="#/imyong/cost">1년 공부비용 계산</a>
+          </div>
         </div>
-      </div>
+      </section>
+      <aside class="apps" aria-labelledby="apps-h">
+        <h2 class="apps__title" id="apps-h">부서 웹앱 바로가기</h2>
+        <ul class="apps__list" id="apps-list"></ul>
+      </aside>
     </div>
-  </section>
+  </div>
 
-  <!-- 부서 안내판과 각 페이지는 app.js 가 이 아래에 그립니다 -->
+  <!-- 자주 찾는 메뉴, 조직도, 각 페이지는 app.js 가 이 아래에 그립니다 -->
 </main>
 
 <noscript>
@@ -101,24 +131,33 @@
     <nav aria-label="부서 바로가기">
       <ul class="foot__depts" id="foot-depts"></ul>
     </nav>
-    <p class="foot__name">교사개조 용광로</p>
+    <div class="foot__brand">
+      <span class="tile foot__tile" aria-hidden="true"><svg class="mark" focusable="false"><use href="#furnace"/></svg></span>
+      <div>
+        <p class="foot__name">교사개조 용광로</p>
+        <p class="foot__line">임용 준비부터 첫 발령까지, 학교 부서별로 모은 교사 도구.</p>
+      </div>
+    </div>
   </div>
 </footer>
 
-<dialog class="sheet" id="sheet" aria-label="전체 메뉴">
+<dialog class="sheet" id="sheet" aria-label="전체메뉴">
   <div class="sheet__head">
     <span class="brand">
-      <span class="tile brand__tile" aria-hidden="true">!</span>
-      <span class="brand__name">교사개조 용광로</span>
+      <span class="tile brand__tile" aria-hidden="true"><svg class="mark" focusable="false"><use href="#furnace"/></svg></span>
+      <span class="brand__name">전체메뉴</span>
     </span>
     <button class="btn btn--quiet" id="sheet-close" type="button">닫기</button>
   </div>
-  <nav class="sheet__body" aria-label="부서 메뉴">
-    <ul class="sheet__list" id="sheet-list"></ul>
-  </nav>
+  <div class="sheet__body">
+    <div class="sheet__find" data-find></div>
+    <nav aria-label="부서 메뉴">
+      <ul class="sheet__list" id="sheet-list"></ul>
+    </nav>
+  </div>
 </dialog>
 
-<script src="data.js?v=20261118"></script>
-<script src="app.js?v=20261118"></script>
+<script src="data.js?v=20261118b"></script>
+<script src="app.js?v=20261118b"></script>
 </body>
 </html>

@@ -84,6 +84,30 @@ window.SITE = {
     },
   ],
 
+  /*
+   * 첫 화면 조직도의 자리.
+   *   side: 줄기 양옆에 붙는 작은 부서 (왼쪽, 오른쪽 순서로 번갈아 놓입니다)
+   *   main: 맨 아래 큰 부서 카드
+   * 부서를 새로 만들면 id 를 둘 중 한 곳에 넣으세요. 빠진 부서는 맨 아래 카드로 갑니다.
+   */
+  org: {
+    top: '교사개조 용광로',
+    side: ['gyomu', 'hongbo', 'cheyuk', 'pool'],
+    main: ['imyong', 'singyu', 'special'],
+  },
+
+  /* 첫 화면 '자주 찾는 메뉴'. to 는 '부서/메뉴', href 는 이 페이지 안의 위치입니다. icon 은 app.js 의 ICONS 이름 */
+  quick: [
+    { name: '조직도', href: '#org', icon: 'org' },
+    { name: '1년 공부비용', to: 'imyong/cost', icon: 'coin' },
+    { name: '노량진', to: 'imyong/noryangjin', icon: 'pin' },
+    { name: '강사비교', to: 'imyong/instructors', icon: 'board' },
+    { name: '공부아이템', to: 'imyong/items', icon: 'pen' },
+    { name: '자동차', to: 'singyu/car', icon: 'car' },
+    { name: '이사 및 발령', to: 'singyu/moving', icon: 'box' },
+    { name: '구인구직', to: 'pool/jobs', icon: 'case' },
+  ],
+
   /* 사이트 안에서 열리는 페이지의 내용 */
   pages: {
     /* ───── 임용부 > 1년 공부비용: 세 가지 길을 다섯 항목으로 비교 ───── */

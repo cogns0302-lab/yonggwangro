@@ -1,5 +1,35 @@
 [
  {
+  "shape": "white portal with department org chart",
+  "theme": "custom",
+  "genre": "editorial",
+  "job": "visit",
+  "axes": "light/grotesk-heavy/chromatic-red",
+  "posture": "committed",
+  "hero": "tile sign on a grey panel beside a red panel of department web apps",
+  "nav": "red utility strip, logo with menu search, seven department columns with one mega panel and an all-menu sheet",
+  "footer": "department link row over the furnace mark",
+  "imagery": "none",
+  "photos": [],
+  "entry": "index.html",
+  "fingerprint": "split-visual/icon-ring-row/org-chart/link-row/hairline",
+  "sections": [
+   "visual",
+   "quick menu",
+   "org chart",
+   "footer"
+  ],
+  "signature": "eight red tiles, the last one a furnace",
+  "waived": [
+   "37",
+   "7b",
+   "77"
+  ],
+  "prompt": "rebuild as a white education office style portal with an org chart and a furnace mark",
+  "date": "2026-11-18",
+  "mode": "build"
+ },
+ {
   "shape": "wall sign and department directory",
   "theme": "custom",
   "genre": "editorial",
