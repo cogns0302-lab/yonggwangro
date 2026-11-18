@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<title>교사개조 용광로 썸네일 원본 (1200 x 630)</title>
+<!-- 이 화면을 1200 x 630 으로 찍은 것이 assets/og-image.png 입니다. 문구나 색을 바꾸려면 여기서 고친 뒤 다시 찍으면 됩니다. -->
+<style>
+  @font-face { font-family: "SUIT"; font-weight: 900; src: url("https://cdn.jsdelivr.net/gh/sun-typeface/SUIT@2/fonts/static/woff2/SUIT-Heavy.woff2") format("woff2"); }
+  :root { --soot: #120C0A; --red: #D21919; --yellow: #FFD92B; --t: 206px; --g: 14px; }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { width: 1200px; height: 630px; overflow: hidden; background: var(--soot); }
+  .og { position: relative; width: 1200px; height: 630px; overflow: hidden; font-family: "SUIT", sans-serif; font-weight: 900;
+        background: radial-gradient(88% 96% at 50% 130%, #FFC62A 0%, #FF7414 24%, #D81A12 42%, #7A0E0C 58%, rgba(18, 12, 10, 0) 84%), var(--soot); }
+
+  /* 간판: 타일 여덟 장 */
+  .sign { position: absolute; top: 30px; left: 50%; display: grid; gap: var(--g); transform: translateX(-50%); }
+  .row { display: grid; grid-template-columns: repeat(4, var(--t)); gap: var(--g); }
+  .tile { position: relative; display: grid; place-items: center; width: var(--t); height: var(--t); background: var(--red); color: var(--yellow); box-shadow: 9px 9px 0 #000; font-size: calc(var(--t) * 0.72); line-height: 1; }
+  .tile--loose { transform: translate(6px, 14px) rotate(7deg); transform-origin: 20% 0; }
+
+  /* 녹아 흐르는 타일 */
+  .drip { position: absolute; top: calc(100% - 2px); left: var(--x); width: var(--w, 24px); height: var(--h); border-radius: 0 0 999px 999px; background: linear-gradient(to bottom, var(--red) 0%, #F0471A 55%, #FF9A1F 82%, #FFD92B 100%); }
+  .drip::after { content: ""; position: absolute; left: 50%; top: calc(100% + var(--d, 12px)); width: calc(var(--w, 24px) * 0.62); height: calc(var(--w, 24px) * 0.8); border-radius: 50% 50% 50% 50% / 62% 62% 38% 38%; background: #FFC02A; transform: translateX(-50%); }
+  .drip--bare::after { display: none; }
+
+  /* 경고 띠 */
+  .tape { position: absolute; right: -60px; bottom: 30px; left: -60px; display: flex; align-items: center; justify-content: center; height: 92px; background: var(--yellow); box-shadow: 0 9px 0 #000; color: var(--soot); font-size: 50px; letter-spacing: -0.01em; white-space: nowrap; transform: rotate(-3deg); }
+  .tape::before, .tape::after { content: ""; position: absolute; top: 0; bottom: 0; width: 190px; background: repeating-linear-gradient(-45deg, var(--soot) 0 24px, var(--yellow) 24px 48px); }
+  .tape::before { left: 0; }
+  .tape::after { right: 0; }
+
+  /* 불티 */
+  .spark { position: absolute; left: var(--x); top: var(--y); width: var(--s, 7px); height: var(--s, 7px); background: var(--c, #FFD92B); transform: rotate(45deg); }
+</style>
+</head>
+<body>
+<div class="og">
+  <i class="spark" style="--x:58px; --y:418px; --s:8px"></i>
+  <i class="spark" style="--x:104px; --y:300px; --s:5px; --c:#FF8A1F"></i>
+  <i class="spark" style="--x:36px; --y:196px; --s:4px; --c:#FF8A1F"></i>
+  <i class="spark" style="--x:1108px; --y:352px; --s:8px"></i>
+  <i class="spark" style="--x:1150px; --y:222px; --s:5px; --c:#FF8A1F"></i>
+  <i class="spark" style="--x:1084px; --y:108px; --s:4px"></i>
+  <i class="spark" style="--x:128px; --y:84px; --s:4px"></i>
+  <i class="spark" style="--x:88px; --y:486px; --s:11px; --c:#FF8A1F"></i>
+  <i class="spark" style="--x:1112px; --y:452px; --s:10px"></i>
+  <i class="spark" style="--x:1160px; --y:392px; --s:6px; --c:#FF8A1F"></i>
+  <i class="spark" style="--x:22px; --y:356px; --s:6px"></i>
+
+  <div class="sign">
+    <div class="row">
+      <div class="tile">교</div>
+      <div class="tile">사</div>
+      <div class="tile">개</div>
+      <div class="tile">조</div>
+    </div>
+    <div class="row">
+      <div class="tile">용<i class="drip" style="--x:26px; --h:44px; --w:22px"></i><i class="drip drip--bare" style="--x:118px; --h:70px; --w:30px"></i></div>
+      <div class="tile">광<i class="drip drip--bare" style="--x:52px; --h:58px; --w:26px"></i><i class="drip" style="--x:150px; --h:26px; --w:20px; --d:9px"></i></div>
+      <div class="tile">로<i class="drip drip--bare" style="--x:20px; --h:30px; --w:22px"></i><i class="drip drip--bare" style="--x:112px; --h:64px; --w:32px"></i></div>
+      <div class="tile tile--loose">!<i class="drip drip--bare" style="--x:70px; --h:38px; --w:26px"></i></div>
+    </div>
+  </div>
+
+  <div class="tape">교사는 태어나지 않는다. 만들어진다.</div>
+</div>
+</body>
+</html>

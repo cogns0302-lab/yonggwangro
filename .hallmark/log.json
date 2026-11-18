@@ -1,0 +1,31 @@
+[
+ {
+  "shape": "wall sign and department directory",
+  "theme": "custom",
+  "genre": "editorial",
+  "job": "visit",
+  "axes": "light/grotesk-heavy/chromatic-red",
+  "posture": "full-palette",
+  "hero": "one tile sign centred on the wall, a sentence and two actions on a ruled foot",
+  "nav": "seven department columns that open one full menu panel",
+  "footer": "one row of department links under the creed",
+  "imagery": "none",
+  "photos": [],
+  "entry": "index.html",
+  "fingerprint": "centred-sign/ruled-directory/full-bleed-list/statement/link-row/hairline",
+  "sections": [
+   "hero sign",
+   "department directory",
+   "open now list",
+   "creed",
+   "footer"
+  ],
+  "signature": "eight red tiles spelling the site name in yellow",
+  "waived": [
+   "37"
+  ],
+  "prompt": "teacher hub in the look of a red tile slogan sign, school departments as menus",
+  "date": "2026-11-18",
+  "mode": "build"
+ }
+]

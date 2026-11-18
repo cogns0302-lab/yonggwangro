@@ -1,0 +1,124 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>교사개조 용광로</title>
+<meta name="description" content="임용 준비부터 첫 발령까지, 교사에게 필요한 도구를 학교 부서별로 모았습니다.">
+<meta name="theme-color" content="#B31B1B">
+
+<!-- 공유 썸네일. 주소를 옮기면 og:url 과 og:image 의 전체 주소도 함께 바꾸세요. -->
+<meta property="og:type" content="website">
+<meta property="og:locale" content="ko_KR">
+<meta property="og:site_name" content="교사개조 용광로">
+<meta property="og:title" content="교사개조 용광로">
+<meta property="og:description" content="교사는 태어나지 않는다. 만들어진다. 임용부터 첫 발령까지, 부서별로 모은 교사 도구.">
+<meta property="og:url" content="https://cogns0302-lab.github.io/yonggwangro/">
+<meta property="og:image" content="https://cogns0302-lab.github.io/yonggwangro/assets/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="붉은 타일 여덟 장에 노란 글씨로 쓴 교사개조 용광로 간판">
+<meta name="twitter:card" content="summary_large_image">
+
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="assets/icon-180.png">
+
+<!-- 서체 네 종: 프리텐다드(화면 전반), 노토 산스 KR(설명글), 스포카 한 산스 네오(숫자), SUIT(제목과 간판, tokens.css 에서 불러옴) -->
+<link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700&display=swap">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/spoqa/spoqa-han-sans@latest/css/SpoqaHanSansNeo.css">
+<!-- 파일을 고친 뒤 방문자에게 바로 반영되게 하려면 아래 ?v= 뒤 숫자를 올리세요. -->
+<link rel="stylesheet" href="styles.css?v=20261118">
+</head>
+<body>
+<a class="skip" href="#main">본문으로 건너뛰기</a>
+
+<header class="masthead">
+  <div class="container masthead__in">
+    <a class="brand" href="#/" aria-label="교사개조 용광로 홈">
+      <span class="tile brand__tile" aria-hidden="true">!</span>
+      <span class="brand__name">교사개조 용광로</span>
+    </a>
+    <nav class="gnb" id="gnb" aria-label="부서 메뉴">
+      <ul class="gnb__list" id="gnb-list"></ul>
+      <div class="gnb__bg" id="gnb-bg" aria-hidden="true"></div>
+    </nav>
+    <button class="btn btn--quiet menu-btn" id="menu-btn" type="button" aria-haspopup="dialog" aria-controls="sheet">메뉴</button>
+  </div>
+</header>
+
+<main id="main">
+  <section class="hero" id="hero" aria-labelledby="hero-h">
+    <div class="container hero__in">
+      <h1 class="sign" id="hero-h" tabindex="-1">
+        <span class="visually-hidden">교사개조 용광로</span>
+        <span class="sign__crest" aria-hidden="true">
+          <span class="tile" style="--i:0">
+            <svg class="crest" viewBox="0 0 100 100" aria-hidden="true" focusable="false">
+              <polygon points="50,8 58.2,30.7 82.3,31.5 63.3,46.3 70,69.5 50,56 30,69.5 36.7,46.3 17.7,31.5 41.8,30.7"/>
+              <rect x="29.5" y="60" width="8" height="13" rx="4"/>
+              <rect x="46" y="50" width="8" height="43" rx="4"/>
+              <rect x="62.5" y="60" width="8" height="24" rx="4"/>
+              <circle cx="33.5" cy="84" r="4"/>
+            </svg>
+          </span>
+        </span>
+        <span class="sign__row" aria-hidden="true">
+          <span class="tile" style="--i:1">교</span>
+          <span class="tile" style="--i:2">사</span>
+          <span class="tile" style="--i:3">개</span>
+          <span class="tile" style="--i:4">조</span>
+        </span>
+        <span class="sign__row" aria-hidden="true">
+          <span class="tile" style="--i:5">용</span>
+          <span class="tile" style="--i:6">광</span>
+          <span class="tile" style="--i:7">로</span>
+          <span class="tile" style="--i:8">!</span>
+        </span>
+      </h1>
+      <div class="hero__foot">
+        <p class="hero__lede">임용 준비부터 첫 발령까지 필요한 도구를 학교 부서처럼 나눠 모았습니다.</p>
+        <div class="hero__actions">
+          <a class="btn" href="#depts">부서 고르기</a>
+          <a class="btn btn--quiet" href="#open">지금 열린 곳 보기</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 부서 안내판과 각 페이지는 app.js 가 이 아래에 그립니다 -->
+</main>
+
+<noscript>
+  <p class="notice container">부서 메뉴는 자바스크립트를 켜야 보입니다.</p>
+</noscript>
+
+<footer class="foot">
+  <div class="container">
+    <nav aria-label="부서 바로가기">
+      <ul class="foot__depts" id="foot-depts"></ul>
+    </nav>
+    <p class="foot__name">교사개조 용광로</p>
+  </div>
+</footer>
+
+<dialog class="sheet" id="sheet" aria-label="전체 메뉴">
+  <div class="sheet__head">
+    <span class="brand">
+      <span class="tile brand__tile" aria-hidden="true">!</span>
+      <span class="brand__name">교사개조 용광로</span>
+    </span>
+    <button class="btn btn--quiet" id="sheet-close" type="button">닫기</button>
+  </div>
+  <nav class="sheet__body" aria-label="부서 메뉴">
+    <ul class="sheet__list" id="sheet-list"></ul>
+  </nav>
+</dialog>
+
+<script src="data.js?v=20261118"></script>
+<script src="app.js?v=20261118"></script>
+</body>
+</html>
