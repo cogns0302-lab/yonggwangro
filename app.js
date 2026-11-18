@@ -65,22 +65,11 @@
         <ul class="sheet__menus">${d.menus.map((m) => `<li>${menuItem(d, m, 'sheet__menu')}</li>`).join('')}</ul>
       </li>`).join('');
 
-    $('#jump-list').innerHTML = SITE.depts.map((d) => `<li><a href="#/${d.id}">${esc(d.name)}</a></li>`).join('');
     $('#foot-depts').innerHTML = SITE.depts.map((d) => `<li><a href="#/${d.id}">${esc(d.name)}</a></li>`).join('');
 
     /* 첫 화면 오른쪽: 다른 주소에 있는 부서 웹앱 */
     $('#apps-list').innerHTML = SITE.depts.flatMap((d) => d.menus.filter((m) => kind(m) === 'ext').map((m) => `
       <li><a class="apps__link" href="${esc(m.url)}"${NEW_TAB}><span class="apps__name">${esc(m.name)}${EXT}</span><span class="apps__dept">${esc(d.name)}</span></a></li>`)).join('');
-
-    /* 머리의 구인구직 단추는 인력풀의 구인구직 웹앱으로 바로 간다 */
-    const jobs = find('pool/jobs');
-    const btn = $('#jobs-btn');
-    if (jobs && kind(jobs.m) === 'ext') {
-      btn.href = jobs.m.url;
-      btn.target = '_blank';
-      btn.rel = 'noopener noreferrer';
-      btn.insertAdjacentHTML('beforeend', EXT);
-    }
 
     $$('[data-find]').forEach((box, i) => renderFind(box, i));
   }
@@ -127,13 +116,6 @@
     });
     form.addEventListener('focusout', (e) => { if (!form.contains(e.relatedTarget)) pop.hidden = true; });
     list.addEventListener('click', (e) => { if (e.target.closest('a')) { input.value = ''; pop.hidden = true; } });
-  }
-
-  /* 맨 위 붉은 띠의 부서 바로가기: 밖을 누르거나 Esc 로 닫는다 */
-  function bindJump() {
-    const jump = $('#jump');
-    document.addEventListener('click', (e) => { if (jump.open && (!jump.contains(e.target) || e.target.closest('a'))) jump.open = false; });
-    jump.addEventListener('keydown', (e) => { if (e.key === 'Escape' && jump.open) { jump.open = false; $('summary', jump).focus(); } });
   }
 
   /* 넓은 화면: 부서에 마우스를 올리거나 키보드로 들어오면 전체 메뉴가 한 번에 펼쳐진다 */
@@ -722,7 +704,6 @@
   document.documentElement.classList.add('js');
   renderChrome();
   bindNav();
-  bindJump();
   bindSheet();
   bindBrand();
   window.addEventListener('hashchange', route);
