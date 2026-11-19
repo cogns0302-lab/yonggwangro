@@ -9,9 +9,699 @@
  *   photo  위키미디어 공용의 자유 라이선스 사진을 배경을 지워 assets/cars 에 둔 것. by 찍은 사람, lic 라이선스, edit 고친 내용
  *   videos 유튜브 영상 id, t 제목, ch 채널, v 조회수(2026년 11월 18일 기준)
  * fresh[] 신차. price 는 제조사 홈페이지의 시작 가격(만원)
- * guides  중고차 구입 팁, 구입 방법, 사기 예방 */
+ * guides  중고차 구입 팁, 구입 방법, 사기 예방
+ * best    월별 베스트 3. fresh 신차(네이버 국내 승용 자동차 판매량), used 중고차(카이즈유 실거래 집계), sold 그달 대수 */
 window.CARS = {
  "checked": "2026년 11월 18일",
+ "best": [
+  {
+   "ym": "2026-10",
+   "fresh": [
+    {
+     "rank": 1,
+     "name": "기아 뉴 쏘렌토 하이브리드(MQ4)",
+     "sold": 6242,
+     "seg": "국산 중형 SUV 1위",
+     "photo": {
+      "src": "assets/cars/MQ4.webp",
+      "page": "https://commons.wikimedia.org/wiki/File:Kia_Sorento_MQ4_front_view_(South_Korea)_03.png",
+      "by": "차,또바기",
+      "lic": "CC BY-SA 4.0",
+      "edit": "배경 지움, 번호판 가림"
+     },
+     "focus": "sorento",
+     "url": null
+    },
+    {
+     "rank": 2,
+     "name": "테슬라 모델 Y",
+     "sold": 5508,
+     "seg": "외산 중형 SUV 1위",
+     "photo": {
+      "src": "assets/cars/MY.webp",
+      "page": "https://commons.wikimedia.org/wiki/File:2020_Tesla_Model_Y,_front_8.1.20.jpg",
+      "by": "Kevauto",
+      "lic": "CC BY-SA 4.0",
+      "edit": "배경 지움, 번호판 가림"
+     },
+     "focus": "modely",
+     "url": null
+    },
+    {
+     "rank": 3,
+     "name": "현대 뉴 그랜저 하이브리드(GN7)",
+     "sold": 5270,
+     "seg": "국산 준대형 세단 1위",
+     "photo": {
+      "src": "assets/cars/GN7.webp",
+      "page": "https://commons.wikimedia.org/wiki/File:01_Hyundai_Grandeur_(GN7).jpg",
+      "by": "Benespit",
+      "lic": "CC BY-SA 4.0",
+      "edit": "배경 지움, 번호판 가림"
+     },
+     "focus": "grandeur",
+     "url": null
+    }
+   ],
+   "used": [
+    {
+     "rank": 1,
+     "name": "기아 뉴 레이",
+     "sold": 3422,
+     "seg": "국산 경형 RV",
+     "photo": {
+      "src": "assets/cars/TAM1.webp",
+      "page": "https://commons.wikimedia.org/wiki/File:KIA_THE_NEW_RAY_201806_001.jpg",
+      "by": "CEFICEFI",
+      "lic": "CC BY-SA 4.0",
+      "edit": "배경 지움, 번호판 가림, 좌우 반전"
+     },
+     "focus": "TAM1",
+     "encar": null,
+     "listings": {
+      "encar": 3275,
+      "kb": 2123
+     }
+    },
+    {
+     "rank": 2,
+     "name": "기아 모닝(TA)",
+     "sold": 3190,
+     "seg": "국산 경형",
+     "photo": {
+      "src": "assets/cars/TA.webp",
+      "page": "https://commons.wikimedia.org/wiki/File:2014_Kia_Picanto_Front_1.jpg",
+      "by": "Areaseven",
+      "lic": "CC BY-SA 3.0",
+      "edit": "배경 지움, 번호판 가림"
+     },
+     "focus": "TA",
+     "encar": null,
+     "listings": {
+      "encar": 1732,
+      "kb": 2317
+     }
+    },
+    {
+     "rank": 3,
+     "name": "현대 그랜저(HG)",
+     "sold": 2881,
+     "seg": "국산 준대형 세단",
+     "photo": {
+      "src": "assets/cars/HG.webp",
+      "page": "https://commons.wikimedia.org/wiki/File:0_Hyundai_Grandeur_Hybrid_(HG)_1.jpg",
+      "by": "Benespit",
+      "lic": "CC BY-SA 4.0",
+      "edit": "배경 지움, 번호판 가림"
+     },
+     "focus": null,
+     "encar": {
+      "t": "Y",
+      "mk": "현대",
+      "g": "그랜저",
+      "m": [
+       "그랜저 HG"
+      ]
+     },
+     "listings": {
+      "encar": 2092,
+      "kb": 2299
+     }
+    }
+   ]
+  },
+  {
+   "ym": "2026-09",
+   "fresh": [
+    {
+     "rank": 1,
+     "name": "테슬라 모델 Y",
+     "sold": 11421,
+     "seg": "외산 중형 SUV 1위",
+     "photo": {
+      "src": "assets/cars/MY.webp",
+      "page": "https://commons.wikimedia.org/wiki/File:2020_Tesla_Model_Y,_front_8.1.20.jpg",
+      "by": "Kevauto",
+      "lic": "CC BY-SA 4.0",
+      "edit": "배경 지움, 번호판 가림"
+     },
+     "focus": "modely",
+     "url": null
+    },
+    {
+     "rank": 2,
+     "name": "기아 뉴 쏘렌토 하이브리드(MQ4)",
+     "sold": 5615,
+     "seg": "국산 중형 SUV 1위",
+     "photo": {
+      "src": "assets/cars/MQ4.webp",
+      "page": "https://commons.wikimedia.org/wiki/File:Kia_Sorento_MQ4_front_view_(South_Korea)_03.png",
+      "by": "차,또바기",
+      "lic": "CC BY-SA 4.0",
+      "edit": "배경 지움, 번호판 가림"
+     },
+     "focus": "sorento",
+     "url": null
+    },
+    {
+     "rank": 3,
+     "name": "현대 뉴 그랜저 하이브리드(GN7)",
+     "sold": 5511,
+     "seg": "국산 준대형 세단 1위",
+     "photo": {
+      "src": "assets/cars/GN7.webp",
+      "page": "https://commons.wikimedia.org/wiki/File:01_Hyundai_Grandeur_(GN7).jpg",
+      "by": "Benespit",
+      "lic": "CC BY-SA 4.0",
+      "edit": "배경 지움, 번호판 가림"
+     },
+     "focus": "grandeur",
+     "url": null
+    }
+   ],
+   "used": [
+    {
+     "rank": 1,
+     "name": "기아 뉴 레이",
+     "sold": 3253,
+     "seg": "국산 경형 RV",
+     "photo": {
+      "src": "assets/cars/TAM1.webp",
+      "page": "https://commons.wikimedia.org/wiki/File:KIA_THE_NEW_RAY_201806_001.jpg",
+      "by": "CEFICEFI",
+      "lic": "CC BY-SA 4.0",
+      "edit": "배경 지움, 번호판 가림, 좌우 반전"
+     },
+     "focus": "TAM1",
+     "encar": null,
+     "listings": {
+      "encar": 3275,
+      "kb": 2123
+     }
+    },
+    {
+     "rank": 2,
+     "name": "기아 모닝(TA)",
+     "sold": 3029,
+     "seg": "국산 경형",
+     "photo": {
+      "src": "assets/cars/TA.webp",
+      "page": "https://commons.wikimedia.org/wiki/File:2014_Kia_Picanto_Front_1.jpg",
+      "by": "Areaseven",
+      "lic": "CC BY-SA 3.0",
+      "edit": "배경 지움, 번호판 가림"
+     },
+     "focus": "TA",
+     "encar": null,
+     "listings": {
+      "encar": 1732,
+      "kb": 2317
+     }
+    },
+    {
+     "rank": 3,
+     "name": "현대 그랜저(HG)",
+     "sold": 3015,
+     "seg": "국산 준대형 세단",
+     "photo": {
+      "src": "assets/cars/HG.webp",
+      "page": "https://commons.wikimedia.org/wiki/File:0_Hyundai_Grandeur_Hybrid_(HG)_1.jpg",
+      "by": "Benespit",
+      "lic": "CC BY-SA 4.0",
+      "edit": "배경 지움, 번호판 가림"
+     },
+     "focus": null,
+     "encar": {
+      "t": "Y",
+      "mk": "현대",
+      "g": "그랜저",
+      "m": [
+       "그랜저 HG"
+      ]
+     },
+     "listings": {
+      "encar": 2092,
+      "kb": 2299
+     }
+    }
+   ]
+  },
+  {
+   "ym": "2026-08",
+   "fresh": [
+    {
+     "rank": 1,
+     "name": "테슬라 모델 Y",
+     "sold": 9638,
+     "seg": "외산 중형 SUV 1위",
+     "photo": {
+      "src": "assets/cars/MY.webp",
+      "page": "https://commons.wikimedia.org/wiki/File:2020_Tesla_Model_Y,_front_8.1.20.jpg",
+      "by": "Kevauto",
+      "lic": "CC BY-SA 4.0",
+      "edit": "배경 지움, 번호판 가림"
+     },
+     "focus": "modely",
+     "url": null
+    },
+    {
+     "rank": 2,
+     "name": "기아 뉴 쏘렌토 하이브리드(MQ4)",
+     "sold": 5202,
+     "seg": "국산 중형 SUV 1위",
+     "photo": {
+      "src": "assets/cars/MQ4.webp",
+      "page": "https://commons.wikimedia.org/wiki/File:Kia_Sorento_MQ4_front_view_(South_Korea)_03.png",
+      "by": "차,또바기",
+      "lic": "CC BY-SA 4.0",
+      "edit": "배경 지움, 번호판 가림"
+     },
+     "focus": "sorento",
+     "url": null
+    },
+    {
+     "rank": 3,
+     "name": "기아 뉴 카니발 하이브리드(KA4)",
+     "sold": 3787,
+     "seg": "국산 대형 RV 1위",
+     "photo": {
+      "src": "assets/cars/KA4.webp",
+      "page": "https://commons.wikimedia.org/wiki/File:0_Kia_Carnival_(KA4)_1.jpg",
+      "by": "Benespit",
+      "lic": "CC BY-SA 4.0",
+      "edit": "배경 지움, 번호판 가림"
+     },
+     "focus": null,
+     "url": "https://www.kia.com/kr/vehicles/carnival"
+    }
+   ],
+   "used": [
+    {
+     "rank": 1,
+     "name": "기아 모닝(TA)",
+     "sold": 3296,
+     "seg": "국산 경형",
+     "photo": {
+      "src": "assets/cars/TA.webp",
+      "page": "https://commons.wikimedia.org/wiki/File:2014_Kia_Picanto_Front_1.jpg",
+      "by": "Areaseven",
+      "lic": "CC BY-SA 3.0",
+      "edit": "배경 지움, 번호판 가림"
+     },
+     "focus": "TA",
+     "encar": null,
+     "listings": {
+      "encar": 1732,
+      "kb": 2317
+     }
+    },
+    {
+     "rank": 2,
+     "name": "기아 뉴 레이",
+     "sold": 3294,
+     "seg": "국산 경형 RV",
+     "photo": {
+      "src": "assets/cars/TAM1.webp",
+      "page": "https://commons.wikimedia.org/wiki/File:KIA_THE_NEW_RAY_201806_001.jpg",
+      "by": "CEFICEFI",
+      "lic": "CC BY-SA 4.0",
+      "edit": "배경 지움, 번호판 가림, 좌우 반전"
+     },
+     "focus": "TAM1",
+     "encar": null,
+     "listings": {
+      "encar": 3275,
+      "kb": 2123
+     }
+    },
+    {
+     "rank": 3,
+     "name": "현대 그랜저(HG)",
+     "sold": 2999,
+     "seg": "국산 준대형 세단",
+     "photo": {
+      "src": "assets/cars/HG.webp",
+      "page": "https://commons.wikimedia.org/wiki/File:0_Hyundai_Grandeur_Hybrid_(HG)_1.jpg",
+      "by": "Benespit",
+      "lic": "CC BY-SA 4.0",
+      "edit": "배경 지움, 번호판 가림"
+     },
+     "focus": null,
+     "encar": {
+      "t": "Y",
+      "mk": "현대",
+      "g": "그랜저",
+      "m": [
+       "그랜저 HG"
+      ]
+     },
+     "listings": {
+      "encar": 2092,
+      "kb": 2299
+     }
+    }
+   ]
+  },
+  {
+   "ym": "2026-07",
+   "fresh": [
+    {
+     "rank": 1,
+     "name": "테슬라 모델 Y",
+     "sold": 8705,
+     "seg": "외산 중형 SUV 1위",
+     "photo": {
+      "src": "assets/cars/MY.webp",
+      "page": "https://commons.wikimedia.org/wiki/File:2020_Tesla_Model_Y,_front_8.1.20.jpg",
+      "by": "Kevauto",
+      "lic": "CC BY-SA 4.0",
+      "edit": "배경 지움, 번호판 가림"
+     },
+     "focus": "modely",
+     "url": null
+    },
+    {
+     "rank": 2,
+     "name": "기아 뉴 쏘렌토 하이브리드(MQ4)",
+     "sold": 5620,
+     "seg": "국산 중형 SUV 1위",
+     "photo": {
+      "src": "assets/cars/MQ4.webp",
+      "page": "https://commons.wikimedia.org/wiki/File:Kia_Sorento_MQ4_front_view_(South_Korea)_03.png",
+      "by": "차,또바기",
+      "lic": "CC BY-SA 4.0",
+      "edit": "배경 지움, 번호판 가림"
+     },
+     "focus": "sorento",
+     "url": null
+    },
+    {
+     "rank": 3,
+     "name": "기아 뉴 카니발 하이브리드(KA4)",
+     "sold": 5580,
+     "seg": "국산 대형 RV 1위",
+     "photo": {
+      "src": "assets/cars/KA4.webp",
+      "page": "https://commons.wikimedia.org/wiki/File:0_Kia_Carnival_(KA4)_1.jpg",
+      "by": "Benespit",
+      "lic": "CC BY-SA 4.0",
+      "edit": "배경 지움, 번호판 가림"
+     },
+     "focus": null,
+     "url": "https://www.kia.com/kr/vehicles/carnival"
+    }
+   ],
+   "used": [
+    {
+     "rank": 1,
+     "name": "기아 모닝(TA)",
+     "sold": 3721,
+     "seg": "국산 경형",
+     "photo": {
+      "src": "assets/cars/TA.webp",
+      "page": "https://commons.wikimedia.org/wiki/File:2014_Kia_Picanto_Front_1.jpg",
+      "by": "Areaseven",
+      "lic": "CC BY-SA 3.0",
+      "edit": "배경 지움, 번호판 가림"
+     },
+     "focus": "TA",
+     "encar": null,
+     "listings": {
+      "encar": 1732,
+      "kb": 2317
+     }
+    },
+    {
+     "rank": 2,
+     "name": "기아 뉴 레이",
+     "sold": 3438,
+     "seg": "국산 경형 RV",
+     "photo": {
+      "src": "assets/cars/TAM1.webp",
+      "page": "https://commons.wikimedia.org/wiki/File:KIA_THE_NEW_RAY_201806_001.jpg",
+      "by": "CEFICEFI",
+      "lic": "CC BY-SA 4.0",
+      "edit": "배경 지움, 번호판 가림, 좌우 반전"
+     },
+     "focus": "TAM1",
+     "encar": null,
+     "listings": {
+      "encar": 3275,
+      "kb": 2123
+     }
+    },
+    {
+     "rank": 3,
+     "name": "쉐보레 스파크",
+     "sold": 3423,
+     "seg": "국산 경형",
+     "photo": {
+      "src": "assets/cars/SPARK.webp",
+      "page": "https://commons.wikimedia.org/wiki/File:Chevrolet_Spark_(M400)_Facelift_IMG_9084.jpg",
+      "by": "Alexander-93",
+      "lic": "CC BY-SA 4.0",
+      "edit": "배경 지움, 번호판 가림"
+     },
+     "focus": null,
+     "encar": {
+      "t": "Y",
+      "mk": "쉐보레(GM대우)",
+      "g": "스파크",
+      "m": []
+     },
+     "listings": {
+      "encar": 2244
+     }
+    }
+   ]
+  },
+  {
+   "ym": "2026-06",
+   "fresh": [
+    {
+     "rank": 1,
+     "name": "테슬라 모델 Y",
+     "sold": 9188,
+     "seg": "외산 중형 SUV 1위",
+     "photo": {
+      "src": "assets/cars/MY.webp",
+      "page": "https://commons.wikimedia.org/wiki/File:2020_Tesla_Model_Y,_front_8.1.20.jpg",
+      "by": "Kevauto",
+      "lic": "CC BY-SA 4.0",
+      "edit": "배경 지움, 번호판 가림"
+     },
+     "focus": "modely",
+     "url": null
+    },
+    {
+     "rank": 2,
+     "name": "기아 뉴 쏘렌토 하이브리드(MQ4)",
+     "sold": 7802,
+     "seg": "국산 중형 SUV 1위",
+     "photo": {
+      "src": "assets/cars/MQ4.webp",
+      "page": "https://commons.wikimedia.org/wiki/File:Kia_Sorento_MQ4_front_view_(South_Korea)_03.png",
+      "by": "차,또바기",
+      "lic": "CC BY-SA 4.0",
+      "edit": "배경 지움, 번호판 가림"
+     },
+     "focus": "sorento",
+     "url": null
+    },
+    {
+     "rank": 3,
+     "name": "기아 뉴 카니발 하이브리드(KA4)",
+     "sold": 5522,
+     "seg": "국산 대형 RV 1위",
+     "photo": {
+      "src": "assets/cars/KA4.webp",
+      "page": "https://commons.wikimedia.org/wiki/File:0_Kia_Carnival_(KA4)_1.jpg",
+      "by": "Benespit",
+      "lic": "CC BY-SA 4.0",
+      "edit": "배경 지움, 번호판 가림"
+     },
+     "focus": null,
+     "url": "https://www.kia.com/kr/vehicles/carnival"
+    }
+   ],
+   "used": [
+    {
+     "rank": 1,
+     "name": "기아 모닝(TA)",
+     "sold": 3574,
+     "seg": "국산 경형",
+     "photo": {
+      "src": "assets/cars/TA.webp",
+      "page": "https://commons.wikimedia.org/wiki/File:2014_Kia_Picanto_Front_1.jpg",
+      "by": "Areaseven",
+      "lic": "CC BY-SA 3.0",
+      "edit": "배경 지움, 번호판 가림"
+     },
+     "focus": "TA",
+     "encar": null,
+     "listings": {
+      "encar": 1732,
+      "kb": 2317
+     }
+    },
+    {
+     "rank": 2,
+     "name": "쉐보레 스파크",
+     "sold": 3359,
+     "seg": "국산 경형",
+     "photo": {
+      "src": "assets/cars/SPARK.webp",
+      "page": "https://commons.wikimedia.org/wiki/File:Chevrolet_Spark_(M400)_Facelift_IMG_9084.jpg",
+      "by": "Alexander-93",
+      "lic": "CC BY-SA 4.0",
+      "edit": "배경 지움, 번호판 가림"
+     },
+     "focus": null,
+     "encar": {
+      "t": "Y",
+      "mk": "쉐보레(GM대우)",
+      "g": "스파크",
+      "m": []
+     },
+     "listings": {
+      "encar": 2244
+     }
+    },
+    {
+     "rank": 3,
+     "name": "기아 뉴 레이",
+     "sold": 3150,
+     "seg": "국산 경형 RV",
+     "photo": {
+      "src": "assets/cars/TAM1.webp",
+      "page": "https://commons.wikimedia.org/wiki/File:KIA_THE_NEW_RAY_201806_001.jpg",
+      "by": "CEFICEFI",
+      "lic": "CC BY-SA 4.0",
+      "edit": "배경 지움, 번호판 가림, 좌우 반전"
+     },
+     "focus": "TAM1",
+     "encar": null,
+     "listings": {
+      "encar": 3275,
+      "kb": 2123
+     }
+    }
+   ]
+  },
+  {
+   "ym": "2026-05",
+   "fresh": [
+    {
+     "rank": 1,
+     "name": "테슬라 모델 Y",
+     "sold": 8762,
+     "seg": "외산 중형 SUV 1위",
+     "photo": {
+      "src": "assets/cars/MY.webp",
+      "page": "https://commons.wikimedia.org/wiki/File:2020_Tesla_Model_Y,_front_8.1.20.jpg",
+      "by": "Kevauto",
+      "lic": "CC BY-SA 4.0",
+      "edit": "배경 지움, 번호판 가림"
+     },
+     "focus": "modely",
+     "url": null
+    },
+    {
+     "rank": 2,
+     "name": "기아 뉴 쏘렌토 하이브리드(MQ4)",
+     "sold": 7086,
+     "seg": "국산 중형 SUV 1위",
+     "photo": {
+      "src": "assets/cars/MQ4.webp",
+      "page": "https://commons.wikimedia.org/wiki/File:Kia_Sorento_MQ4_front_view_(South_Korea)_03.png",
+      "by": "차,또바기",
+      "lic": "CC BY-SA 4.0",
+      "edit": "배경 지움, 번호판 가림"
+     },
+     "focus": "sorento",
+     "url": null
+    },
+    {
+     "rank": 3,
+     "name": "현대 뉴 쏘나타(DN8)",
+     "sold": 4110,
+     "seg": "국산 중형 세단 1위",
+     "photo": {
+      "src": "assets/cars/DN8.webp",
+      "page": "https://commons.wikimedia.org/wiki/File:2020_Hyundai_Sonata_SEL_(Quartz_White),_front_right.jpg",
+      "by": "Mr.choppers",
+      "lic": "CC BY-SA 3.0",
+      "edit": "배경 지움, 번호판 가림, 좌우 반전"
+     },
+     "focus": "sonata",
+     "url": null
+    }
+   ],
+   "used": [
+    {
+     "rank": 1,
+     "name": "기아 모닝(TA)",
+     "sold": 3069,
+     "seg": "국산 경형",
+     "photo": {
+      "src": "assets/cars/TA.webp",
+      "page": "https://commons.wikimedia.org/wiki/File:2014_Kia_Picanto_Front_1.jpg",
+      "by": "Areaseven",
+      "lic": "CC BY-SA 3.0",
+      "edit": "배경 지움, 번호판 가림"
+     },
+     "focus": "TA",
+     "encar": null,
+     "listings": {
+      "encar": 1732,
+      "kb": 2317
+     }
+    },
+    {
+     "rank": 2,
+     "name": "쉐보레 스파크",
+     "sold": 2781,
+     "seg": "국산 경형",
+     "photo": {
+      "src": "assets/cars/SPARK.webp",
+      "page": "https://commons.wikimedia.org/wiki/File:Chevrolet_Spark_(M400)_Facelift_IMG_9084.jpg",
+      "by": "Alexander-93",
+      "lic": "CC BY-SA 4.0",
+      "edit": "배경 지움, 번호판 가림"
+     },
+     "focus": null,
+     "encar": {
+      "t": "Y",
+      "mk": "쉐보레(GM대우)",
+      "g": "스파크",
+      "m": []
+     },
+     "listings": {
+      "encar": 2244
+     }
+    },
+    {
+     "rank": 3,
+     "name": "기아 뉴 레이",
+     "sold": 2756,
+     "seg": "국산 경형 RV",
+     "photo": {
+      "src": "assets/cars/TAM1.webp",
+      "page": "https://commons.wikimedia.org/wiki/File:KIA_THE_NEW_RAY_201806_001.jpg",
+      "by": "CEFICEFI",
+      "lic": "CC BY-SA 4.0",
+      "edit": "배경 지움, 번호판 가림, 좌우 반전"
+     },
+     "focus": "TAM1",
+     "encar": null,
+     "listings": {
+      "encar": 3275,
+      "kb": 2123
+     }
+    }
+   ]
+  }
+ ],
  "used": [
   {
    "key": "JA",
@@ -59,7 +749,7 @@ window.CARS = {
     "page": "https://commons.wikimedia.org/wiki/File:2017_Kia_Picanto_GT-Line_S_1.2_Front.jpg",
     "by": "Vauxford",
     "lic": "CC BY-SA 4.0",
-    "edit": "배경 지움, 좌우 반전"
+    "edit": "배경 지움, 번호판 가림, 좌우 반전"
    },
    "videos": [
     {
@@ -155,7 +845,7 @@ window.CARS = {
     "page": "https://commons.wikimedia.org/wiki/File:2014_Kia_Picanto_Front_1.jpg",
     "by": "Areaseven",
     "lic": "CC BY-SA 3.0",
-    "edit": "배경 지움"
+    "edit": "배경 지움, 번호판 가림"
    },
    "videos": [
     {
@@ -245,7 +935,7 @@ window.CARS = {
     "page": "https://commons.wikimedia.org/wiki/File:Kia_RAY_TAM_PE2.jpg",
     "by": "Avante2025",
     "lic": "CC BY 4.0",
-    "edit": "배경 지움, 좌우 반전"
+    "edit": "배경 지움, 번호판 가림, 좌우 반전"
    },
    "videos": [
     {
@@ -335,10 +1025,10 @@ window.CARS = {
    },
    "photo": {
     "src": "assets/cars/TAM1.webp",
-    "page": "https://commons.wikimedia.org/wiki/File:Kia_Ray_Busan_International_Motor_Show.JPG",
-    "by": "hyolee2",
-    "lic": "CC BY-SA 3.0",
-    "edit": "배경 지움, 좌우 반전"
+    "page": "https://commons.wikimedia.org/wiki/File:KIA_THE_NEW_RAY_201806_001.jpg",
+    "by": "CEFICEFI",
+    "lic": "CC BY-SA 4.0",
+    "edit": "배경 지움, 번호판 가림, 좌우 반전"
    },
    "videos": [
     {
@@ -434,7 +1124,7 @@ window.CARS = {
     "page": "https://commons.wikimedia.org/wiki/File:Hyundai_Casper_Active_AX1_Atlas_White_(18).jpg",
     "by": "Damian B Oh",
     "lic": "CC BY-SA 4.0",
-    "edit": "배경 지움"
+    "edit": "배경 지움, 번호판 가림"
    },
    "videos": [
     {
@@ -530,7 +1220,7 @@ window.CARS = {
     "page": "https://commons.wikimedia.org/wiki/File:Hyundai_Inster_Auto_Zuerich_2024_DSC_6286.jpg",
     "by": "Alexander-93",
     "lic": "CC BY-SA 4.0",
-    "edit": "배경 지움, 좌우 반전"
+    "edit": "배경 지움, 번호판 가림, 좌우 반전"
    },
    "videos": [
     {
@@ -625,7 +1315,7 @@ window.CARS = {
     "page": "https://commons.wikimedia.org/wiki/File:Hyundai_Avante_CN7_Facelift_in_Seoul_2024_front.jpg",
     "by": "Nord794ub",
     "lic": "CC BY-SA 4.0",
-    "edit": "배경 지움, 좌우 반전"
+    "edit": "배경 지움, 번호판 가림, 좌우 반전"
    },
    "videos": [
     {
@@ -720,7 +1410,7 @@ window.CARS = {
     "page": "https://commons.wikimedia.org/wiki/File:20181112_Hyundai_AVANTE_Front-side.png",
     "by": "Ki hoon",
     "lic": "CC BY-SA 4.0",
-    "edit": "배경 지움"
+    "edit": "배경 지움, 번호판 가림"
    },
    "videos": [
     {
@@ -814,7 +1504,7 @@ window.CARS = {
     "page": "https://commons.wikimedia.org/wiki/File:2021_Kia_Cerato_GT-Line_Limited_Edition_front_right.jpg",
     "by": "Throwawayacc222",
     "lic": "CC0",
-    "edit": "배경 지움, 좌우 반전"
+    "edit": "배경 지움, 번호판 가림, 좌우 반전"
    },
    "videos": [
     {
@@ -908,7 +1598,7 @@ window.CARS = {
     "page": "https://commons.wikimedia.org/wiki/File:Kia_K3_YD_01_China_2013-03-04.jpg",
     "by": "Navigator84",
     "lic": "CC BY-SA 3.0",
-    "edit": "배경 지움"
+    "edit": "배경 지움, 번호판 가림"
    },
    "videos": [
     {
@@ -998,7 +1688,7 @@ window.CARS = {
     "page": "https://commons.wikimedia.org/wiki/File:2020_Hyundai_Sonata_SEL_(Quartz_White),_front_right.jpg",
     "by": "Mr.choppers",
     "lic": "CC BY-SA 3.0",
-    "edit": "배경 지움, 좌우 반전"
+    "edit": "배경 지움, 번호판 가림, 좌우 반전"
    },
    "videos": [
     {
@@ -1090,10 +1780,10 @@ window.CARS = {
    },
    "photo": {
     "src": "assets/cars/LF.webp",
-    "page": "https://commons.wikimedia.org/wiki/File:Hyundai_Sonata_(LF),_seventh_generation_front_view.jpg",
-    "by": "EurovisionNim",
+    "page": "https://commons.wikimedia.org/wiki/File:0_Hyundai_Sonata_(LF)_2.jpg",
+    "by": "Benespit",
     "lic": "CC BY-SA 4.0",
-    "edit": "배경 지움, 좌우 반전"
+    "edit": "배경 지움, 번호판 가림"
    },
    "videos": [
     {
@@ -1190,7 +1880,7 @@ window.CARS = {
     "page": "https://commons.wikimedia.org/wiki/File:20191227_K5_DL3_Front_Side.png",
     "by": "Ki hoon",
     "lic": "CC BY-SA 4.0",
-    "edit": "배경 지움, 좌우 반전"
+    "edit": "배경 지움, 번호판 가림, 좌우 반전"
    },
    "videos": [
     {
@@ -1286,7 +1976,7 @@ window.CARS = {
     "page": "https://commons.wikimedia.org/wiki/File:2018_Kia_Optima_S_front.jpg",
     "by": "Throwawayacc222",
     "lic": "CC0",
-    "edit": "배경 지움"
+    "edit": "배경 지움, 번호판 가림"
    },
    "videos": [
     {
@@ -1382,7 +2072,7 @@ window.CARS = {
     "page": "https://commons.wikimedia.org/wiki/File:01_Hyundai_Grandeur_(GN7).jpg",
     "by": "Benespit",
     "lic": "CC BY-SA 4.0",
-    "edit": "배경 지움"
+    "edit": "배경 지움, 번호판 가림"
    },
    "videos": [
     {
@@ -1477,10 +2167,10 @@ window.CARS = {
    },
    "photo": {
     "src": "assets/cars/IG.webp",
-    "page": "https://commons.wikimedia.org/wiki/File:0_Hyundai_Grandeur_(IG)_1.jpg",
-    "by": "Benespit",
+    "page": "https://commons.wikimedia.org/wiki/File:20191121_Hyundai_GRANDEUR_front-side.jpg",
+    "by": "Ki hoon",
     "lic": "CC BY-SA 4.0",
-    "edit": "배경 지움"
+    "edit": "배경 지움, 번호판 가림, 좌우 반전"
    },
    "videos": [
     {
@@ -1576,7 +2266,7 @@ window.CARS = {
     "page": "https://commons.wikimedia.org/wiki/File:White_KIA_Seltos_(Front).jpg",
     "by": "Benespit",
     "lic": "CC BY-SA 4.0",
-    "edit": "배경 지움"
+    "edit": "배경 지움, 번호판 가림"
    },
    "videos": [
     {
@@ -1671,7 +2361,7 @@ window.CARS = {
     "page": "https://commons.wikimedia.org/wiki/File:Kia_Seltos_(SP3)_IMG_7812.jpg",
     "by": "Alexander Migl",
     "lic": "CC BY-SA 4.0",
-    "edit": "배경 지움"
+    "edit": "배경 지움, 번호판 가림"
    },
    "videos": [
     {
@@ -1764,7 +2454,7 @@ window.CARS = {
     "page": "https://commons.wikimedia.org/wiki/File:Hyundai_Tucson_(NX4,_South_Korea)_front_view.png",
     "by": "융구티비YunKoo Tv",
     "lic": "CC BY 3.0",
-    "edit": "배경 지움"
+    "edit": "배경 지움, 번호판 가림"
    },
    "videos": [
     {
@@ -1858,7 +2548,7 @@ window.CARS = {
     "page": "https://commons.wikimedia.org/wiki/File:Hyundai_Tucson_facelift_(front).jpg",
     "by": "JustAnotherCarDesigner",
     "lic": "CC BY-SA 4.0",
-    "edit": "배경 지움"
+    "edit": "배경 지움, 번호판 가림"
    },
    "videos": [
     {
@@ -1949,10 +2639,10 @@ window.CARS = {
    },
    "photo": {
     "src": "assets/cars/NQ5.webp",
-    "page": "https://commons.wikimedia.org/wiki/File:2023_Kia_Sportage_(NQ5)_in_White,_front_left.jpg",
-    "by": "Benespit",
-    "lic": "CC BY-SA 4.0",
-    "edit": "배경 지움"
+    "page": "https://commons.wikimedia.org/wiki/File:Kia_Sportage_1.6_T-GDI_HEV_2WD_(2022)_(cropped).jpg",
+    "by": "Charles",
+    "lic": "CC BY 2.0",
+    "edit": "배경 지움, 번호판 가림"
    },
    "videos": [
     {
@@ -2047,7 +2737,7 @@ window.CARS = {
     "page": "https://commons.wikimedia.org/wiki/File:Kia_Sportage_(QL)_Front_(cropped).jpg",
     "by": "Milhouse35",
     "lic": "CC BY-SA 4.0",
-    "edit": "배경 지움, 좌우 반전"
+    "edit": "배경 지움, 번호판 가림, 좌우 반전"
    },
    "videos": [
     {
@@ -2143,7 +2833,7 @@ window.CARS = {
     "page": "https://commons.wikimedia.org/wiki/File:Kia_Sorento_MQ4_front_view_(South_Korea)_03.png",
     "by": "차,또바기",
     "lic": "CC BY-SA 4.0",
-    "edit": "배경 지움"
+    "edit": "배경 지움, 번호판 가림"
    },
    "videos": [
     {
@@ -2240,7 +2930,7 @@ window.CARS = {
     "page": "https://commons.wikimedia.org/wiki/File:2017_Kia_Sorento_EX_Turbo_AWD_in_Sparkling_Silver_Metallic,_Front_Right,_05-22-2022.jpg",
     "by": "Elise240SX",
     "lic": "CC BY-SA 4.0",
-    "edit": "배경 지움, 좌우 반전"
+    "edit": "배경 지움, 번호판 가림, 좌우 반전"
    },
    "videos": [
     {
@@ -2336,7 +3026,7 @@ window.CARS = {
     "page": "https://commons.wikimedia.org/wiki/File:2024_Hyundai_Santa_Fe_(MX5)_IMG_5295.jpg",
     "by": "Alexander Migl",
     "lic": "CC BY-SA 4.0",
-    "edit": "배경 지움"
+    "edit": "배경 지움, 번호판 가림"
    },
    "videos": [
     {
@@ -2430,7 +3120,7 @@ window.CARS = {
     "page": "https://commons.wikimedia.org/wiki/File:Hyundai_Santa_Fe_(TM)_PHEV_FL_1X7A7084.jpg",
     "by": "Alexander-93",
     "lic": "CC BY-SA 4.0",
-    "edit": "배경 지움"
+    "edit": "배경 지움, 번호판 가림"
    },
    "videos": [
     {
@@ -2526,7 +3216,7 @@ window.CARS = {
     "page": "https://commons.wikimedia.org/wiki/File:2021_Genesis_G80_(United_States)_front_view_02.png",
     "by": "Gold Pony",
     "lic": "CC BY 3.0",
-    "edit": "배경 지움"
+    "edit": "배경 지움, 번호판 가림"
    },
    "videos": [
     {
@@ -2618,7 +3308,7 @@ window.CARS = {
     "page": "https://commons.wikimedia.org/wiki/File:Genesis_G80_Diesel_Front-Side.jpg",
     "by": "Ki hoon",
     "lic": "CC BY-SA 4.0",
-    "edit": "배경 지움"
+    "edit": "배경 지움, 번호판 가림"
    },
    "videos": [
     {
@@ -2711,7 +3401,7 @@ window.CARS = {
     "page": "https://commons.wikimedia.org/wiki/File:Mercedes-AMG_W214_53_Hybrid_IMG_1292.jpg",
     "by": "Alexander-93",
     "lic": "CC BY-SA 4.0",
-    "edit": "배경 지움, 좌우 반전"
+    "edit": "배경 지움, 번호판 가림, 좌우 반전"
    },
    "videos": [
     {
@@ -2803,7 +3493,7 @@ window.CARS = {
     "page": "https://commons.wikimedia.org/wiki/File:Mercedes-Benz_W213_Facelift_IMG_5257.jpg",
     "by": "Alexander Migl",
     "lic": "CC BY-SA 4.0",
-    "edit": "배경 지움"
+    "edit": "배경 지움, 번호판 가림"
    },
    "videos": [
     {
@@ -2896,7 +3586,7 @@ window.CARS = {
     "page": "https://commons.wikimedia.org/wiki/File:BMW_G60_520i_1X7A2443.jpg",
     "by": "Alexander-93",
     "lic": "CC BY-SA 4.0",
-    "edit": "배경 지움"
+    "edit": "배경 지움, 번호판 가림"
    },
    "videos": [
     {
@@ -2989,7 +3679,7 @@ window.CARS = {
     "page": "https://commons.wikimedia.org/wiki/File:2018_BMW_520d_xDrive_M_Sport_Automatic_2.0_Front.jpg",
     "by": "Vauxford",
     "lic": "CC BY-SA 4.0",
-    "edit": "배경 지움"
+    "edit": "배경 지움, 번호판 가림"
    },
    "videos": [
     {
@@ -3082,7 +3772,7 @@ window.CARS = {
     "page": "https://commons.wikimedia.org/wiki/File:BMW_G20_(2022)_IMG_7316.jpg",
     "by": "Alexander-93",
     "lic": "CC BY-SA 4.0",
-    "edit": "배경 지움"
+    "edit": "배경 지움, 번호판 가림"
    },
    "videos": [
     {
@@ -3172,10 +3862,10 @@ window.CARS = {
    },
    "photo": {
     "src": "assets/cars/F30.webp",
-    "page": "https://commons.wikimedia.org/wiki/File:BMW_320d_Luxury_(F30)_front.jpg",
-    "by": "Tokumeigakarinoaoshima",
+    "page": "https://commons.wikimedia.org/wiki/File:2018_BMW_3-Series_320d_Sport_(F30)_-_2.0_(160PS)_diesel_automatic_-_2025-07-08,_front_right.jpg",
+    "by": "DieselFordMondeo",
     "lic": "CC BY-SA 4.0",
-    "edit": "배경 지움"
+    "edit": "배경 지움, 번호판 가림, 좌우 반전"
    },
    "videos": [
     {
@@ -3267,7 +3957,7 @@ window.CARS = {
     "page": "https://commons.wikimedia.org/wiki/File:Mercedes-AMG_C_63_(W206)_IMG_0305.jpg",
     "by": "Alexander-93",
     "lic": "CC BY-SA 4.0",
-    "edit": "배경 지움, 좌우 반전"
+    "edit": "배경 지움, 번호판 가림, 좌우 반전"
    },
    "videos": [
     {
@@ -3356,10 +4046,10 @@ window.CARS = {
    },
    "photo": {
     "src": "assets/cars/W205.webp",
-    "page": "https://commons.wikimedia.org/wiki/File:Mercedes-Benz_C180_Laureus_Edition_(W205)_front.jpg",
-    "by": "Tokumeigakarinoaoshima",
-    "lic": "CC BY-SA 4.0",
-    "edit": "배경 지움, 좌우 반전"
+    "page": "https://commons.wikimedia.org/wiki/File:2015_Mercedes-Benz_C_200_(W_205)_sedan_(2015-07-06)_01.jpg",
+    "by": "OSX",
+    "lic": "Public domain",
+    "edit": "배경 지움, 번호판 가림"
    },
    "videos": [
     {
@@ -3452,7 +4142,7 @@ window.CARS = {
     "page": "https://commons.wikimedia.org/wiki/File:Mini_Hatch_(F66)_IMG_8765.jpg",
     "by": "Alexander-93",
     "lic": "CC BY-SA 4.0",
-    "edit": "배경 지움, 좌우 반전"
+    "edit": "배경 지움, 번호판 가림, 좌우 반전"
    },
    "videos": [
     {
@@ -3543,10 +4233,10 @@ window.CARS = {
    },
    "photo": {
     "src": "assets/cars/F56.webp",
-    "page": "https://commons.wikimedia.org/wiki/File:Mini_Hatch_(F56)_John_Cooper_Works_3-4-front_2025-08.jpg",
-    "by": "Wikisympathisant",
+    "page": "https://commons.wikimedia.org/wiki/File:2018_Mini_Cooper_S_Seven_2.0_Front.jpg",
+    "by": "Vauxford",
     "lic": "CC BY-SA 4.0",
-    "edit": "배경 지움"
+    "edit": "배경 지움, 번호판 가림, 좌우 반전"
    },
    "videos": [
     {
@@ -3640,7 +4330,7 @@ window.CARS = {
     "page": "https://commons.wikimedia.org/wiki/File:2019_Audi_A6_55_TFSI_Quattro_Progressiv_Quattro_S-Line_in_Daytona_Grey_Pearlescent,_Front_Left,_11-25-2022.jpg",
     "by": "Elise240SX",
     "lic": "CC BY-SA 4.0",
-    "edit": "배경 지움"
+    "edit": "배경 지움, 번호판 가림"
    },
    "videos": [
     {
@@ -3732,7 +4422,7 @@ window.CARS = {
     "page": "https://commons.wikimedia.org/wiki/File:Audi_A6_hybrid_(C7)_front.JPG",
     "by": "Tokumeigakarinoaoshima",
     "lic": "CC0",
-    "edit": "배경 지움"
+    "edit": "배경 지움, 번호판 가림"
    },
    "videos": [
     {
@@ -3820,7 +4510,7 @@ window.CARS = {
     "page": "https://commons.wikimedia.org/wiki/File:Tesla_Model_3_(2023)_IMG_9488_(cropped).jpg",
     "by": "Alexander-93",
     "lic": "CC BY-SA 4.0",
-    "edit": "배경 지움"
+    "edit": "배경 지움, 번호판 가림"
    },
    "videos": [
     {
@@ -3913,7 +4603,7 @@ window.CARS = {
     "page": "https://commons.wikimedia.org/wiki/File:2020_Tesla_Model_Y,_front_8.1.20.jpg",
     "by": "Kevauto",
     "lic": "CC BY-SA 4.0",
-    "edit": "배경 지움"
+    "edit": "배경 지움, 번호판 가림"
    },
    "videos": [
     {
@@ -4007,7 +4697,7 @@ window.CARS = {
     "page": "https://commons.wikimedia.org/wiki/File:Lexus_ES_300h_AXZH10_US-spec.jpg",
     "by": "Altair78",
     "lic": "CC BY-SA 4.0",
-    "edit": "배경 지움"
+    "edit": "배경 지움, 번호판 가림"
    },
    "videos": [
     {
@@ -4100,7 +4790,7 @@ window.CARS = {
     "page": "https://commons.wikimedia.org/wiki/File:Lexus_ES_XV60_Hybrid_facelift_01_China_2016-04-14.jpg",
     "by": "Navigator84",
     "lic": "CC BY-SA 4.0",
-    "edit": "배경 지움, 좌우 반전"
+    "edit": "배경 지움, 번호판 가림, 좌우 반전"
    },
    "videos": [
     {
@@ -4175,7 +4865,7 @@ window.CARS = {
     "page": "https://commons.wikimedia.org/wiki/File:Hyundai_Casper_Active_AX1_Atlas_White_(18).jpg",
     "by": "Damian B Oh",
     "lic": "CC BY-SA 4.0",
-    "edit": "배경 지움"
+    "edit": "배경 지움, 번호판 가림"
    },
    "buy": "https://casper.hyundai.com/vehicles/highlight",
    "videos": [
@@ -4226,7 +4916,7 @@ window.CARS = {
     "page": "https://commons.wikimedia.org/wiki/File:Kia_RAY_TAM_PE2.jpg",
     "by": "Avante2025",
     "lic": "CC BY 4.0",
-    "edit": "배경 지움, 좌우 반전"
+    "edit": "배경 지움, 번호판 가림, 좌우 반전"
    },
    "buy": "https://www.kia.com/kr/vehicles/ray",
    "videos": [
@@ -4277,7 +4967,7 @@ window.CARS = {
     "page": "https://commons.wikimedia.org/wiki/File:Hyundai_Avante_CN8_Development_Mule_(9).jpg",
     "by": "Damian B Oh",
     "lic": "CC BY-SA 4.0",
-    "edit": "배경 지움, 좌우 반전"
+    "edit": "배경 지움, 번호판 가림, 좌우 반전"
    },
    "buy": "https://www.hyundai.com/kr/ko/e/vehicles/the-all-new-avante/intro",
    "videos": [
@@ -4328,7 +5018,7 @@ window.CARS = {
     "page": "https://commons.wikimedia.org/wiki/File:Kia_Seltos_(SP3)_IMG_7812.jpg",
     "by": "Alexander Migl",
     "lic": "CC BY-SA 4.0",
-    "edit": "배경 지움"
+    "edit": "배경 지움, 번호판 가림"
    },
    "buy": "https://www.kia.com/kr/vehicles/seltos",
    "videos": [
@@ -4380,7 +5070,7 @@ window.CARS = {
     "page": "https://commons.wikimedia.org/wiki/File:20191227_K5_DL3_Front_Side.png",
     "by": "Ki hoon",
     "lic": "CC BY-SA 4.0",
-    "edit": "배경 지움, 좌우 반전"
+    "edit": "배경 지움, 번호판 가림, 좌우 반전"
    },
    "buy": "https://www.kia.com/kr/vehicles/k5",
    "videos": [
@@ -4431,7 +5121,7 @@ window.CARS = {
     "page": "https://commons.wikimedia.org/wiki/File:2020_Hyundai_Sonata_SEL_(Quartz_White),_front_right.jpg",
     "by": "Mr.choppers",
     "lic": "CC BY-SA 3.0",
-    "edit": "배경 지움, 좌우 반전"
+    "edit": "배경 지움, 번호판 가림, 좌우 반전"
    },
    "buy": "https://www.hyundai.com/kr/ko/e/vehicles/sonata-the-edge/intro",
    "videos": [
@@ -4479,10 +5169,10 @@ window.CARS = {
    ],
    "photo": {
     "src": "assets/cars/NQ5.webp",
-    "page": "https://commons.wikimedia.org/wiki/File:2023_Kia_Sportage_(NQ5)_in_White,_front_left.jpg",
-    "by": "Benespit",
-    "lic": "CC BY-SA 4.0",
-    "edit": "배경 지움"
+    "page": "https://commons.wikimedia.org/wiki/File:Kia_Sportage_1.6_T-GDI_HEV_2WD_(2022)_(cropped).jpg",
+    "by": "Charles",
+    "lic": "CC BY 2.0",
+    "edit": "배경 지움, 번호판 가림"
    },
    "buy": "https://www.kia.com/kr/vehicles/sportage",
    "videos": [
@@ -4532,7 +5222,7 @@ window.CARS = {
     "page": "https://commons.wikimedia.org/wiki/File:2027_Hyundai_The_all-new_TUCSON_(NX5)_blue_South_Korea_Front_end.jpg",
     "by": "Avante2025",
     "lic": "CC BY 4.0",
-    "edit": "배경 지움"
+    "edit": "배경 지움, 번호판 가림"
    },
    "buy": "https://www.hyundai.com/kr/ko/e/vehicles/the-all-new-tucson/intro",
    "videos": [
@@ -4583,7 +5273,7 @@ window.CARS = {
     "page": "https://commons.wikimedia.org/wiki/File:Kia_Sorento_MQ4_front_view_(South_Korea)_03.png",
     "by": "차,또바기",
     "lic": "CC BY-SA 4.0",
-    "edit": "배경 지움"
+    "edit": "배경 지움, 번호판 가림"
    },
    "buy": "https://www.kia.com/kr/vehicles/sorento",
    "videos": [
@@ -4634,7 +5324,7 @@ window.CARS = {
     "page": "https://commons.wikimedia.org/wiki/File:2024_Hyundai_Santa_Fe_(MX5)_IMG_5295.jpg",
     "by": "Alexander Migl",
     "lic": "CC BY-SA 4.0",
-    "edit": "배경 지움"
+    "edit": "배경 지움, 번호판 가림"
    },
    "buy": "https://www.hyundai.com/kr/ko/e/vehicles/santafe/intro",
    "videos": [
@@ -4684,7 +5374,7 @@ window.CARS = {
     "page": "https://commons.wikimedia.org/wiki/File:01_Hyundai_Grandeur_(GN7).jpg",
     "by": "Benespit",
     "lic": "CC BY-SA 4.0",
-    "edit": "배경 지움"
+    "edit": "배경 지움, 번호판 가림"
    },
    "buy": "https://www.hyundai.com/kr/ko/e/vehicles/the-new-grandeur/intro",
    "videos": [
@@ -4734,7 +5424,7 @@ window.CARS = {
     "page": "https://commons.wikimedia.org/wiki/File:2020_Tesla_Model_Y,_front_8.1.20.jpg",
     "by": "Kevauto",
     "lic": "CC BY-SA 4.0",
-    "edit": "배경 지움"
+    "edit": "배경 지움, 번호판 가림"
    },
    "buy": "https://www.tesla.com/ko_kr/modely",
    "videos": [

@@ -551,7 +551,9 @@
   const SITES = {
     encar: ({ t, mk, g, m }) => {
       const models = m.length === 1 ? `Model.${m[0]}.` : `(Or.${m.map((x) => `Model.${x}.`).join('_.')})`;
-      const action = `(And.Hidden.N._.(C.CarType.${t}._.(C.Manufacturer.${mk}._.(C.ModelGroup.${g}._.${models}))))`;
+      const action = m.length
+        ? `(And.Hidden.N._.(C.CarType.${t}._.(C.Manufacturer.${mk}._.(C.ModelGroup.${g}._.${models}))))`
+        : `(And.Hidden.N._.(C.CarType.${t}._.(C.Manufacturer.${mk}._.ModelGroup.${g}.)))`;
       return `https://www.encar.com/dc/dc_carsearchlist.do?carType=${t === 'Y' ? 'kor' : 'for'}#!${encodeURIComponent(JSON.stringify({ action, toggle: {}, layer: '', sort: 'ModifiedDate', page: 1, limit: 20 }))}`;
     },
     kb: ({ mk, cl, car }) => `https://www.kbchachacha.com/public/search/main.kbc#!?page=1&makerCode=${mk}&classCode=${cl}&carCode=${car.join(',')}`,
@@ -560,10 +562,11 @@
     hc: (q) => `https://certified.hyundai.com/p/search/vehicle?srchType=srchWord&searchWord=${encodeURIComponent(q)}`,
   };
 
-  /* 조건: 연봉은 차값이 연봉의 절반을 넘지 않는 선, 금액대는 중고차 사이트 가격 필터의 1천만원 단위 */
-  const PAYS = [
-    { name: '3천만원대', cap: 1750 }, { name: '4천만원대', cap: 2250 }, { name: '5천만원대', cap: 2750 }, { name: '6천만원 이상', cap: Infinity },
-  ];
+  /* 중고차 사이트 이름과 로고(assets/sites) */
+  const SITE_NAMES = { encar: '엔카', kb: 'KB차차차', kcar: '케이카', hey: '헤이딜러', hc: '현대 인증중고차' };
+  const siteLink = (id, url, what) => `<a class="site" href="${esc(url)}"${NEW_TAB}><img class="site__logo" src="assets/sites/${id}.png" alt="" width="24" height="24" loading="lazy"><span class="visually-hidden">${esc(what)} </span><span class="site__name">${SITE_NAMES[id]}</span>${EXT}</a>`;
+
+  /* 조건: 금액대는 중고차 사이트 가격 필터의 1천만원 단위 */
   const BANDS = [
     { name: '1천만원 이하', lo: 0, hi: 1000 }, { name: '1천~2천만원', lo: 1000, hi: 2000 }, { name: '2천~3천만원', lo: 2000, hi: 3000 },
     { name: '3천~4천만원', lo: 3000, hi: 4000 }, { name: '4천만원 이상', lo: 4000, hi: Infinity },
@@ -610,8 +613,8 @@
     const pct = u.price.new ? Math.round((u.price.p50 / u.price.new) * 100) : 0;
     const L = u.links;
     const links = [
-      ['엔카', SITES.encar(L.encar)], ['KB차차차', SITES.kb(L.kb)], ['케이카', SITES.kcar(L.kcar)], ['헤이딜러', SITES.hey(L.hey)],
-      ...(L.hc ? [['현대 인증중고차', SITES.hc(L.hc)]] : []),
+      ['encar', SITES.encar(L.encar)], ['kb', SITES.kb(L.kb)], ['kcar', SITES.kcar(L.kcar)], ['hey', SITES.hey(L.hey)],
+      ...(L.hc ? [['hc', SITES.hc(L.hc)]] : []),
     ];
     return `
       <li class="car" data-key="${esc(u.key)}" data-reveal>
@@ -635,7 +638,7 @@
             ${pct ? ring(pct) : ''}
           </div>
         </div>
-        <ul class="car__links">${links.map(([name, url]) => `<li><a class="btn btn--quiet" href="${esc(url)}"${NEW_TAB}><span class="visually-hidden">${esc(u.name)} ${esc(u.gen)} </span>${name} 매물${EXT}</a></li>`).join('')}</ul>
+        <ul class="car__links">${links.map(([id, url]) => `<li>${siteLink(id, url, `${u.name} ${u.gen}`)}</li>`).join('')}</ul>
         <details class="car__more">
           <summary>장단점과 리뷰 영상 ${u.videos.length}편</summary>
           ${pc(u.pros, u.cons)}
@@ -697,6 +700,67 @@
       </figure>`;
   }
 
+  /* 맨 위: 월별 신차 판매, 중고차 거래 베스트 3 */
+  const monthName = (ym) => `${ym.slice(0, 4)}년 ${+ym.slice(5)}월`;
+  function bestSection() {
+    const B = CARS.best || [];
+    if (!B.length) return '';
+    return `
+      <section class="best" aria-labelledby="best-h" data-best>
+        <div class="best__head">
+          <h2 id="best-h"><span data-best-month>${monthName(B[0].ym)}</span> 베스트 3</h2>
+          <div class="best__months" role="group" aria-label="달 고르기">${B.map((m, i) => `<button class="best__month" type="button" data-ym="${m.ym}" aria-pressed="${i ? 'false' : 'true'}">${+m.ym.slice(5)}월</button>`).join('')}</div>
+        </div>
+        <div class="best__cols">
+          <section class="best__col" aria-labelledby="best-new-h">
+            <h3 id="best-new-h">신차 판매</h3>
+            <ol class="best__list" data-best-list="fresh"></ol>
+            <p class="fineprint">네이버 국내 승용 자동차 판매량. 정보 제공 카이즈유 데이터 연구소.</p>
+          </section>
+          <section class="best__col" aria-labelledby="best-used-h">
+            <h3 id="best-used-h">중고차 거래</h3>
+            <ol class="best__list" data-best-list="used"></ol>
+            <p class="fineprint">카이즈유 데이터 연구소가 국토교통부 이전등록 자료로 센 실거래 대수(국산 승용). 지금 매물 수는 엔카와 KB차차차, ${esc(CARS.checked || '')} 기준.</p>
+          </section>
+        </div>
+      </section>`;
+  }
+  function bestCard(c, kind) {
+    const href = c.focus ? `#/singyu/car?kind=${kind === 'fresh' ? 'new' : 'used&tab=kr'}&focus=${c.focus}` : (c.url || (c.encar ? SITES.encar(c.encar) : '#'));
+    const ext = !c.focus;
+    const live = c.listings ? `<span class="bcard__live">지금 매물 ${['encar', 'kb'].filter((k) => c.listings[k]).map((k) => `${SITE_NAMES[k]} ${num(c.listings[k])}대`).join(', ')}</span>` : '';
+    return `
+      <li>
+        <a class="bcard" href="${esc(href)}"${ext ? NEW_TAB : ''}>
+          <span class="bcard__rank num">${c.rank}</span>
+          <span class="bcard__text">
+            <b class="bcard__name">${esc(c.name)}${ext ? EXT : ''}</b>
+            <span class="bcard__sold"><span class="num" data-count>${num(c.sold)}</span>대</span>
+            <span class="bcard__seg">${esc(c.seg)}</span>
+            ${live}
+          </span>
+          ${c.photo ? `<img class="bcard__photo" src="${esc(c.photo.src)}" alt="" width="720" height="420" loading="lazy">` : ''}
+        </a>
+      </li>`;
+  }
+  function bindBest(root) {
+    const box = $('[data-best]', root);
+    if (!box) return;
+    const draw = (ym) => {
+      const m = CARS.best.find((x) => x.ym === ym) || CARS.best[0];
+      $('[data-best-month]', box).textContent = monthName(m.ym);
+      ['fresh', 'used'].forEach((k) => {
+        const list = $(`[data-best-list="${k}"]`, box);
+        list.innerHTML = m[k].map((c) => bestCard(c, k)).join('');
+        $$('li', list).forEach((li, i) => { li.dataset.reveal = ''; li.style.setProperty('--i', i); });
+      });
+      $$('.best__month', box).forEach((b) => b.setAttribute('aria-pressed', String(b.dataset.ym === m.ym)));
+      motion(box);
+    };
+    box.addEventListener('click', (e) => { const b = e.target.closest('.best__month'); if (b) draw(b.dataset.ym); });
+    draw(CARS.best[0].ym);
+  }
+
   /* 목록 화면: 조건, 정렬, 차 카드 */
   function listView(s) {
     const isNew = s.kind === 'new';
@@ -711,7 +775,6 @@
     return `
       <form class="filters" data-filters>
         ${seg('age', '연령대', SITE.pages.car.ages.map((a) => [a, a]), s.age)}
-        ${seg('pay', '연봉', PAYS.map((p) => [p.name, p.name]), s.pay)}
         ${seg('band', '금액대', BANDS.map((b) => [b.name, b.name]), s.band)}
         <div class="sortbar">
           ${seg('sort', '정렬', Object.entries(SORTS), s.sort, false)}
@@ -721,7 +784,7 @@
       <details class="method">
         <summary>정렬 기준은 이렇게 정했습니다</summary>
         <ul class="method__list">${sortHelp.map(([a, b]) => `<li><b>${a}</b><span>${b}</span></li>`).join('')}</ul>
-        <p class="fineprint">연봉 조건은 차값이 연봉의 절반을 넘지 않는 차만 보여 줍니다. 금액대는 중고차 사이트들이 쓰는 1천만원 단위 가격 구간입니다.</p>
+        <p class="fineprint">금액대는 중고차 사이트들이 쓰는 1천만원 단위 가격 구간입니다.</p>
       </details>
       <div class="picks__head"><p class="picks__count" role="status" data-count-line></p></div>
       <ul class="cars" data-cars></ul>
@@ -783,6 +846,7 @@
 
     render(cfg) {
       return `
+        ${bestSection()}
         <section aria-labelledby="vs-h">
           <h2 id="vs-h">신차와 중고, 무엇이 다른가</h2>
           <div class="versus">${cfg.vs.map((v) => `<div data-reveal><h3>${esc(v.name)}</h3>${bullets(v.points)}</div>`).join('')}</div>
@@ -799,7 +863,7 @@
           <ul>
             <li>시세, 조회수, 찜 수: <a href="https://www.encar.com/"${NEW_TAB}>엔카${EXT_IN}</a> 세대별 매물 100대 표본. 매물 수: 엔카와 <a href="https://www.kbchachacha.com/"${NEW_TAB}>KB차차차${EXT_IN}</a></li>
             <li>신차 가격: 현대자동차, 기아, 테슬라 공식 홈페이지 시작 가격</li>
-            <li>사진: 위키미디어 공용의 자유 라이선스 사진에서 배경을 지우고, 모든 차가 왼쪽 앞을 보게 일부는 좌우를 뒤집었습니다. 사진 아래에 찍은 사람과 라이선스를 적었습니다.</li>
+            <li>사진: 위키미디어 공용의 자유 라이선스 사진에서 배경을 지우고 번호판을 가렸습니다. 모든 차가 왼쪽 앞을 보게 일부는 좌우를 뒤집었습니다. 사진 아래에 찍은 사람과 라이선스를 적었습니다.</li>
             <li>영상: 조회수 10만회 이상. 신차는 오토뷰, 김한용의 MOCAR, 우파푸른하늘 리뷰를 먼저 골랐습니다.</li>
           </ul>
           <p class="fineprint">${esc(CARS.checked || '')} 확인. ${esc(cfg.starsNote || '')}</p>
@@ -818,8 +882,8 @@
         return `#/${path}${q ? `?${q}` : ''}`;
       };
       const remember = () => {
-        const keep = s.kind === 'new' ? { kind: 'new', age: s.age, pay: s.pay, band: s.band, sort: s.sort, dir: s.dir } : { kind: 'used', tab: s.tab, age: s.age, pay: s.pay, band: s.band, sort: s.sort, dir: s.dir };
-        if (s.kind === 'used' && !['kr', 'im'].includes(s.tab)) ['age', 'pay', 'band', 'sort', 'dir'].forEach((k) => delete keep[k]);
+        const keep = s.kind === 'new' ? { kind: 'new', age: s.age, band: s.band, sort: s.sort, dir: s.dir } : { kind: 'used', tab: s.tab, age: s.age, band: s.band, sort: s.sort, dir: s.dir };
+        if (s.kind === 'used' && !['kr', 'im'].includes(s.tab)) ['age', 'band', 'sort', 'dir'].forEach((k) => delete keep[k]);
         history.replaceState(null, '', href(keep));
       };
 
@@ -830,7 +894,7 @@
         const pick = (k, list) => (list.includes(p.get(k)) ? p.get(k) : '');
         return {
           kind, tab,
-          age: pick('age', cfg.ages), pay: pick('pay', PAYS.map((x) => x.name)), band: pick('band', BANDS.map((x) => x.name)),
+          age: pick('age', cfg.ages), band: pick('band', BANDS.map((x) => x.name)),
           sort: SORTS[p.get('sort')] ? p.get('sort') : (kind === 'new' ? 'price' : 'pop'),
           dir: ['asc', 'desc'].includes(p.get('dir')) ? p.get('dir') : (kind === 'new' && !SORTS[p.get('sort')] ? 'asc' : 'desc'),
         };
@@ -857,9 +921,8 @@
         const all = items();
         const cards = new Map($$('[data-key]', list).map((el) => [el.dataset.key, el]));
         const before = animate ? new Map([...cards].map(([k, el]) => [k, el.hidden ? null : el.getBoundingClientRect().top])) : null;
-        const pay = PAYS.find((p) => p.name === s.pay);
         const band = BANDS.find((b) => b.name === s.band);
-        const ok = (c) => (!s.age || c.ages.includes(s.age)) && (!pay || priceOf(c) <= pay.cap) && (!band || (priceOf(c) >= band.lo && priceOf(c) < band.hi));
+        const ok = (c) => (!s.age || c.ages.includes(s.age)) && (!band || (priceOf(c) >= band.lo && priceOf(c) < band.hi));
         const sorted = [...all].sort((a, b) => (metric(a) - metric(b)) * (s.dir === 'asc' ? 1 : -1));
         let n = 0;
         sorted.forEach((c) => {
@@ -899,13 +962,13 @@
             const form = $('[data-filters]', view);
             form.addEventListener('submit', (e) => e.preventDefault());
             form.addEventListener('change', () => {
-              ['age', 'pay', 'band', 'sort', 'dir'].forEach((f) => { s[f] = form.elements[f].value; });
+              ['age', 'band', 'sort', 'dir'].forEach((f) => { s[f] = form.elements[f].value; });
               remember();
               drawList(true);
             });
             $('[data-clear]', view).addEventListener('click', () => {
-              s.age = ''; s.pay = ''; s.band = '';
-              ['age', 'pay', 'band'].forEach((f) => { form.elements[f][0].checked = true; });
+              s.age = ''; s.band = '';
+              ['age', 'band'].forEach((f) => { form.elements[f][0].checked = true; });
               remember();
               drawList(true);
             });
@@ -914,7 +977,7 @@
           motion(view);
         } else if ($('[data-filters]', view)) {
           const form = $('[data-filters]', view);
-          ['age', 'pay', 'band', 'sort', 'dir'].forEach((f) => {
+          ['age', 'band', 'sort', 'dir'].forEach((f) => {
             const radios = [...form.elements[f]];
             (radios.find((r) => r.value === s[f]) || radios[0]).checked = true;
           });
@@ -926,8 +989,21 @@
         s = read(p);
         drawNav();
         drawView();
+        /* 베스트 3 에서 누른 차로 바로 내려간다 */
+        const focus = p.get('focus');
+        if (focus) {
+          const card = $(`[data-key="${CSS.escape(focus)}"]`, view);
+          if (card && card.hidden) { s.age = ''; s.band = ''; drawList(false); }
+          remember();
+          if (card) {
+            card.classList.add('is-in', 'is-focus');
+            setTimeout(() => card.scrollIntoView({ block: 'center' }), 60);
+            setTimeout(() => card.classList.remove('is-focus'), 2400);
+          }
+        }
         return s;
       };
+      bindBest(root);
 
       /* 영상: 누르면 그 자리에서 재생한다(유튜브 쿠키 없는 주소) */
       root.addEventListener('click', (e) => {
@@ -1038,7 +1114,7 @@
       show('home', viewHome, { home: true });
       jump = hash.length > 1 ? document.getElementById(decodeURIComponent(hash.slice(1))) : null;
     } else {
-      /* 주소 뒤의 ?조건 은 페이지가 쓰는 값(자동차의 구분, 연령대, 연봉)이다 */
+      /* 주소 뒤의 ?조건 은 페이지가 쓰는 값(자동차의 구분, 연령대, 금액대, 정렬)이다 */
       const [where, query = ''] = hash.slice(2).split('?');
       const params = new URLSearchParams(query);
       const [deptId, menuId] = where.split('/').filter(Boolean).map(decodeURIComponent);
