@@ -10,8 +10,8 @@
  *   videos 유튜브 영상 id, t 제목, ch 채널, v 조회수(2026년 11월 18일 기준)
  * fresh[] 신차. price 는 제조사 홈페이지의 시작 가격(만원)
  * guides  중고차 구입 팁, 구입 방법, 사기 예방
- * best    월별 베스트 3. fresh 차급별 신차(네이버 국내 승용 자동차 판매량), used 중고차(카이즈유 실거래 집계, 전체), sold 그달 대수
- * usedCls 차급별 중고차 3위까지. 지금 매물 수(엔카+KB차차차) 기준
+ * best    월별 판매순위. fresh[all|kr|im][차급] 신차 3위까지(네이버 국내 승용 자동차 판매량, 수입은 네이버의 외산),
+ *         used[kr|im] 중고차(카이즈유 실거래 집계 가운데 언론에 공개된 순위), sold 그달 대수
  * cls     차급(네이버 분류: 경형, 소형, 준중형, 중형, 준대형, 대형) */
 window.CARS = {
  "checked": "2026년 11월 18일",
@@ -19,2678 +19,4220 @@ window.CARS = {
   {
    "ym": "2026-10",
    "fresh": {
-    "전체": [
-     {
-      "rank": 1,
-      "name": "기아 뉴 쏘렌토 하이브리드(MQ4)",
-      "sold": 6242,
-      "seg": "국산 중형 SUV 1위",
-      "photo": {
-       "src": "assets/cars/MQ4.webp",
-       "page": "https://commons.wikimedia.org/wiki/File:Kia_Sorento_MQ4_front_view_(South_Korea)_03.png",
-       "by": "차,또바기",
-       "lic": "CC BY-SA 4.0",
-       "edit": "배경 지움, 번호판 가림"
+    "all": {
+     "전체": [
+      {
+       "name": "기아 뉴 쏘렌토 하이브리드(MQ4)",
+       "sold": 6242,
+       "seg": "국산 중형 SUV 1위",
+       "photo": {
+        "src": "assets/cars/MQ4.webp"
+       },
+       "focus": "sorento",
+       "url": null
       },
-      "focus": "sorento",
-      "url": null
-     },
-     {
-      "rank": 2,
-      "name": "테슬라 모델 Y",
-      "sold": 5508,
-      "seg": "외산 중형 SUV 1위",
-      "photo": {
-       "src": "assets/cars/MY.webp",
-       "page": "https://commons.wikimedia.org/wiki/File:2020_Tesla_Model_Y,_front_8.1.20.jpg",
-       "by": "Kevauto",
-       "lic": "CC BY-SA 4.0",
-       "edit": "배경 지움, 번호판 가림"
+      {
+       "name": "테슬라 모델 Y",
+       "sold": 5508,
+       "seg": "수입 중형 SUV 1위",
+       "photo": {
+        "src": "assets/cars/MY.webp"
+       },
+       "focus": "modely",
+       "url": null
       },
-      "focus": "modely",
-      "url": null
-     },
-     {
-      "rank": 3,
-      "name": "현대 뉴 그랜저 하이브리드(GN7)",
-      "sold": 5270,
-      "seg": "국산 준대형 세단 1위",
-      "photo": {
-       "src": "assets/cars/GN7.webp",
-       "page": "https://commons.wikimedia.org/wiki/File:01_Hyundai_Grandeur_(GN7).jpg",
-       "by": "Benespit",
-       "lic": "CC BY-SA 4.0",
-       "edit": "배경 지움, 번호판 가림"
+      {
+       "name": "현대 뉴 그랜저 하이브리드(GN7)",
+       "sold": 5270,
+       "seg": "국산 준대형 세단 1위",
+       "photo": {
+        "src": "assets/cars/GN7.webp"
+       },
+       "focus": "grandeur",
+       "url": null
+      }
+     ],
+     "경형": [
+      {
+       "name": "기아 뉴 레이",
+       "sold": 3059,
+       "seg": "국산 경형 RV 1위",
+       "photo": {
+        "src": "assets/cars/TAM2.webp"
+       },
+       "focus": "ray",
+       "url": null
       },
-      "focus": "grandeur",
-      "url": null
-     }
-    ],
-    "경형": [
+      {
+       "name": "기아 뉴 모닝(JA)",
+       "sold": 1687,
+       "seg": "국산 경형 해치백 1위",
+       "photo": {
+        "src": "assets/cars/JA.webp"
+       },
+       "focus": null,
+       "url": "https://www.kia.com/kr/vehicles/morning"
+      },
+      {
+       "name": "기아 뉴 레이 EV",
+       "sold": 1575,
+       "seg": "국산 경형 RV 2위",
+       "photo": {
+        "src": "assets/cars/TAM2.webp"
+       },
+       "focus": "ray",
+       "url": null
+      }
+     ],
+     "소형": [
+      {
+       "name": "기아 셀토스(SP3)",
+       "sold": 3221,
+       "seg": "국산 소형 SUV 1위",
+       "photo": {
+        "src": "assets/cars/SP3.webp"
+       },
+       "focus": "seltos",
+       "url": null
+      },
+      {
+       "name": "기아 EV3",
+       "sold": 2906,
+       "seg": "국산 소형 SUV 2위",
+       "photo": {
+        "src": "assets/cars/EV3.webp"
+       },
+       "focus": null,
+       "url": "https://www.kia.com/kr/vehicles/ev3"
+      },
+      {
+       "name": "기아 셀토스 하이브리드(SP3)",
+       "sold": 1656,
+       "seg": "국산 소형 SUV 3위",
+       "photo": {
+        "src": "assets/cars/SP3.webp"
+       },
+       "focus": "seltos",
+       "url": null
+      }
+     ],
+     "준중형": [
+      {
+       "name": "현대 아반떼(CN8)",
+       "sold": 4526,
+       "seg": "국산 준중형 세단 1위",
+       "photo": {
+        "src": "assets/cars/CN8.webp"
+       },
+       "focus": "avante",
+       "url": null
+      },
+      {
+       "name": "기아 뉴 스포티지(NQ5)",
+       "sold": 4350,
+       "seg": "국산 준중형 SUV 1위",
+       "photo": {
+        "src": "assets/cars/NQ5.webp"
+       },
+       "focus": "sportage",
+       "url": null
+      },
+      {
+       "name": "기아 EV5",
+       "sold": 3680,
+       "seg": "국산 준중형 SUV 2위",
+       "photo": {
+        "src": "assets/cars/EV5.webp"
+       },
+       "focus": null,
+       "url": "https://www.kia.com/kr/vehicles/ev5"
+      }
+     ],
+     "중형": [
+      {
+       "name": "기아 뉴 쏘렌토 하이브리드(MQ4)",
+       "sold": 6242,
+       "seg": "국산 중형 SUV 1위",
+       "photo": {
+        "src": "assets/cars/MQ4.webp"
+       },
+       "focus": "sorento",
+       "url": null
+      },
+      {
+       "name": "테슬라 모델 Y",
+       "sold": 5508,
+       "seg": "수입 중형 SUV 1위",
+       "photo": {
+        "src": "assets/cars/MY.webp"
+       },
+       "focus": "modely",
+       "url": null
+      },
+      {
+       "name": "벤츠 E클래스(6세대)",
+       "sold": 3683,
+       "seg": "수입 중형 세단 1위",
+       "photo": {
+        "src": "assets/cars/W214.webp"
+       },
+       "focus": "eclass",
+       "url": null
+      }
+     ],
+     "준대형": [
+      {
+       "name": "현대 뉴 그랜저 하이브리드(GN7)",
+       "sold": 5270,
+       "seg": "국산 준대형 세단 1위",
+       "photo": {
+        "src": "assets/cars/GN7.webp"
+       },
+       "focus": "grandeur",
+       "url": null
+      },
+      {
+       "name": "현대 뉴 그랜저(GN7)",
+       "sold": 2035,
+       "seg": "국산 준대형 세단 2위",
+       "photo": {
+        "src": "assets/cars/GN7.webp"
+       },
+       "focus": "grandeur",
+       "url": null
+      },
+      {
+       "name": "제네시스 뉴 G80(RG3)",
+       "sold": 1557,
+       "seg": "국산 준대형 세단 3위",
+       "photo": {
+        "src": "assets/cars/RG3.webp"
+       },
+       "focus": null,
+       "url": "https://www.genesis.com/kr/ko/models/g80"
+      }
+     ],
+     "대형": [
+      {
+       "name": "기아 뉴 카니발 하이브리드(KA4)",
+       "sold": 4859,
+       "seg": "국산 대형 RV 1위",
+       "photo": {
+        "src": "assets/cars/KA4.webp"
+       },
+       "focus": "carnival",
+       "url": null
+      },
+      {
+       "name": "현대 팰리세이드 하이브리드(LX3)",
+       "sold": 2993,
+       "seg": "국산 대형 SUV 1위",
+       "photo": {
+        "src": "assets/cars/LX3.webp"
+       },
+       "focus": "palisade",
+       "url": null
+      },
+      {
+       "name": "현대 아이오닉 9",
+       "sold": 964,
+       "seg": "국산 대형 SUV 2위",
+       "photo": {
+        "src": "assets/cars/IONIQ9.webp"
+       },
+       "focus": null,
+       "url": "https://www.hyundai.com/kr/ko/e/vehicles/ioniq9/intro"
+      }
+     ]
+    },
+    "kr": {
+     "전체": [
+      {
+       "name": "기아 뉴 쏘렌토 하이브리드(MQ4)",
+       "sold": 6242,
+       "seg": "국산 중형 SUV 1위",
+       "photo": {
+        "src": "assets/cars/MQ4.webp"
+       },
+       "focus": "sorento",
+       "url": null
+      },
+      {
+       "name": "현대 뉴 그랜저 하이브리드(GN7)",
+       "sold": 5270,
+       "seg": "국산 준대형 세단 1위",
+       "photo": {
+        "src": "assets/cars/GN7.webp"
+       },
+       "focus": "grandeur",
+       "url": null
+      },
+      {
+       "name": "기아 뉴 카니발 하이브리드(KA4)",
+       "sold": 4859,
+       "seg": "국산 대형 RV 1위",
+       "photo": {
+        "src": "assets/cars/KA4.webp"
+       },
+       "focus": "carnival",
+       "url": null
+      }
+     ],
+     "경형": [
+      {
+       "name": "기아 뉴 레이",
+       "sold": 3059,
+       "seg": "국산 경형 RV 1위",
+       "photo": {
+        "src": "assets/cars/TAM2.webp"
+       },
+       "focus": "ray",
+       "url": null
+      },
+      {
+       "name": "기아 뉴 모닝(JA)",
+       "sold": 1687,
+       "seg": "국산 경형 해치백 1위",
+       "photo": {
+        "src": "assets/cars/JA.webp"
+       },
+       "focus": null,
+       "url": "https://www.kia.com/kr/vehicles/morning"
+      },
+      {
+       "name": "기아 뉴 레이 EV",
+       "sold": 1575,
+       "seg": "국산 경형 RV 2위",
+       "photo": {
+        "src": "assets/cars/TAM2.webp"
+       },
+       "focus": "ray",
+       "url": null
+      }
+     ],
+     "소형": [
+      {
+       "name": "기아 셀토스(SP3)",
+       "sold": 3221,
+       "seg": "국산 소형 SUV 1위",
+       "photo": {
+        "src": "assets/cars/SP3.webp"
+       },
+       "focus": "seltos",
+       "url": null
+      },
+      {
+       "name": "기아 EV3",
+       "sold": 2906,
+       "seg": "국산 소형 SUV 2위",
+       "photo": {
+        "src": "assets/cars/EV3.webp"
+       },
+       "focus": null,
+       "url": "https://www.kia.com/kr/vehicles/ev3"
+      },
+      {
+       "name": "기아 셀토스 하이브리드(SP3)",
+       "sold": 1656,
+       "seg": "국산 소형 SUV 3위",
+       "photo": {
+        "src": "assets/cars/SP3.webp"
+       },
+       "focus": "seltos",
+       "url": null
+      }
+     ],
+     "준중형": [
+      {
+       "name": "현대 아반떼(CN8)",
+       "sold": 4526,
+       "seg": "국산 준중형 세단 1위",
+       "photo": {
+        "src": "assets/cars/CN8.webp"
+       },
+       "focus": "avante",
+       "url": null
+      },
+      {
+       "name": "기아 뉴 스포티지(NQ5)",
+       "sold": 4350,
+       "seg": "국산 준중형 SUV 1위",
+       "photo": {
+        "src": "assets/cars/NQ5.webp"
+       },
+       "focus": "sportage",
+       "url": null
+      },
+      {
+       "name": "기아 EV5",
+       "sold": 3680,
+       "seg": "국산 준중형 SUV 2위",
+       "photo": {
+        "src": "assets/cars/EV5.webp"
+       },
+       "focus": null,
+       "url": "https://www.kia.com/kr/vehicles/ev5"
+      }
+     ],
+     "중형": [
+      {
+       "name": "기아 뉴 쏘렌토 하이브리드(MQ4)",
+       "sold": 6242,
+       "seg": "국산 중형 SUV 1위",
+       "photo": {
+        "src": "assets/cars/MQ4.webp"
+       },
+       "focus": "sorento",
+       "url": null
+      },
+      {
+       "name": "현대 뉴 쏘나타(DN8)",
+       "sold": 3071,
+       "seg": "국산 중형 세단 1위",
+       "photo": {
+        "src": "assets/cars/DN8.webp"
+       },
+       "focus": "sonata",
+       "url": null
+      },
+      {
+       "name": "기아 뉴 K5(DL3)",
+       "sold": 2211,
+       "seg": "국산 중형 세단 2위",
+       "photo": {
+        "src": "assets/cars/DL3.webp"
+       },
+       "focus": "k5",
+       "url": null
+      }
+     ],
+     "준대형": [
+      {
+       "name": "현대 뉴 그랜저 하이브리드(GN7)",
+       "sold": 5270,
+       "seg": "국산 준대형 세단 1위",
+       "photo": {
+        "src": "assets/cars/GN7.webp"
+       },
+       "focus": "grandeur",
+       "url": null
+      },
+      {
+       "name": "현대 뉴 그랜저(GN7)",
+       "sold": 2035,
+       "seg": "국산 준대형 세단 2위",
+       "photo": {
+        "src": "assets/cars/GN7.webp"
+       },
+       "focus": "grandeur",
+       "url": null
+      },
+      {
+       "name": "제네시스 뉴 G80(RG3)",
+       "sold": 1557,
+       "seg": "국산 준대형 세단 3위",
+       "photo": {
+        "src": "assets/cars/RG3.webp"
+       },
+       "focus": null,
+       "url": "https://www.genesis.com/kr/ko/models/g80"
+      }
+     ],
+     "대형": [
+      {
+       "name": "기아 뉴 카니발 하이브리드(KA4)",
+       "sold": 4859,
+       "seg": "국산 대형 RV 1위",
+       "photo": {
+        "src": "assets/cars/KA4.webp"
+       },
+       "focus": "carnival",
+       "url": null
+      },
+      {
+       "name": "현대 팰리세이드 하이브리드(LX3)",
+       "sold": 2993,
+       "seg": "국산 대형 SUV 1위",
+       "photo": {
+        "src": "assets/cars/LX3.webp"
+       },
+       "focus": "palisade",
+       "url": null
+      },
+      {
+       "name": "현대 아이오닉 9",
+       "sold": 964,
+       "seg": "국산 대형 SUV 2위",
+       "photo": {
+        "src": "assets/cars/IONIQ9.webp"
+       },
+       "focus": null,
+       "url": "https://www.hyundai.com/kr/ko/e/vehicles/ioniq9/intro"
+      }
+     ]
+    },
+    "im": {
+     "전체": [
+      {
+       "name": "테슬라 모델 Y",
+       "sold": 5508,
+       "seg": "수입 중형 SUV 1위",
+       "photo": {
+        "src": "assets/cars/MY.webp"
+       },
+       "focus": "modely",
+       "url": null
+      },
+      {
+       "name": "벤츠 E클래스(6세대)",
+       "sold": 3683,
+       "seg": "수입 중형 세단 1위",
+       "photo": {
+        "src": "assets/cars/W214.webp"
+       },
+       "focus": "eclass",
+       "url": null
+      },
+      {
+       "name": "테슬라 모델 3",
+       "sold": 3553,
+       "seg": "수입 준중형 세단 1위",
+       "photo": {
+        "src": "assets/cars/M3.webp"
+       },
+       "focus": "model3",
+       "url": null
+      }
+     ],
+     "경형": [],
+     "소형": [
+      {
+       "name": "볼보 EX30",
+       "sold": 400,
+       "seg": "수입 소형 SUV 1위",
+       "photo": null,
+       "focus": null,
+       "url": null
+      }
+     ],
+     "준중형": [
+      {
+       "name": "테슬라 모델 3",
+       "sold": 3553,
+       "seg": "수입 준중형 세단 1위",
+       "photo": {
+        "src": "assets/cars/M3.webp"
+       },
+       "focus": "model3",
+       "url": null
+      },
+      {
+       "name": "BMW X3(4세대)",
+       "sold": 762,
+       "seg": "수입 준중형 SUV 1위",
+       "photo": null,
+       "focus": null,
+       "url": null
+      },
+      {
+       "name": "비야디 돌핀",
+       "sold": 740,
+       "seg": "수입 준중형 해치백 1위",
+       "photo": null,
+       "focus": null,
+       "url": null
+      }
+     ],
+     "중형": [
+      {
+       "name": "테슬라 모델 Y",
+       "sold": 5508,
+       "seg": "수입 중형 SUV 1위",
+       "photo": {
+        "src": "assets/cars/MY.webp"
+       },
+       "focus": "modely",
+       "url": null
+      },
+      {
+       "name": "벤츠 E클래스(6세대)",
+       "sold": 3683,
+       "seg": "수입 중형 세단 1위",
+       "photo": {
+        "src": "assets/cars/W214.webp"
+       },
+       "focus": "eclass",
+       "url": null
+      },
+      {
+       "name": "BMW 5시리즈(8세대)",
+       "sold": 1478,
+       "seg": "수입 중형 세단 2위",
+       "photo": {
+        "src": "assets/cars/G60.webp"
+       },
+       "focus": "bmw5",
+       "url": null
+      }
+     ],
+     "준대형": [
+      {
+       "name": "볼보 ES90",
+       "sold": 431,
+       "seg": "수입 준대형 세단 1위",
+       "photo": null,
+       "focus": null,
+       "url": null
+      }
+     ],
+     "대형": [
+      {
+       "name": "벤츠 S클래스(7세대)",
+       "sold": 577,
+       "seg": "수입 대형 세단 1위",
+       "photo": null,
+       "focus": null,
+       "url": null
+      },
+      {
+       "name": "BMW 7시리즈(7세대)",
+       "sold": 356,
+       "seg": "수입 대형 세단 2위",
+       "photo": null,
+       "focus": null,
+       "url": null
+      },
+      {
+       "name": "BMW X7",
+       "sold": 271,
+       "seg": "수입 대형 SUV 1위",
+       "photo": null,
+       "focus": null,
+       "url": null
+      }
+     ]
+    }
+   },
+   "used": {
+    "kr": [
      {
-      "rank": 1,
       "name": "기아 뉴 레이",
-      "sold": 3059,
-      "seg": "국산 경형 RV 1위",
+      "sold": 3422,
+      "seg": "국산 경형 RV",
+      "cls": "경형",
       "photo": {
-       "src": "assets/cars/TAM2.webp",
-       "page": "https://commons.wikimedia.org/wiki/File:Kia_RAY_TAM_PE2.jpg",
-       "by": "Avante2025",
-       "lic": "CC BY 4.0",
-       "edit": "배경 지움, 번호판 가림, 좌우 반전"
+       "src": "assets/cars/TAM1.webp"
       },
-      "focus": "ray",
-      "url": null
+      "focus": "TAM1",
+      "encar": null,
+      "listings": {
+       "encar": 3275,
+       "kb": 2123
+      }
      },
      {
-      "rank": 2,
-      "name": "기아 뉴 모닝(JA)",
-      "sold": 1687,
-      "seg": "국산 경형 해치백 1위",
+      "name": "기아 모닝(TA)",
+      "sold": 3190,
+      "seg": "국산 경형",
+      "cls": "경형",
       "photo": {
-       "src": "assets/cars/JA.webp",
-       "page": "https://commons.wikimedia.org/wiki/File:2017_Kia_Picanto_GT-Line_S_1.2_Front.jpg",
-       "by": "Vauxford",
-       "lic": "CC BY-SA 4.0",
-       "edit": "배경 지움, 번호판 가림, 좌우 반전"
+       "src": "assets/cars/TA.webp"
+      },
+      "focus": "TA",
+      "encar": null,
+      "listings": {
+       "encar": 1732,
+       "kb": 2317
+      }
+     },
+     {
+      "name": "현대 그랜저(HG)",
+      "sold": 2881,
+      "seg": "국산 준대형 세단",
+      "cls": "준대형",
+      "photo": {
+       "src": "assets/cars/HG.webp"
       },
       "focus": null,
-      "url": "https://www.kia.com/kr/vehicles/morning"
+      "encar": {
+       "t": "Y",
+       "mk": "현대",
+       "g": "그랜저",
+       "m": [
+        "그랜저 HG"
+       ]
+      },
+      "listings": {
+       "encar": 2092,
+       "kb": 2299
+      }
      },
      {
-      "rank": 3,
-      "name": "기아 뉴 레이 EV",
-      "sold": 1575,
-      "seg": "국산 경형 RV 2위",
+      "name": "쉐보레 스파크",
+      "sold": 2715,
+      "seg": "국산 경형",
+      "cls": "경형",
       "photo": {
-       "src": "assets/cars/TAM2.webp",
-       "page": "https://commons.wikimedia.org/wiki/File:Kia_RAY_TAM_PE2.jpg",
-       "by": "Avante2025",
-       "lic": "CC BY 4.0",
-       "edit": "배경 지움, 번호판 가림, 좌우 반전"
-      },
-      "focus": "ray",
-      "url": null
-     }
-    ],
-    "소형": [
-     {
-      "rank": 1,
-      "name": "기아 셀토스(SP3)",
-      "sold": 3221,
-      "seg": "국산 소형 SUV 1위",
-      "photo": {
-       "src": "assets/cars/SP3.webp",
-       "page": "https://commons.wikimedia.org/wiki/File:Kia_Seltos_(SP3)_IMG_7812.jpg",
-       "by": "Alexander Migl",
-       "lic": "CC BY-SA 4.0",
-       "edit": "배경 지움, 번호판 가림"
-      },
-      "focus": "seltos",
-      "url": null
-     },
-     {
-      "rank": 2,
-      "name": "기아 EV3",
-      "sold": 2906,
-      "seg": "국산 소형 SUV 2위",
-      "photo": {
-       "src": "assets/cars/EV3.webp",
-       "page": "https://commons.wikimedia.org/wiki/File:24_Kia_EV3_1.jpg",
-       "by": "Benespit",
-       "lic": "CC BY-SA 4.0",
-       "edit": "배경 지움, 번호판 가림"
+       "src": "assets/cars/SPARK.webp"
       },
       "focus": null,
-      "url": "https://www.kia.com/kr/vehicles/ev3"
-     },
-     {
-      "rank": 3,
-      "name": "기아 셀토스 하이브리드(SP3)",
-      "sold": 1656,
-      "seg": "국산 소형 SUV 3위",
-      "photo": {
-       "src": "assets/cars/SP3.webp",
-       "page": "https://commons.wikimedia.org/wiki/File:Kia_Seltos_(SP3)_IMG_7812.jpg",
-       "by": "Alexander Migl",
-       "lic": "CC BY-SA 4.0",
-       "edit": "배경 지움, 번호판 가림"
+      "encar": {
+       "t": "Y",
+       "mk": "쉐보레(GM대우)",
+       "g": "스파크",
+       "m": []
       },
-      "focus": "seltos",
-      "url": null
+      "listings": {
+       "encar": 2244
+      }
      }
     ],
-    "준중형": [
+    "im": [
      {
-      "rank": 1,
-      "name": "현대 아반떼(CN8)",
-      "sold": 4526,
-      "seg": "국산 준중형 세단 1위",
+      "name": "벤츠 E클래스(5세대)",
+      "sold": 1493,
+      "seg": "수입 중형 세단",
+      "cls": "중형",
       "photo": {
-       "src": "assets/cars/CN8.webp",
-       "page": "https://commons.wikimedia.org/wiki/File:Hyundai_Avante_CN8_Development_Mule_(9).jpg",
-       "by": "Damian B Oh",
-       "lic": "CC BY-SA 4.0",
-       "edit": "배경 지움, 번호판 가림, 좌우 반전"
+       "src": "assets/cars/W213.webp"
       },
-      "focus": "avante",
-      "url": null
+      "focus": "W213",
+      "encar": null,
+      "listings": {
+       "encar": 3136,
+       "kb": 1923
+      }
      },
      {
-      "rank": 2,
-      "name": "기아 뉴 스포티지(NQ5)",
-      "sold": 4350,
-      "seg": "국산 준중형 SUV 1위",
+      "name": "BMW 5시리즈(7세대)",
+      "sold": 989,
+      "seg": "수입 중형 세단",
+      "cls": "중형",
       "photo": {
-       "src": "assets/cars/NQ5.webp",
-       "page": "https://commons.wikimedia.org/wiki/File:Kia_Sportage_1.6_T-GDI_HEV_2WD_(2022)_(cropped).jpg",
-       "by": "Charles",
-       "lic": "CC BY 2.0",
-       "edit": "배경 지움, 번호판 가림"
+       "src": "assets/cars/G30.webp"
       },
-      "focus": "sportage",
-      "url": null
+      "focus": "G30",
+      "encar": null,
+      "listings": {
+       "encar": 2154,
+       "kb": 1361
+      }
      },
      {
-      "rank": 3,
-      "name": "기아 EV5",
-      "sold": 3680,
-      "seg": "국산 준중형 SUV 2위",
-      "photo": {
-       "src": "assets/cars/EV5.webp",
-       "page": "https://commons.wikimedia.org/wiki/File:Kia_EV5_GT_Auto_Zuerich_2026_IMG_8749.jpg",
-       "by": "Alexander Migl",
-       "lic": "CC BY-SA 4.0",
-       "edit": "배경 지움, 번호판 가림"
-      },
-      "focus": null,
-      "url": "https://www.kia.com/kr/vehicles/ev5"
-     }
-    ],
-    "중형": [
-     {
-      "rank": 1,
-      "name": "기아 뉴 쏘렌토 하이브리드(MQ4)",
-      "sold": 6242,
-      "seg": "국산 중형 SUV 1위",
-      "photo": {
-       "src": "assets/cars/MQ4.webp",
-       "page": "https://commons.wikimedia.org/wiki/File:Kia_Sorento_MQ4_front_view_(South_Korea)_03.png",
-       "by": "차,또바기",
-       "lic": "CC BY-SA 4.0",
-       "edit": "배경 지움, 번호판 가림"
-      },
-      "focus": "sorento",
-      "url": null
-     },
-     {
-      "rank": 2,
       "name": "테슬라 모델 Y",
-      "sold": 5508,
-      "seg": "외산 중형 SUV 1위",
+      "sold": 812,
+      "seg": "수입 중형 SUV",
+      "cls": "중형",
       "photo": {
-       "src": "assets/cars/MY.webp",
-       "page": "https://commons.wikimedia.org/wiki/File:2020_Tesla_Model_Y,_front_8.1.20.jpg",
-       "by": "Kevauto",
-       "lic": "CC BY-SA 4.0",
-       "edit": "배경 지움, 번호판 가림"
+       "src": "assets/cars/MY.webp"
       },
-      "focus": "modely",
-      "url": null
-     },
-     {
-      "rank": 3,
-      "name": "벤츠 E클래스(6세대)",
-      "sold": 3683,
-      "seg": "외산 중형 세단 1위",
-      "photo": {
-       "src": "assets/cars/W214.webp",
-       "page": "https://commons.wikimedia.org/wiki/File:Mercedes-AMG_W214_53_Hybrid_IMG_1292.jpg",
-       "by": "Alexander-93",
-       "lic": "CC BY-SA 4.0",
-       "edit": "배경 지움, 번호판 가림, 좌우 반전"
-      },
-      "focus": "eclass",
-      "url": null
-     }
-    ],
-    "준대형": [
-     {
-      "rank": 1,
-      "name": "현대 뉴 그랜저 하이브리드(GN7)",
-      "sold": 5270,
-      "seg": "국산 준대형 세단 1위",
-      "photo": {
-       "src": "assets/cars/GN7.webp",
-       "page": "https://commons.wikimedia.org/wiki/File:01_Hyundai_Grandeur_(GN7).jpg",
-       "by": "Benespit",
-       "lic": "CC BY-SA 4.0",
-       "edit": "배경 지움, 번호판 가림"
-      },
-      "focus": "grandeur",
-      "url": null
-     },
-     {
-      "rank": 2,
-      "name": "현대 뉴 그랜저(GN7)",
-      "sold": 2035,
-      "seg": "국산 준대형 세단 2위",
-      "photo": {
-       "src": "assets/cars/GN7.webp",
-       "page": "https://commons.wikimedia.org/wiki/File:01_Hyundai_Grandeur_(GN7).jpg",
-       "by": "Benespit",
-       "lic": "CC BY-SA 4.0",
-       "edit": "배경 지움, 번호판 가림"
-      },
-      "focus": "grandeur",
-      "url": null
-     },
-     {
-      "rank": 3,
-      "name": "제네시스 뉴 G80(RG3)",
-      "sold": 1557,
-      "seg": "국산 준대형 세단 3위",
-      "photo": {
-       "src": "assets/cars/RG3.webp",
-       "page": "https://commons.wikimedia.org/wiki/File:2021_Genesis_G80_(United_States)_front_view_02.png",
-       "by": "Gold Pony",
-       "lic": "CC BY 3.0",
-       "edit": "배경 지움, 번호판 가림"
-      },
-      "focus": null,
-      "url": "https://www.genesis.com/kr/ko/models/g80"
-     }
-    ],
-    "대형": [
-     {
-      "rank": 1,
-      "name": "기아 뉴 카니발 하이브리드(KA4)",
-      "sold": 4859,
-      "seg": "국산 대형 RV 1위",
-      "photo": {
-       "src": "assets/cars/KA4.webp",
-       "page": "https://commons.wikimedia.org/wiki/File:0_Kia_Carnival_(KA4)_1.jpg",
-       "by": "Benespit",
-       "lic": "CC BY-SA 4.0",
-       "edit": "배경 지움, 번호판 가림"
-      },
-      "focus": "carnival",
-      "url": null
-     },
-     {
-      "rank": 2,
-      "name": "현대 팰리세이드 하이브리드(LX3)",
-      "sold": 2993,
-      "seg": "국산 대형 SUV 1위",
-      "photo": {
-       "src": "assets/cars/LX3.webp",
-       "page": "https://commons.wikimedia.org/wiki/File:Hyundai_Palisade_LX3_2.5_HEV_Black.jpg",
-       "by": "Avante2025",
-       "lic": "CC BY 4.0",
-       "edit": "배경 지움, 번호판 가림"
-      },
-      "focus": "palisade",
-      "url": null
-     },
-     {
-      "rank": 3,
-      "name": "현대 아이오닉 9",
-      "sold": 964,
-      "seg": "국산 대형 SUV 2위",
-      "photo": {
-       "src": "assets/cars/IONIQ9.webp",
-       "page": "https://commons.wikimedia.org/wiki/File:2026_Hyundai_IONIQ_9_Preferred_AWD%2B_Ultimate_Calligraphy_Package_in_Celadon_Grey,_front_right,_2025-09-07.jpg",
-       "by": "Elise240SX",
-       "lic": "CC BY-SA 4.0",
-       "edit": "배경 지움, 번호판 가림, 좌우 반전"
-      },
-      "focus": null,
-      "url": "https://www.hyundai.com/kr/ko/e/vehicles/ioniq9/intro"
+      "focus": "MY",
+      "encar": null,
+      "listings": {
+       "encar": 1156,
+       "kb": 448
+      }
      }
     ]
-   },
-   "used": [
-    {
-     "rank": 1,
-     "name": "기아 뉴 레이",
-     "sold": 3422,
-     "seg": "국산 경형 RV",
-     "photo": {
-      "src": "assets/cars/TAM1.webp",
-      "page": "https://commons.wikimedia.org/wiki/File:KIA_THE_NEW_RAY_201806_001.jpg",
-      "by": "CEFICEFI",
-      "lic": "CC BY-SA 4.0",
-      "edit": "배경 지움, 번호판 가림, 좌우 반전"
-     },
-     "focus": "TAM1",
-     "encar": null,
-     "listings": {
-      "encar": 3275,
-      "kb": 2123
-     }
-    },
-    {
-     "rank": 2,
-     "name": "기아 모닝(TA)",
-     "sold": 3190,
-     "seg": "국산 경형",
-     "photo": {
-      "src": "assets/cars/TA.webp",
-      "page": "https://commons.wikimedia.org/wiki/File:2014_Kia_Picanto_Front_1.jpg",
-      "by": "Areaseven",
-      "lic": "CC BY-SA 3.0",
-      "edit": "배경 지움, 번호판 가림"
-     },
-     "focus": "TA",
-     "encar": null,
-     "listings": {
-      "encar": 1732,
-      "kb": 2317
-     }
-    },
-    {
-     "rank": 3,
-     "name": "현대 그랜저(HG)",
-     "sold": 2881,
-     "seg": "국산 준대형 세단",
-     "photo": {
-      "src": "assets/cars/HG.webp",
-      "page": "https://commons.wikimedia.org/wiki/File:0_Hyundai_Grandeur_Hybrid_(HG)_1.jpg",
-      "by": "Benespit",
-      "lic": "CC BY-SA 4.0",
-      "edit": "배경 지움, 번호판 가림"
-     },
-     "focus": null,
-     "encar": {
-      "t": "Y",
-      "mk": "현대",
-      "g": "그랜저",
-      "m": [
-       "그랜저 HG"
-      ]
-     },
-     "listings": {
-      "encar": 2092,
-      "kb": 2299
-     }
-    }
-   ]
+   }
   },
   {
    "ym": "2026-09",
    "fresh": {
-    "전체": [
-     {
-      "rank": 1,
-      "name": "테슬라 모델 Y",
-      "sold": 11421,
-      "seg": "외산 중형 SUV 1위",
-      "photo": {
-       "src": "assets/cars/MY.webp",
-       "page": "https://commons.wikimedia.org/wiki/File:2020_Tesla_Model_Y,_front_8.1.20.jpg",
-       "by": "Kevauto",
-       "lic": "CC BY-SA 4.0",
-       "edit": "배경 지움, 번호판 가림"
+    "all": {
+     "전체": [
+      {
+       "name": "테슬라 모델 Y",
+       "sold": 11421,
+       "seg": "수입 중형 SUV 1위",
+       "photo": {
+        "src": "assets/cars/MY.webp"
+       },
+       "focus": "modely",
+       "url": null
       },
-      "focus": "modely",
-      "url": null
-     },
-     {
-      "rank": 2,
-      "name": "기아 뉴 쏘렌토 하이브리드(MQ4)",
-      "sold": 5615,
-      "seg": "국산 중형 SUV 1위",
-      "photo": {
-       "src": "assets/cars/MQ4.webp",
-       "page": "https://commons.wikimedia.org/wiki/File:Kia_Sorento_MQ4_front_view_(South_Korea)_03.png",
-       "by": "차,또바기",
-       "lic": "CC BY-SA 4.0",
-       "edit": "배경 지움, 번호판 가림"
+      {
+       "name": "기아 뉴 쏘렌토 하이브리드(MQ4)",
+       "sold": 5615,
+       "seg": "국산 중형 SUV 1위",
+       "photo": {
+        "src": "assets/cars/MQ4.webp"
+       },
+       "focus": "sorento",
+       "url": null
       },
-      "focus": "sorento",
-      "url": null
-     },
-     {
-      "rank": 3,
-      "name": "현대 뉴 그랜저 하이브리드(GN7)",
-      "sold": 5511,
-      "seg": "국산 준대형 세단 1위",
-      "photo": {
-       "src": "assets/cars/GN7.webp",
-       "page": "https://commons.wikimedia.org/wiki/File:01_Hyundai_Grandeur_(GN7).jpg",
-       "by": "Benespit",
-       "lic": "CC BY-SA 4.0",
-       "edit": "배경 지움, 번호판 가림"
+      {
+       "name": "현대 뉴 그랜저 하이브리드(GN7)",
+       "sold": 5511,
+       "seg": "국산 준대형 세단 1위",
+       "photo": {
+        "src": "assets/cars/GN7.webp"
+       },
+       "focus": "grandeur",
+       "url": null
+      }
+     ],
+     "경형": [
+      {
+       "name": "기아 뉴 레이",
+       "sold": 3291,
+       "seg": "국산 경형 RV 1위",
+       "photo": {
+        "src": "assets/cars/TAM2.webp"
+       },
+       "focus": "ray",
+       "url": null
       },
-      "focus": "grandeur",
-      "url": null
-     }
-    ],
-    "경형": [
+      {
+       "name": "기아 뉴 모닝(JA)",
+       "sold": 2355,
+       "seg": "국산 경형 해치백 1위",
+       "photo": {
+        "src": "assets/cars/JA.webp"
+       },
+       "focus": null,
+       "url": "https://www.kia.com/kr/vehicles/morning"
+      },
+      {
+       "name": "현대 뉴 캐스퍼",
+       "sold": 1045,
+       "seg": "국산 경형 SUV 1위",
+       "photo": {
+        "src": "assets/cars/AX1.webp"
+       },
+       "focus": "casper",
+       "url": null
+      }
+     ],
+     "소형": [
+      {
+       "name": "기아 셀토스(SP3)",
+       "sold": 3375,
+       "seg": "국산 소형 SUV 1위",
+       "photo": {
+        "src": "assets/cars/SP3.webp"
+       },
+       "focus": "seltos",
+       "url": null
+      },
+      {
+       "name": "기아 EV3",
+       "sold": 1892,
+       "seg": "국산 소형 SUV 2위",
+       "photo": {
+        "src": "assets/cars/EV3.webp"
+       },
+       "focus": null,
+       "url": "https://www.kia.com/kr/vehicles/ev3"
+      },
+      {
+       "name": "기아 셀토스 하이브리드(SP3)",
+       "sold": 1596,
+       "seg": "국산 소형 SUV 3위",
+       "photo": {
+        "src": "assets/cars/SP3.webp"
+       },
+       "focus": "seltos",
+       "url": null
+      }
+     ],
+     "준중형": [
+      {
+       "name": "현대 아반떼(CN8)",
+       "sold": 5403,
+       "seg": "국산 준중형 세단 1위",
+       "photo": {
+        "src": "assets/cars/CN8.webp"
+       },
+       "focus": "avante",
+       "url": null
+      },
+      {
+       "name": "기아 뉴 스포티지(NQ5)",
+       "sold": 3210,
+       "seg": "국산 준중형 SUV 1위",
+       "photo": {
+        "src": "assets/cars/NQ5.webp"
+       },
+       "focus": "sportage",
+       "url": null
+      },
+      {
+       "name": "기아 EV5",
+       "sold": 2257,
+       "seg": "국산 준중형 SUV 2위",
+       "photo": {
+        "src": "assets/cars/EV5.webp"
+       },
+       "focus": null,
+       "url": "https://www.kia.com/kr/vehicles/ev5"
+      }
+     ],
+     "중형": [
+      {
+       "name": "테슬라 모델 Y",
+       "sold": 11421,
+       "seg": "수입 중형 SUV 1위",
+       "photo": {
+        "src": "assets/cars/MY.webp"
+       },
+       "focus": "modely",
+       "url": null
+      },
+      {
+       "name": "기아 뉴 쏘렌토 하이브리드(MQ4)",
+       "sold": 5615,
+       "seg": "국산 중형 SUV 1위",
+       "photo": {
+        "src": "assets/cars/MQ4.webp"
+       },
+       "focus": "sorento",
+       "url": null
+      },
+      {
+       "name": "현대 뉴 쏘나타(DN8)",
+       "sold": 3133,
+       "seg": "국산 중형 세단 1위",
+       "photo": {
+        "src": "assets/cars/DN8.webp"
+       },
+       "focus": "sonata",
+       "url": null
+      }
+     ],
+     "준대형": [
+      {
+       "name": "현대 뉴 그랜저 하이브리드(GN7)",
+       "sold": 5511,
+       "seg": "국산 준대형 세단 1위",
+       "photo": {
+        "src": "assets/cars/GN7.webp"
+       },
+       "focus": "grandeur",
+       "url": null
+      },
+      {
+       "name": "현대 뉴 그랜저(GN7)",
+       "sold": 2509,
+       "seg": "국산 준대형 세단 2위",
+       "photo": {
+        "src": "assets/cars/GN7.webp"
+       },
+       "focus": "grandeur",
+       "url": null
+      },
+      {
+       "name": "제네시스 뉴 G80(RG3)",
+       "sold": 1830,
+       "seg": "국산 준대형 세단 3위",
+       "photo": {
+        "src": "assets/cars/RG3.webp"
+       },
+       "focus": null,
+       "url": "https://www.genesis.com/kr/ko/models/g80"
+      }
+     ],
+     "대형": [
+      {
+       "name": "기아 뉴 카니발 하이브리드(KA4)",
+       "sold": 4148,
+       "seg": "국산 대형 RV 1위",
+       "photo": {
+        "src": "assets/cars/KA4.webp"
+       },
+       "focus": "carnival",
+       "url": null
+      },
+      {
+       "name": "현대 팰리세이드 하이브리드(LX3)",
+       "sold": 1754,
+       "seg": "국산 대형 SUV 1위",
+       "photo": {
+        "src": "assets/cars/LX3.webp"
+       },
+       "focus": "palisade",
+       "url": null
+      },
+      {
+       "name": "KGM 무쏘(Q300)",
+       "sold": 895,
+       "seg": "국산 대형 픽업트럭 1위",
+       "photo": {
+        "src": "assets/cars/MUSSO.webp"
+       },
+       "focus": null,
+       "url": "https://www.kg-mobility.com/"
+      }
+     ]
+    },
+    "kr": {
+     "전체": [
+      {
+       "name": "기아 뉴 쏘렌토 하이브리드(MQ4)",
+       "sold": 5615,
+       "seg": "국산 중형 SUV 1위",
+       "photo": {
+        "src": "assets/cars/MQ4.webp"
+       },
+       "focus": "sorento",
+       "url": null
+      },
+      {
+       "name": "현대 뉴 그랜저 하이브리드(GN7)",
+       "sold": 5511,
+       "seg": "국산 준대형 세단 1위",
+       "photo": {
+        "src": "assets/cars/GN7.webp"
+       },
+       "focus": "grandeur",
+       "url": null
+      },
+      {
+       "name": "현대 아반떼(CN8)",
+       "sold": 5403,
+       "seg": "국산 준중형 세단 1위",
+       "photo": {
+        "src": "assets/cars/CN8.webp"
+       },
+       "focus": "avante",
+       "url": null
+      }
+     ],
+     "경형": [
+      {
+       "name": "기아 뉴 레이",
+       "sold": 3291,
+       "seg": "국산 경형 RV 1위",
+       "photo": {
+        "src": "assets/cars/TAM2.webp"
+       },
+       "focus": "ray",
+       "url": null
+      },
+      {
+       "name": "기아 뉴 모닝(JA)",
+       "sold": 2355,
+       "seg": "국산 경형 해치백 1위",
+       "photo": {
+        "src": "assets/cars/JA.webp"
+       },
+       "focus": null,
+       "url": "https://www.kia.com/kr/vehicles/morning"
+      },
+      {
+       "name": "현대 뉴 캐스퍼",
+       "sold": 1045,
+       "seg": "국산 경형 SUV 1위",
+       "photo": {
+        "src": "assets/cars/AX1.webp"
+       },
+       "focus": "casper",
+       "url": null
+      }
+     ],
+     "소형": [
+      {
+       "name": "기아 셀토스(SP3)",
+       "sold": 3375,
+       "seg": "국산 소형 SUV 1위",
+       "photo": {
+        "src": "assets/cars/SP3.webp"
+       },
+       "focus": "seltos",
+       "url": null
+      },
+      {
+       "name": "기아 EV3",
+       "sold": 1892,
+       "seg": "국산 소형 SUV 2위",
+       "photo": {
+        "src": "assets/cars/EV3.webp"
+       },
+       "focus": null,
+       "url": "https://www.kia.com/kr/vehicles/ev3"
+      },
+      {
+       "name": "기아 셀토스 하이브리드(SP3)",
+       "sold": 1596,
+       "seg": "국산 소형 SUV 3위",
+       "photo": {
+        "src": "assets/cars/SP3.webp"
+       },
+       "focus": "seltos",
+       "url": null
+      }
+     ],
+     "준중형": [
+      {
+       "name": "현대 아반떼(CN8)",
+       "sold": 5403,
+       "seg": "국산 준중형 세단 1위",
+       "photo": {
+        "src": "assets/cars/CN8.webp"
+       },
+       "focus": "avante",
+       "url": null
+      },
+      {
+       "name": "기아 뉴 스포티지(NQ5)",
+       "sold": 3210,
+       "seg": "국산 준중형 SUV 1위",
+       "photo": {
+        "src": "assets/cars/NQ5.webp"
+       },
+       "focus": "sportage",
+       "url": null
+      },
+      {
+       "name": "기아 EV5",
+       "sold": 2257,
+       "seg": "국산 준중형 SUV 2위",
+       "photo": {
+        "src": "assets/cars/EV5.webp"
+       },
+       "focus": null,
+       "url": "https://www.kia.com/kr/vehicles/ev5"
+      }
+     ],
+     "중형": [
+      {
+       "name": "기아 뉴 쏘렌토 하이브리드(MQ4)",
+       "sold": 5615,
+       "seg": "국산 중형 SUV 1위",
+       "photo": {
+        "src": "assets/cars/MQ4.webp"
+       },
+       "focus": "sorento",
+       "url": null
+      },
+      {
+       "name": "현대 뉴 쏘나타(DN8)",
+       "sold": 3133,
+       "seg": "국산 중형 세단 1위",
+       "photo": {
+        "src": "assets/cars/DN8.webp"
+       },
+       "focus": "sonata",
+       "url": null
+      },
+      {
+       "name": "현대 싼타페 하이브리드(MX5)",
+       "sold": 2911,
+       "seg": "국산 중형 SUV 2위",
+       "photo": {
+        "src": "assets/cars/MX5.webp"
+       },
+       "focus": "santafe",
+       "url": null
+      }
+     ],
+     "준대형": [
+      {
+       "name": "현대 뉴 그랜저 하이브리드(GN7)",
+       "sold": 5511,
+       "seg": "국산 준대형 세단 1위",
+       "photo": {
+        "src": "assets/cars/GN7.webp"
+       },
+       "focus": "grandeur",
+       "url": null
+      },
+      {
+       "name": "현대 뉴 그랜저(GN7)",
+       "sold": 2509,
+       "seg": "국산 준대형 세단 2위",
+       "photo": {
+        "src": "assets/cars/GN7.webp"
+       },
+       "focus": "grandeur",
+       "url": null
+      },
+      {
+       "name": "제네시스 뉴 G80(RG3)",
+       "sold": 1830,
+       "seg": "국산 준대형 세단 3위",
+       "photo": {
+        "src": "assets/cars/RG3.webp"
+       },
+       "focus": null,
+       "url": "https://www.genesis.com/kr/ko/models/g80"
+      }
+     ],
+     "대형": [
+      {
+       "name": "기아 뉴 카니발 하이브리드(KA4)",
+       "sold": 4148,
+       "seg": "국산 대형 RV 1위",
+       "photo": {
+        "src": "assets/cars/KA4.webp"
+       },
+       "focus": "carnival",
+       "url": null
+      },
+      {
+       "name": "현대 팰리세이드 하이브리드(LX3)",
+       "sold": 1754,
+       "seg": "국산 대형 SUV 1위",
+       "photo": {
+        "src": "assets/cars/LX3.webp"
+       },
+       "focus": "palisade",
+       "url": null
+      },
+      {
+       "name": "KGM 무쏘(Q300)",
+       "sold": 895,
+       "seg": "국산 대형 픽업트럭 1위",
+       "photo": {
+        "src": "assets/cars/MUSSO.webp"
+       },
+       "focus": null,
+       "url": "https://www.kg-mobility.com/"
+      }
+     ]
+    },
+    "im": {
+     "전체": [
+      {
+       "name": "테슬라 모델 Y",
+       "sold": 11421,
+       "seg": "수입 중형 SUV 1위",
+       "photo": {
+        "src": "assets/cars/MY.webp"
+       },
+       "focus": "modely",
+       "url": null
+      },
+      {
+       "name": "벤츠 E클래스(6세대)",
+       "sold": 2747,
+       "seg": "수입 중형 세단 1위",
+       "photo": {
+        "src": "assets/cars/W214.webp"
+       },
+       "focus": "eclass",
+       "url": null
+      },
+      {
+       "name": "BMW 5시리즈(8세대)",
+       "sold": 1781,
+       "seg": "수입 중형 세단 2위",
+       "photo": {
+        "src": "assets/cars/G60.webp"
+       },
+       "focus": "bmw5",
+       "url": null
+      }
+     ],
+     "경형": [],
+     "소형": [
+      {
+       "name": "볼보 EX30",
+       "sold": 419,
+       "seg": "수입 소형 SUV 1위",
+       "photo": null,
+       "focus": null,
+       "url": null
+      },
+      {
+       "name": "비야디 아토 3",
+       "sold": 227,
+       "seg": "수입 소형 SUV 2위",
+       "photo": null,
+       "focus": null,
+       "url": null
+      }
+     ],
+     "준중형": [
+      {
+       "name": "비야디 돌핀",
+       "sold": 1221,
+       "seg": "수입 준중형 해치백 1위",
+       "photo": null,
+       "focus": null,
+       "url": null
+      },
+      {
+       "name": "테슬라 모델 3",
+       "sold": 821,
+       "seg": "수입 준중형 세단 1위",
+       "photo": {
+        "src": "assets/cars/M3.webp"
+       },
+       "focus": "model3",
+       "url": null
+      },
+      {
+       "name": "BMW X3(4세대)",
+       "sold": 737,
+       "seg": "수입 준중형 SUV 1위",
+       "photo": null,
+       "focus": null,
+       "url": null
+      }
+     ],
+     "중형": [
+      {
+       "name": "테슬라 모델 Y",
+       "sold": 11421,
+       "seg": "수입 중형 SUV 1위",
+       "photo": {
+        "src": "assets/cars/MY.webp"
+       },
+       "focus": "modely",
+       "url": null
+      },
+      {
+       "name": "벤츠 E클래스(6세대)",
+       "sold": 2747,
+       "seg": "수입 중형 세단 1위",
+       "photo": {
+        "src": "assets/cars/W214.webp"
+       },
+       "focus": "eclass",
+       "url": null
+      },
+      {
+       "name": "BMW 5시리즈(8세대)",
+       "sold": 1781,
+       "seg": "수입 중형 세단 2위",
+       "photo": {
+        "src": "assets/cars/G60.webp"
+       },
+       "focus": "bmw5",
+       "url": null
+      }
+     ],
+     "준대형": [
+      {
+       "name": "포르쉐 타이칸",
+       "sold": 194,
+       "seg": "수입 준대형 세단 1위",
+       "photo": null,
+       "focus": null,
+       "url": null
+      }
+     ],
+     "대형": [
+      {
+       "name": "벤츠 S클래스(7세대)",
+       "sold": 879,
+       "seg": "수입 대형 세단 1위",
+       "photo": null,
+       "focus": null,
+       "url": null
+      },
+      {
+       "name": "BMW 7시리즈(7세대)",
+       "sold": 431,
+       "seg": "수입 대형 세단 2위",
+       "photo": null,
+       "focus": null,
+       "url": null
+      },
+      {
+       "name": "볼보 EX90",
+       "sold": 273,
+       "seg": "수입 대형 SUV 1위",
+       "photo": null,
+       "focus": null,
+       "url": null
+      }
+     ]
+    }
+   },
+   "used": {
+    "kr": [
      {
-      "rank": 1,
       "name": "기아 뉴 레이",
-      "sold": 3291,
-      "seg": "국산 경형 RV 1위",
+      "sold": 3253,
+      "seg": "국산 경형 RV",
+      "cls": "경형",
       "photo": {
-       "src": "assets/cars/TAM2.webp",
-       "page": "https://commons.wikimedia.org/wiki/File:Kia_RAY_TAM_PE2.jpg",
-       "by": "Avante2025",
-       "lic": "CC BY 4.0",
-       "edit": "배경 지움, 번호판 가림, 좌우 반전"
+       "src": "assets/cars/TAM1.webp"
       },
-      "focus": "ray",
-      "url": null
+      "focus": "TAM1",
+      "encar": null,
+      "listings": {
+       "encar": 3275,
+       "kb": 2123
+      }
      },
      {
-      "rank": 2,
-      "name": "기아 뉴 모닝(JA)",
-      "sold": 2355,
-      "seg": "국산 경형 해치백 1위",
+      "name": "기아 모닝(TA)",
+      "sold": 3029,
+      "seg": "국산 경형",
+      "cls": "경형",
       "photo": {
-       "src": "assets/cars/JA.webp",
-       "page": "https://commons.wikimedia.org/wiki/File:2017_Kia_Picanto_GT-Line_S_1.2_Front.jpg",
-       "by": "Vauxford",
-       "lic": "CC BY-SA 4.0",
-       "edit": "배경 지움, 번호판 가림, 좌우 반전"
+       "src": "assets/cars/TA.webp"
+      },
+      "focus": "TA",
+      "encar": null,
+      "listings": {
+       "encar": 1732,
+       "kb": 2317
+      }
+     },
+     {
+      "name": "현대 그랜저(HG)",
+      "sold": 3015,
+      "seg": "국산 준대형 세단",
+      "cls": "준대형",
+      "photo": {
+       "src": "assets/cars/HG.webp"
       },
       "focus": null,
-      "url": "https://www.kia.com/kr/vehicles/morning"
+      "encar": {
+       "t": "Y",
+       "mk": "현대",
+       "g": "그랜저",
+       "m": [
+        "그랜저 HG"
+       ]
+      },
+      "listings": {
+       "encar": 2092,
+       "kb": 2299
+      }
      },
      {
-      "rank": 3,
-      "name": "현대 뉴 캐스퍼",
-      "sold": 1045,
-      "seg": "국산 경형 SUV 1위",
+      "name": "기아 카니발(KA4)",
+      "sold": 2829,
+      "seg": "국산 대형 RV",
+      "cls": "대형",
       "photo": {
-       "src": "assets/cars/AX1.webp",
-       "page": "https://commons.wikimedia.org/wiki/File:Hyundai_Casper_Active_AX1_Atlas_White_(18).jpg",
-       "by": "Damian B Oh",
-       "lic": "CC BY-SA 4.0",
-       "edit": "배경 지움, 번호판 가림"
-      },
-      "focus": "casper",
-      "url": null
-     }
-    ],
-    "소형": [
-     {
-      "rank": 1,
-      "name": "기아 셀토스(SP3)",
-      "sold": 3375,
-      "seg": "국산 소형 SUV 1위",
-      "photo": {
-       "src": "assets/cars/SP3.webp",
-       "page": "https://commons.wikimedia.org/wiki/File:Kia_Seltos_(SP3)_IMG_7812.jpg",
-       "by": "Alexander Migl",
-       "lic": "CC BY-SA 4.0",
-       "edit": "배경 지움, 번호판 가림"
-      },
-      "focus": "seltos",
-      "url": null
-     },
-     {
-      "rank": 2,
-      "name": "기아 EV3",
-      "sold": 1892,
-      "seg": "국산 소형 SUV 2위",
-      "photo": {
-       "src": "assets/cars/EV3.webp",
-       "page": "https://commons.wikimedia.org/wiki/File:24_Kia_EV3_1.jpg",
-       "by": "Benespit",
-       "lic": "CC BY-SA 4.0",
-       "edit": "배경 지움, 번호판 가림"
+       "src": "assets/cars/KA4.webp"
       },
       "focus": null,
-      "url": "https://www.kia.com/kr/vehicles/ev3"
+      "encar": {
+       "t": "Y",
+       "mk": "기아",
+       "g": "카니발",
+       "m": []
+      },
+      "listings": null
      },
      {
-      "rank": 3,
-      "name": "기아 셀토스 하이브리드(SP3)",
-      "sold": 1596,
-      "seg": "국산 소형 SUV 3위",
+      "name": "쉐보레 스파크",
+      "sold": 2801,
+      "seg": "국산 경형",
+      "cls": "경형",
       "photo": {
-       "src": "assets/cars/SP3.webp",
-       "page": "https://commons.wikimedia.org/wiki/File:Kia_Seltos_(SP3)_IMG_7812.jpg",
-       "by": "Alexander Migl",
-       "lic": "CC BY-SA 4.0",
-       "edit": "배경 지움, 번호판 가림"
-      },
-      "focus": "seltos",
-      "url": null
-     }
-    ],
-    "준중형": [
-     {
-      "rank": 1,
-      "name": "현대 아반떼(CN8)",
-      "sold": 5403,
-      "seg": "국산 준중형 세단 1위",
-      "photo": {
-       "src": "assets/cars/CN8.webp",
-       "page": "https://commons.wikimedia.org/wiki/File:Hyundai_Avante_CN8_Development_Mule_(9).jpg",
-       "by": "Damian B Oh",
-       "lic": "CC BY-SA 4.0",
-       "edit": "배경 지움, 번호판 가림, 좌우 반전"
-      },
-      "focus": "avante",
-      "url": null
-     },
-     {
-      "rank": 2,
-      "name": "기아 뉴 스포티지(NQ5)",
-      "sold": 3210,
-      "seg": "국산 준중형 SUV 1위",
-      "photo": {
-       "src": "assets/cars/NQ5.webp",
-       "page": "https://commons.wikimedia.org/wiki/File:Kia_Sportage_1.6_T-GDI_HEV_2WD_(2022)_(cropped).jpg",
-       "by": "Charles",
-       "lic": "CC BY 2.0",
-       "edit": "배경 지움, 번호판 가림"
-      },
-      "focus": "sportage",
-      "url": null
-     },
-     {
-      "rank": 3,
-      "name": "기아 EV5",
-      "sold": 2257,
-      "seg": "국산 준중형 SUV 2위",
-      "photo": {
-       "src": "assets/cars/EV5.webp",
-       "page": "https://commons.wikimedia.org/wiki/File:Kia_EV5_GT_Auto_Zuerich_2026_IMG_8749.jpg",
-       "by": "Alexander Migl",
-       "lic": "CC BY-SA 4.0",
-       "edit": "배경 지움, 번호판 가림"
+       "src": "assets/cars/SPARK.webp"
       },
       "focus": null,
-      "url": "https://www.kia.com/kr/vehicles/ev5"
+      "encar": {
+       "t": "Y",
+       "mk": "쉐보레(GM대우)",
+       "g": "스파크",
+       "m": []
+      },
+      "listings": {
+       "encar": 2244
+      }
      }
     ],
-    "중형": [
+    "im": [
      {
-      "rank": 1,
+      "name": "벤츠 E클래스(5세대)",
+      "sold": 1605,
+      "seg": "수입 중형 세단",
+      "cls": "중형",
+      "photo": {
+       "src": "assets/cars/W213.webp"
+      },
+      "focus": "W213",
+      "encar": null,
+      "listings": {
+       "encar": 3136,
+       "kb": 1923
+      }
+     },
+     {
       "name": "테슬라 모델 Y",
-      "sold": 11421,
-      "seg": "외산 중형 SUV 1위",
+      "sold": 990,
+      "seg": "수입 중형 SUV",
+      "cls": "중형",
       "photo": {
-       "src": "assets/cars/MY.webp",
-       "page": "https://commons.wikimedia.org/wiki/File:2020_Tesla_Model_Y,_front_8.1.20.jpg",
-       "by": "Kevauto",
-       "lic": "CC BY-SA 4.0",
-       "edit": "배경 지움, 번호판 가림"
+       "src": "assets/cars/MY.webp"
       },
-      "focus": "modely",
-      "url": null
+      "focus": "MY",
+      "encar": null,
+      "listings": {
+       "encar": 1156,
+       "kb": 448
+      }
      },
      {
-      "rank": 2,
-      "name": "기아 뉴 쏘렌토 하이브리드(MQ4)",
-      "sold": 5615,
-      "seg": "국산 중형 SUV 1위",
+      "name": "BMW 5시리즈(7세대)",
+      "sold": 964,
+      "seg": "수입 중형 세단",
+      "cls": "중형",
       "photo": {
-       "src": "assets/cars/MQ4.webp",
-       "page": "https://commons.wikimedia.org/wiki/File:Kia_Sorento_MQ4_front_view_(South_Korea)_03.png",
-       "by": "차,또바기",
-       "lic": "CC BY-SA 4.0",
-       "edit": "배경 지움, 번호판 가림"
+       "src": "assets/cars/G30.webp"
       },
-      "focus": "sorento",
-      "url": null
-     },
-     {
-      "rank": 3,
-      "name": "현대 뉴 쏘나타(DN8)",
-      "sold": 3133,
-      "seg": "국산 중형 세단 1위",
-      "photo": {
-       "src": "assets/cars/DN8.webp",
-       "page": "https://commons.wikimedia.org/wiki/File:2020_Hyundai_Sonata_SEL_(Quartz_White),_front_right.jpg",
-       "by": "Mr.choppers",
-       "lic": "CC BY-SA 3.0",
-       "edit": "배경 지움, 번호판 가림, 좌우 반전"
-      },
-      "focus": "sonata",
-      "url": null
-     }
-    ],
-    "준대형": [
-     {
-      "rank": 1,
-      "name": "현대 뉴 그랜저 하이브리드(GN7)",
-      "sold": 5511,
-      "seg": "국산 준대형 세단 1위",
-      "photo": {
-       "src": "assets/cars/GN7.webp",
-       "page": "https://commons.wikimedia.org/wiki/File:01_Hyundai_Grandeur_(GN7).jpg",
-       "by": "Benespit",
-       "lic": "CC BY-SA 4.0",
-       "edit": "배경 지움, 번호판 가림"
-      },
-      "focus": "grandeur",
-      "url": null
-     },
-     {
-      "rank": 2,
-      "name": "현대 뉴 그랜저(GN7)",
-      "sold": 2509,
-      "seg": "국산 준대형 세단 2위",
-      "photo": {
-       "src": "assets/cars/GN7.webp",
-       "page": "https://commons.wikimedia.org/wiki/File:01_Hyundai_Grandeur_(GN7).jpg",
-       "by": "Benespit",
-       "lic": "CC BY-SA 4.0",
-       "edit": "배경 지움, 번호판 가림"
-      },
-      "focus": "grandeur",
-      "url": null
-     },
-     {
-      "rank": 3,
-      "name": "제네시스 뉴 G80(RG3)",
-      "sold": 1830,
-      "seg": "국산 준대형 세단 3위",
-      "photo": {
-       "src": "assets/cars/RG3.webp",
-       "page": "https://commons.wikimedia.org/wiki/File:2021_Genesis_G80_(United_States)_front_view_02.png",
-       "by": "Gold Pony",
-       "lic": "CC BY 3.0",
-       "edit": "배경 지움, 번호판 가림"
-      },
-      "focus": null,
-      "url": "https://www.genesis.com/kr/ko/models/g80"
-     }
-    ],
-    "대형": [
-     {
-      "rank": 1,
-      "name": "기아 뉴 카니발 하이브리드(KA4)",
-      "sold": 4148,
-      "seg": "국산 대형 RV 1위",
-      "photo": {
-       "src": "assets/cars/KA4.webp",
-       "page": "https://commons.wikimedia.org/wiki/File:0_Kia_Carnival_(KA4)_1.jpg",
-       "by": "Benespit",
-       "lic": "CC BY-SA 4.0",
-       "edit": "배경 지움, 번호판 가림"
-      },
-      "focus": "carnival",
-      "url": null
-     },
-     {
-      "rank": 2,
-      "name": "현대 팰리세이드 하이브리드(LX3)",
-      "sold": 1754,
-      "seg": "국산 대형 SUV 1위",
-      "photo": {
-       "src": "assets/cars/LX3.webp",
-       "page": "https://commons.wikimedia.org/wiki/File:Hyundai_Palisade_LX3_2.5_HEV_Black.jpg",
-       "by": "Avante2025",
-       "lic": "CC BY 4.0",
-       "edit": "배경 지움, 번호판 가림"
-      },
-      "focus": "palisade",
-      "url": null
-     },
-     {
-      "rank": 3,
-      "name": "KGM 무쏘(Q300)",
-      "sold": 895,
-      "seg": "국산 대형 픽업트럭 1위",
-      "photo": {
-       "src": "assets/cars/MUSSO.webp",
-       "page": "https://commons.wikimedia.org/wiki/File:KGM_Musso_2.2D_LET_Long_Deck_4WD_Grand_Style_M9_Q300_Grand_White_(4).jpg",
-       "by": "Damian B Oh",
-       "lic": "CC BY-SA 4.0",
-       "edit": "배경 지움, 번호판 가림"
-      },
-      "focus": null,
-      "url": "https://www.kg-mobility.com/"
+      "focus": "G30",
+      "encar": null,
+      "listings": {
+       "encar": 2154,
+       "kb": 1361
+      }
      }
     ]
-   },
-   "used": [
-    {
-     "rank": 1,
-     "name": "기아 뉴 레이",
-     "sold": 3253,
-     "seg": "국산 경형 RV",
-     "photo": {
-      "src": "assets/cars/TAM1.webp",
-      "page": "https://commons.wikimedia.org/wiki/File:KIA_THE_NEW_RAY_201806_001.jpg",
-      "by": "CEFICEFI",
-      "lic": "CC BY-SA 4.0",
-      "edit": "배경 지움, 번호판 가림, 좌우 반전"
-     },
-     "focus": "TAM1",
-     "encar": null,
-     "listings": {
-      "encar": 3275,
-      "kb": 2123
-     }
-    },
-    {
-     "rank": 2,
-     "name": "기아 모닝(TA)",
-     "sold": 3029,
-     "seg": "국산 경형",
-     "photo": {
-      "src": "assets/cars/TA.webp",
-      "page": "https://commons.wikimedia.org/wiki/File:2014_Kia_Picanto_Front_1.jpg",
-      "by": "Areaseven",
-      "lic": "CC BY-SA 3.0",
-      "edit": "배경 지움, 번호판 가림"
-     },
-     "focus": "TA",
-     "encar": null,
-     "listings": {
-      "encar": 1732,
-      "kb": 2317
-     }
-    },
-    {
-     "rank": 3,
-     "name": "현대 그랜저(HG)",
-     "sold": 3015,
-     "seg": "국산 준대형 세단",
-     "photo": {
-      "src": "assets/cars/HG.webp",
-      "page": "https://commons.wikimedia.org/wiki/File:0_Hyundai_Grandeur_Hybrid_(HG)_1.jpg",
-      "by": "Benespit",
-      "lic": "CC BY-SA 4.0",
-      "edit": "배경 지움, 번호판 가림"
-     },
-     "focus": null,
-     "encar": {
-      "t": "Y",
-      "mk": "현대",
-      "g": "그랜저",
-      "m": [
-       "그랜저 HG"
-      ]
-     },
-     "listings": {
-      "encar": 2092,
-      "kb": 2299
-     }
-    }
-   ]
+   }
   },
   {
    "ym": "2026-08",
    "fresh": {
-    "전체": [
-     {
-      "rank": 1,
-      "name": "테슬라 모델 Y",
-      "sold": 9638,
-      "seg": "외산 중형 SUV 1위",
-      "photo": {
-       "src": "assets/cars/MY.webp",
-       "page": "https://commons.wikimedia.org/wiki/File:2020_Tesla_Model_Y,_front_8.1.20.jpg",
-       "by": "Kevauto",
-       "lic": "CC BY-SA 4.0",
-       "edit": "배경 지움, 번호판 가림"
+    "all": {
+     "전체": [
+      {
+       "name": "테슬라 모델 Y",
+       "sold": 9638,
+       "seg": "수입 중형 SUV 1위",
+       "photo": {
+        "src": "assets/cars/MY.webp"
+       },
+       "focus": "modely",
+       "url": null
       },
-      "focus": "modely",
-      "url": null
+      {
+       "name": "기아 뉴 쏘렌토 하이브리드(MQ4)",
+       "sold": 5202,
+       "seg": "국산 중형 SUV 1위",
+       "photo": {
+        "src": "assets/cars/MQ4.webp"
+       },
+       "focus": "sorento",
+       "url": null
+      },
+      {
+       "name": "기아 뉴 카니발 하이브리드(KA4)",
+       "sold": 3787,
+       "seg": "국산 대형 RV 1위",
+       "photo": {
+        "src": "assets/cars/KA4.webp"
+       },
+       "focus": "carnival",
+       "url": null
+      }
+     ],
+     "경형": [
+      {
+       "name": "기아 뉴 레이",
+       "sold": 2771,
+       "seg": "국산 경형 RV 1위",
+       "photo": {
+        "src": "assets/cars/TAM2.webp"
+       },
+       "focus": "ray",
+       "url": null
+      },
+      {
+       "name": "기아 뉴 모닝(JA)",
+       "sold": 1663,
+       "seg": "국산 경형 해치백 1위",
+       "photo": {
+        "src": "assets/cars/JA.webp"
+       },
+       "focus": null,
+       "url": "https://www.kia.com/kr/vehicles/morning"
+      },
+      {
+       "name": "기아 뉴 레이 EV",
+       "sold": 1078,
+       "seg": "국산 경형 RV 2위",
+       "photo": {
+        "src": "assets/cars/TAM2.webp"
+       },
+       "focus": "ray",
+       "url": null
+      }
+     ],
+     "소형": [
+      {
+       "name": "기아 EV3",
+       "sold": 2705,
+       "seg": "국산 소형 SUV 1위",
+       "photo": {
+        "src": "assets/cars/EV3.webp"
+       },
+       "focus": null,
+       "url": "https://www.kia.com/kr/vehicles/ev3"
+      },
+      {
+       "name": "기아 셀토스(SP3)",
+       "sold": 2673,
+       "seg": "국산 소형 SUV 2위",
+       "photo": {
+        "src": "assets/cars/SP3.webp"
+       },
+       "focus": "seltos",
+       "url": null
+      },
+      {
+       "name": "기아 셀토스 하이브리드(SP3)",
+       "sold": 1205,
+       "seg": "국산 소형 SUV 3위",
+       "photo": {
+        "src": "assets/cars/SP3.webp"
+       },
+       "focus": "seltos",
+       "url": null
+      }
+     ],
+     "준중형": [
+      {
+       "name": "기아 EV5",
+       "sold": 2695,
+       "seg": "국산 준중형 SUV 1위",
+       "photo": {
+        "src": "assets/cars/EV5.webp"
+       },
+       "focus": null,
+       "url": "https://www.kia.com/kr/vehicles/ev5"
+      },
+      {
+       "name": "기아 뉴 스포티지(NQ5)",
+       "sold": 2588,
+       "seg": "국산 준중형 SUV 2위",
+       "photo": {
+        "src": "assets/cars/NQ5.webp"
+       },
+       "focus": "sportage",
+       "url": null
+      },
+      {
+       "name": "기아 뉴 스포티지 하이브리드(NQ5)",
+       "sold": 1543,
+       "seg": "국산 준중형 SUV 3위",
+       "photo": {
+        "src": "assets/cars/NQ5.webp"
+       },
+       "focus": "sportage",
+       "url": null
+      }
+     ],
+     "중형": [
+      {
+       "name": "테슬라 모델 Y",
+       "sold": 9638,
+       "seg": "수입 중형 SUV 1위",
+       "photo": {
+        "src": "assets/cars/MY.webp"
+       },
+       "focus": "modely",
+       "url": null
+      },
+      {
+       "name": "기아 뉴 쏘렌토 하이브리드(MQ4)",
+       "sold": 5202,
+       "seg": "국산 중형 SUV 1위",
+       "photo": {
+        "src": "assets/cars/MQ4.webp"
+       },
+       "focus": "sorento",
+       "url": null
+      },
+      {
+       "name": "현대 싼타페 하이브리드(MX5)",
+       "sold": 2991,
+       "seg": "국산 중형 SUV 2위",
+       "photo": {
+        "src": "assets/cars/MX5.webp"
+       },
+       "focus": "santafe",
+       "url": null
+      }
+     ],
+     "준대형": [
+      {
+       "name": "현대 뉴 그랜저(GN7)",
+       "sold": 2148,
+       "seg": "국산 준대형 세단 1위",
+       "photo": {
+        "src": "assets/cars/GN7.webp"
+       },
+       "focus": "grandeur",
+       "url": null
+      },
+      {
+       "name": "현대 그랜저 하이브리드(GN7)",
+       "sold": 1571,
+       "seg": "국산 준대형 세단 2위",
+       "photo": {
+        "src": "assets/cars/GN7.webp"
+       },
+       "focus": "grandeur",
+       "url": null
+      },
+      {
+       "name": "제네시스 뉴 G80(RG3)",
+       "sold": 1324,
+       "seg": "국산 준대형 세단 3위",
+       "photo": {
+        "src": "assets/cars/RG3.webp"
+       },
+       "focus": null,
+       "url": "https://www.genesis.com/kr/ko/models/g80"
+      }
+     ],
+     "대형": [
+      {
+       "name": "기아 뉴 카니발 하이브리드(KA4)",
+       "sold": 3787,
+       "seg": "국산 대형 RV 1위",
+       "photo": {
+        "src": "assets/cars/KA4.webp"
+       },
+       "focus": "carnival",
+       "url": null
+      },
+      {
+       "name": "현대 팰리세이드 하이브리드(LX3)",
+       "sold": 1450,
+       "seg": "국산 대형 SUV 1위",
+       "photo": {
+        "src": "assets/cars/LX3.webp"
+       },
+       "focus": "palisade",
+       "url": null
+      },
+      {
+       "name": "현대 아이오닉 9",
+       "sold": 694,
+       "seg": "국산 대형 SUV 2위",
+       "photo": {
+        "src": "assets/cars/IONIQ9.webp"
+       },
+       "focus": null,
+       "url": "https://www.hyundai.com/kr/ko/e/vehicles/ioniq9/intro"
+      }
+     ]
+    },
+    "kr": {
+     "전체": [
+      {
+       "name": "기아 뉴 쏘렌토 하이브리드(MQ4)",
+       "sold": 5202,
+       "seg": "국산 중형 SUV 1위",
+       "photo": {
+        "src": "assets/cars/MQ4.webp"
+       },
+       "focus": "sorento",
+       "url": null
+      },
+      {
+       "name": "기아 뉴 카니발 하이브리드(KA4)",
+       "sold": 3787,
+       "seg": "국산 대형 RV 1위",
+       "photo": {
+        "src": "assets/cars/KA4.webp"
+       },
+       "focus": "carnival",
+       "url": null
+      },
+      {
+       "name": "현대 싼타페 하이브리드(MX5)",
+       "sold": 2991,
+       "seg": "국산 중형 SUV 2위",
+       "photo": {
+        "src": "assets/cars/MX5.webp"
+       },
+       "focus": "santafe",
+       "url": null
+      }
+     ],
+     "경형": [
+      {
+       "name": "기아 뉴 레이",
+       "sold": 2771,
+       "seg": "국산 경형 RV 1위",
+       "photo": {
+        "src": "assets/cars/TAM2.webp"
+       },
+       "focus": "ray",
+       "url": null
+      },
+      {
+       "name": "기아 뉴 모닝(JA)",
+       "sold": 1663,
+       "seg": "국산 경형 해치백 1위",
+       "photo": {
+        "src": "assets/cars/JA.webp"
+       },
+       "focus": null,
+       "url": "https://www.kia.com/kr/vehicles/morning"
+      },
+      {
+       "name": "기아 뉴 레이 EV",
+       "sold": 1078,
+       "seg": "국산 경형 RV 2위",
+       "photo": {
+        "src": "assets/cars/TAM2.webp"
+       },
+       "focus": "ray",
+       "url": null
+      }
+     ],
+     "소형": [
+      {
+       "name": "기아 EV3",
+       "sold": 2705,
+       "seg": "국산 소형 SUV 1위",
+       "photo": {
+        "src": "assets/cars/EV3.webp"
+       },
+       "focus": null,
+       "url": "https://www.kia.com/kr/vehicles/ev3"
+      },
+      {
+       "name": "기아 셀토스(SP3)",
+       "sold": 2673,
+       "seg": "국산 소형 SUV 2위",
+       "photo": {
+        "src": "assets/cars/SP3.webp"
+       },
+       "focus": "seltos",
+       "url": null
+      },
+      {
+       "name": "기아 셀토스 하이브리드(SP3)",
+       "sold": 1205,
+       "seg": "국산 소형 SUV 3위",
+       "photo": {
+        "src": "assets/cars/SP3.webp"
+       },
+       "focus": "seltos",
+       "url": null
+      }
+     ],
+     "준중형": [
+      {
+       "name": "기아 EV5",
+       "sold": 2695,
+       "seg": "국산 준중형 SUV 1위",
+       "photo": {
+        "src": "assets/cars/EV5.webp"
+       },
+       "focus": null,
+       "url": "https://www.kia.com/kr/vehicles/ev5"
+      },
+      {
+       "name": "기아 뉴 스포티지(NQ5)",
+       "sold": 2588,
+       "seg": "국산 준중형 SUV 2위",
+       "photo": {
+        "src": "assets/cars/NQ5.webp"
+       },
+       "focus": "sportage",
+       "url": null
+      },
+      {
+       "name": "기아 뉴 스포티지 하이브리드(NQ5)",
+       "sold": 1543,
+       "seg": "국산 준중형 SUV 3위",
+       "photo": {
+        "src": "assets/cars/NQ5.webp"
+       },
+       "focus": "sportage",
+       "url": null
+      }
+     ],
+     "중형": [
+      {
+       "name": "기아 뉴 쏘렌토 하이브리드(MQ4)",
+       "sold": 5202,
+       "seg": "국산 중형 SUV 1위",
+       "photo": {
+        "src": "assets/cars/MQ4.webp"
+       },
+       "focus": "sorento",
+       "url": null
+      },
+      {
+       "name": "현대 싼타페 하이브리드(MX5)",
+       "sold": 2991,
+       "seg": "국산 중형 SUV 2위",
+       "photo": {
+        "src": "assets/cars/MX5.webp"
+       },
+       "focus": "santafe",
+       "url": null
+      },
+      {
+       "name": "현대 뉴 쏘나타(DN8)",
+       "sold": 2969,
+       "seg": "국산 중형 세단 1위",
+       "photo": {
+        "src": "assets/cars/DN8.webp"
+       },
+       "focus": "sonata",
+       "url": null
+      }
+     ],
+     "준대형": [
+      {
+       "name": "현대 뉴 그랜저(GN7)",
+       "sold": 2148,
+       "seg": "국산 준대형 세단 1위",
+       "photo": {
+        "src": "assets/cars/GN7.webp"
+       },
+       "focus": "grandeur",
+       "url": null
+      },
+      {
+       "name": "현대 그랜저 하이브리드(GN7)",
+       "sold": 1571,
+       "seg": "국산 준대형 세단 2위",
+       "photo": {
+        "src": "assets/cars/GN7.webp"
+       },
+       "focus": "grandeur",
+       "url": null
+      },
+      {
+       "name": "제네시스 뉴 G80(RG3)",
+       "sold": 1324,
+       "seg": "국산 준대형 세단 3위",
+       "photo": {
+        "src": "assets/cars/RG3.webp"
+       },
+       "focus": null,
+       "url": "https://www.genesis.com/kr/ko/models/g80"
+      }
+     ],
+     "대형": [
+      {
+       "name": "기아 뉴 카니발 하이브리드(KA4)",
+       "sold": 3787,
+       "seg": "국산 대형 RV 1위",
+       "photo": {
+        "src": "assets/cars/KA4.webp"
+       },
+       "focus": "carnival",
+       "url": null
+      },
+      {
+       "name": "현대 팰리세이드 하이브리드(LX3)",
+       "sold": 1450,
+       "seg": "국산 대형 SUV 1위",
+       "photo": {
+        "src": "assets/cars/LX3.webp"
+       },
+       "focus": "palisade",
+       "url": null
+      },
+      {
+       "name": "현대 아이오닉 9",
+       "sold": 694,
+       "seg": "국산 대형 SUV 2위",
+       "photo": {
+        "src": "assets/cars/IONIQ9.webp"
+       },
+       "focus": null,
+       "url": "https://www.hyundai.com/kr/ko/e/vehicles/ioniq9/intro"
+      }
+     ]
+    },
+    "im": {
+     "전체": [
+      {
+       "name": "테슬라 모델 Y",
+       "sold": 9638,
+       "seg": "수입 중형 SUV 1위",
+       "photo": {
+        "src": "assets/cars/MY.webp"
+       },
+       "focus": "modely",
+       "url": null
+      },
+      {
+       "name": "BMW 5시리즈(8세대)",
+       "sold": 1902,
+       "seg": "수입 중형 세단 1위",
+       "photo": {
+        "src": "assets/cars/G60.webp"
+       },
+       "focus": "bmw5",
+       "url": null
+      },
+      {
+       "name": "벤츠 E클래스(6세대)",
+       "sold": 1417,
+       "seg": "수입 중형 세단 2위",
+       "photo": {
+        "src": "assets/cars/W214.webp"
+       },
+       "focus": "eclass",
+       "url": null
+      }
+     ],
+     "경형": [],
+     "소형": [
+      {
+       "name": "비야디 아토 3",
+       "sold": 327,
+       "seg": "수입 소형 SUV 1위",
+       "photo": null,
+       "focus": null,
+       "url": null
+      }
+     ],
+     "준중형": [
+      {
+       "name": "비야디 돌핀",
+       "sold": 1202,
+       "seg": "수입 준중형 해치백 1위",
+       "photo": null,
+       "focus": null,
+       "url": null
+      },
+      {
+       "name": "테슬라 모델 3",
+       "sold": 693,
+       "seg": "수입 준중형 세단 1위",
+       "photo": {
+        "src": "assets/cars/M3.webp"
+       },
+       "focus": "model3",
+       "url": null
+      },
+      {
+       "name": "BMW X3(4세대)",
+       "sold": 638,
+       "seg": "수입 준중형 SUV 1위",
+       "photo": null,
+       "focus": null,
+       "url": null
+      }
+     ],
+     "중형": [
+      {
+       "name": "테슬라 모델 Y",
+       "sold": 9638,
+       "seg": "수입 중형 SUV 1위",
+       "photo": {
+        "src": "assets/cars/MY.webp"
+       },
+       "focus": "modely",
+       "url": null
+      },
+      {
+       "name": "BMW 5시리즈(8세대)",
+       "sold": 1902,
+       "seg": "수입 중형 세단 1위",
+       "photo": {
+        "src": "assets/cars/G60.webp"
+       },
+       "focus": "bmw5",
+       "url": null
+      },
+      {
+       "name": "벤츠 E클래스(6세대)",
+       "sold": 1417,
+       "seg": "수입 중형 세단 2위",
+       "photo": {
+        "src": "assets/cars/W214.webp"
+       },
+       "focus": "eclass",
+       "url": null
+      }
+     ],
+     "준대형": [],
+     "대형": [
+      {
+       "name": "벤츠 S클래스(7세대)",
+       "sold": 465,
+       "seg": "수입 대형 세단 1위",
+       "photo": null,
+       "focus": null,
+       "url": null
+      },
+      {
+       "name": "BMW 7시리즈(7세대)",
+       "sold": 414,
+       "seg": "수입 대형 세단 2위",
+       "photo": null,
+       "focus": null,
+       "url": null
+      },
+      {
+       "name": "BMW X7",
+       "sold": 287,
+       "seg": "수입 대형 SUV 1위",
+       "photo": null,
+       "focus": null,
+       "url": null
+      }
+     ]
+    }
+   },
+   "used": {
+    "kr": [
+     {
+      "name": "기아 모닝(TA)",
+      "sold": 3296,
+      "seg": "국산 경형",
+      "cls": "경형",
+      "photo": {
+       "src": "assets/cars/TA.webp"
+      },
+      "focus": "TA",
+      "encar": null,
+      "listings": {
+       "encar": 1732,
+       "kb": 2317
+      }
      },
      {
-      "rank": 2,
-      "name": "기아 뉴 쏘렌토 하이브리드(MQ4)",
-      "sold": 5202,
-      "seg": "국산 중형 SUV 1위",
-      "photo": {
-       "src": "assets/cars/MQ4.webp",
-       "page": "https://commons.wikimedia.org/wiki/File:Kia_Sorento_MQ4_front_view_(South_Korea)_03.png",
-       "by": "차,또바기",
-       "lic": "CC BY-SA 4.0",
-       "edit": "배경 지움, 번호판 가림"
-      },
-      "focus": "sorento",
-      "url": null
-     },
-     {
-      "rank": 3,
-      "name": "기아 뉴 카니발 하이브리드(KA4)",
-      "sold": 3787,
-      "seg": "국산 대형 RV 1위",
-      "photo": {
-       "src": "assets/cars/KA4.webp",
-       "page": "https://commons.wikimedia.org/wiki/File:0_Kia_Carnival_(KA4)_1.jpg",
-       "by": "Benespit",
-       "lic": "CC BY-SA 4.0",
-       "edit": "배경 지움, 번호판 가림"
-      },
-      "focus": "carnival",
-      "url": null
-     }
-    ],
-    "경형": [
-     {
-      "rank": 1,
       "name": "기아 뉴 레이",
-      "sold": 2771,
-      "seg": "국산 경형 RV 1위",
+      "sold": 3294,
+      "seg": "국산 경형 RV",
+      "cls": "경형",
       "photo": {
-       "src": "assets/cars/TAM2.webp",
-       "page": "https://commons.wikimedia.org/wiki/File:Kia_RAY_TAM_PE2.jpg",
-       "by": "Avante2025",
-       "lic": "CC BY 4.0",
-       "edit": "배경 지움, 번호판 가림, 좌우 반전"
+       "src": "assets/cars/TAM1.webp"
       },
-      "focus": "ray",
-      "url": null
+      "focus": "TAM1",
+      "encar": null,
+      "listings": {
+       "encar": 3275,
+       "kb": 2123
+      }
      },
      {
-      "rank": 2,
-      "name": "기아 뉴 모닝(JA)",
-      "sold": 1663,
-      "seg": "국산 경형 해치백 1위",
+      "name": "현대 그랜저(HG)",
+      "sold": 2999,
+      "seg": "국산 준대형 세단",
+      "cls": "준대형",
       "photo": {
-       "src": "assets/cars/JA.webp",
-       "page": "https://commons.wikimedia.org/wiki/File:2017_Kia_Picanto_GT-Line_S_1.2_Front.jpg",
-       "by": "Vauxford",
-       "lic": "CC BY-SA 4.0",
-       "edit": "배경 지움, 번호판 가림, 좌우 반전"
+       "src": "assets/cars/HG.webp"
       },
       "focus": null,
-      "url": "https://www.kia.com/kr/vehicles/morning"
-     },
-     {
-      "rank": 3,
-      "name": "기아 뉴 레이 EV",
-      "sold": 1078,
-      "seg": "국산 경형 RV 2위",
-      "photo": {
-       "src": "assets/cars/TAM2.webp",
-       "page": "https://commons.wikimedia.org/wiki/File:Kia_RAY_TAM_PE2.jpg",
-       "by": "Avante2025",
-       "lic": "CC BY 4.0",
-       "edit": "배경 지움, 번호판 가림, 좌우 반전"
+      "encar": {
+       "t": "Y",
+       "mk": "현대",
+       "g": "그랜저",
+       "m": [
+        "그랜저 HG"
+       ]
       },
-      "focus": "ray",
-      "url": null
+      "listings": {
+       "encar": 2092,
+       "kb": 2299
+      }
      }
     ],
-    "소형": [
+    "im": [
      {
-      "rank": 1,
-      "name": "기아 EV3",
-      "sold": 2705,
-      "seg": "국산 소형 SUV 1위",
+      "name": "벤츠 E클래스(5세대)",
+      "sold": 1615,
+      "seg": "수입 중형 세단",
+      "cls": "중형",
       "photo": {
-       "src": "assets/cars/EV3.webp",
-       "page": "https://commons.wikimedia.org/wiki/File:24_Kia_EV3_1.jpg",
-       "by": "Benespit",
-       "lic": "CC BY-SA 4.0",
-       "edit": "배경 지움, 번호판 가림"
+       "src": "assets/cars/W213.webp"
       },
-      "focus": null,
-      "url": "https://www.kia.com/kr/vehicles/ev3"
+      "focus": "W213",
+      "encar": null,
+      "listings": {
+       "encar": 3136,
+       "kb": 1923
+      }
      },
      {
-      "rank": 2,
-      "name": "기아 셀토스(SP3)",
-      "sold": 2673,
-      "seg": "국산 소형 SUV 2위",
+      "name": "BMW 5시리즈(7세대)",
+      "sold": 997,
+      "seg": "수입 중형 세단",
+      "cls": "중형",
       "photo": {
-       "src": "assets/cars/SP3.webp",
-       "page": "https://commons.wikimedia.org/wiki/File:Kia_Seltos_(SP3)_IMG_7812.jpg",
-       "by": "Alexander Migl",
-       "lic": "CC BY-SA 4.0",
-       "edit": "배경 지움, 번호판 가림"
+       "src": "assets/cars/G30.webp"
       },
-      "focus": "seltos",
-      "url": null
+      "focus": "G30",
+      "encar": null,
+      "listings": {
+       "encar": 2154,
+       "kb": 1361
+      }
      },
      {
-      "rank": 3,
-      "name": "기아 셀토스 하이브리드(SP3)",
-      "sold": 1205,
-      "seg": "국산 소형 SUV 3위",
-      "photo": {
-       "src": "assets/cars/SP3.webp",
-       "page": "https://commons.wikimedia.org/wiki/File:Kia_Seltos_(SP3)_IMG_7812.jpg",
-       "by": "Alexander Migl",
-       "lic": "CC BY-SA 4.0",
-       "edit": "배경 지움, 번호판 가림"
-      },
-      "focus": "seltos",
-      "url": null
-     }
-    ],
-    "준중형": [
-     {
-      "rank": 1,
-      "name": "기아 EV5",
-      "sold": 2695,
-      "seg": "국산 준중형 SUV 1위",
-      "photo": {
-       "src": "assets/cars/EV5.webp",
-       "page": "https://commons.wikimedia.org/wiki/File:Kia_EV5_GT_Auto_Zuerich_2026_IMG_8749.jpg",
-       "by": "Alexander Migl",
-       "lic": "CC BY-SA 4.0",
-       "edit": "배경 지움, 번호판 가림"
-      },
-      "focus": null,
-      "url": "https://www.kia.com/kr/vehicles/ev5"
-     },
-     {
-      "rank": 2,
-      "name": "기아 뉴 스포티지(NQ5)",
-      "sold": 2588,
-      "seg": "국산 준중형 SUV 2위",
-      "photo": {
-       "src": "assets/cars/NQ5.webp",
-       "page": "https://commons.wikimedia.org/wiki/File:Kia_Sportage_1.6_T-GDI_HEV_2WD_(2022)_(cropped).jpg",
-       "by": "Charles",
-       "lic": "CC BY 2.0",
-       "edit": "배경 지움, 번호판 가림"
-      },
-      "focus": "sportage",
-      "url": null
-     },
-     {
-      "rank": 3,
-      "name": "기아 뉴 스포티지 하이브리드(NQ5)",
-      "sold": 1543,
-      "seg": "국산 준중형 SUV 3위",
-      "photo": {
-       "src": "assets/cars/NQ5.webp",
-       "page": "https://commons.wikimedia.org/wiki/File:Kia_Sportage_1.6_T-GDI_HEV_2WD_(2022)_(cropped).jpg",
-       "by": "Charles",
-       "lic": "CC BY 2.0",
-       "edit": "배경 지움, 번호판 가림"
-      },
-      "focus": "sportage",
-      "url": null
-     }
-    ],
-    "중형": [
-     {
-      "rank": 1,
       "name": "테슬라 모델 Y",
-      "sold": 9638,
-      "seg": "외산 중형 SUV 1위",
+      "sold": 771,
+      "seg": "수입 중형 SUV",
+      "cls": "중형",
       "photo": {
-       "src": "assets/cars/MY.webp",
-       "page": "https://commons.wikimedia.org/wiki/File:2020_Tesla_Model_Y,_front_8.1.20.jpg",
-       "by": "Kevauto",
-       "lic": "CC BY-SA 4.0",
-       "edit": "배경 지움, 번호판 가림"
+       "src": "assets/cars/MY.webp"
       },
-      "focus": "modely",
-      "url": null
-     },
-     {
-      "rank": 2,
-      "name": "기아 뉴 쏘렌토 하이브리드(MQ4)",
-      "sold": 5202,
-      "seg": "국산 중형 SUV 1위",
-      "photo": {
-       "src": "assets/cars/MQ4.webp",
-       "page": "https://commons.wikimedia.org/wiki/File:Kia_Sorento_MQ4_front_view_(South_Korea)_03.png",
-       "by": "차,또바기",
-       "lic": "CC BY-SA 4.0",
-       "edit": "배경 지움, 번호판 가림"
-      },
-      "focus": "sorento",
-      "url": null
-     },
-     {
-      "rank": 3,
-      "name": "현대 싼타페 하이브리드(MX5)",
-      "sold": 2991,
-      "seg": "국산 중형 SUV 2위",
-      "photo": {
-       "src": "assets/cars/MX5.webp",
-       "page": "https://commons.wikimedia.org/wiki/File:2024_Hyundai_Santa_Fe_(MX5)_IMG_5295.jpg",
-       "by": "Alexander Migl",
-       "lic": "CC BY-SA 4.0",
-       "edit": "배경 지움, 번호판 가림"
-      },
-      "focus": "santafe",
-      "url": null
-     }
-    ],
-    "준대형": [
-     {
-      "rank": 1,
-      "name": "현대 뉴 그랜저(GN7)",
-      "sold": 2148,
-      "seg": "국산 준대형 세단 1위",
-      "photo": {
-       "src": "assets/cars/GN7.webp",
-       "page": "https://commons.wikimedia.org/wiki/File:01_Hyundai_Grandeur_(GN7).jpg",
-       "by": "Benespit",
-       "lic": "CC BY-SA 4.0",
-       "edit": "배경 지움, 번호판 가림"
-      },
-      "focus": "grandeur",
-      "url": null
-     },
-     {
-      "rank": 2,
-      "name": "현대 그랜저 하이브리드(GN7)",
-      "sold": 1571,
-      "seg": "국산 준대형 세단 2위",
-      "photo": {
-       "src": "assets/cars/GN7.webp",
-       "page": "https://commons.wikimedia.org/wiki/File:01_Hyundai_Grandeur_(GN7).jpg",
-       "by": "Benespit",
-       "lic": "CC BY-SA 4.0",
-       "edit": "배경 지움, 번호판 가림"
-      },
-      "focus": "grandeur",
-      "url": null
-     },
-     {
-      "rank": 3,
-      "name": "제네시스 뉴 G80(RG3)",
-      "sold": 1324,
-      "seg": "국산 준대형 세단 3위",
-      "photo": {
-       "src": "assets/cars/RG3.webp",
-       "page": "https://commons.wikimedia.org/wiki/File:2021_Genesis_G80_(United_States)_front_view_02.png",
-       "by": "Gold Pony",
-       "lic": "CC BY 3.0",
-       "edit": "배경 지움, 번호판 가림"
-      },
-      "focus": null,
-      "url": "https://www.genesis.com/kr/ko/models/g80"
-     }
-    ],
-    "대형": [
-     {
-      "rank": 1,
-      "name": "기아 뉴 카니발 하이브리드(KA4)",
-      "sold": 3787,
-      "seg": "국산 대형 RV 1위",
-      "photo": {
-       "src": "assets/cars/KA4.webp",
-       "page": "https://commons.wikimedia.org/wiki/File:0_Kia_Carnival_(KA4)_1.jpg",
-       "by": "Benespit",
-       "lic": "CC BY-SA 4.0",
-       "edit": "배경 지움, 번호판 가림"
-      },
-      "focus": "carnival",
-      "url": null
-     },
-     {
-      "rank": 2,
-      "name": "현대 팰리세이드 하이브리드(LX3)",
-      "sold": 1450,
-      "seg": "국산 대형 SUV 1위",
-      "photo": {
-       "src": "assets/cars/LX3.webp",
-       "page": "https://commons.wikimedia.org/wiki/File:Hyundai_Palisade_LX3_2.5_HEV_Black.jpg",
-       "by": "Avante2025",
-       "lic": "CC BY 4.0",
-       "edit": "배경 지움, 번호판 가림"
-      },
-      "focus": "palisade",
-      "url": null
-     },
-     {
-      "rank": 3,
-      "name": "현대 아이오닉 9",
-      "sold": 694,
-      "seg": "국산 대형 SUV 2위",
-      "photo": {
-       "src": "assets/cars/IONIQ9.webp",
-       "page": "https://commons.wikimedia.org/wiki/File:2026_Hyundai_IONIQ_9_Preferred_AWD%2B_Ultimate_Calligraphy_Package_in_Celadon_Grey,_front_right,_2025-09-07.jpg",
-       "by": "Elise240SX",
-       "lic": "CC BY-SA 4.0",
-       "edit": "배경 지움, 번호판 가림, 좌우 반전"
-      },
-      "focus": null,
-      "url": "https://www.hyundai.com/kr/ko/e/vehicles/ioniq9/intro"
+      "focus": "MY",
+      "encar": null,
+      "listings": {
+       "encar": 1156,
+       "kb": 448
+      }
      }
     ]
-   },
-   "used": [
-    {
-     "rank": 1,
-     "name": "기아 모닝(TA)",
-     "sold": 3296,
-     "seg": "국산 경형",
-     "photo": {
-      "src": "assets/cars/TA.webp",
-      "page": "https://commons.wikimedia.org/wiki/File:2014_Kia_Picanto_Front_1.jpg",
-      "by": "Areaseven",
-      "lic": "CC BY-SA 3.0",
-      "edit": "배경 지움, 번호판 가림"
-     },
-     "focus": "TA",
-     "encar": null,
-     "listings": {
-      "encar": 1732,
-      "kb": 2317
-     }
-    },
-    {
-     "rank": 2,
-     "name": "기아 뉴 레이",
-     "sold": 3294,
-     "seg": "국산 경형 RV",
-     "photo": {
-      "src": "assets/cars/TAM1.webp",
-      "page": "https://commons.wikimedia.org/wiki/File:KIA_THE_NEW_RAY_201806_001.jpg",
-      "by": "CEFICEFI",
-      "lic": "CC BY-SA 4.0",
-      "edit": "배경 지움, 번호판 가림, 좌우 반전"
-     },
-     "focus": "TAM1",
-     "encar": null,
-     "listings": {
-      "encar": 3275,
-      "kb": 2123
-     }
-    },
-    {
-     "rank": 3,
-     "name": "현대 그랜저(HG)",
-     "sold": 2999,
-     "seg": "국산 준대형 세단",
-     "photo": {
-      "src": "assets/cars/HG.webp",
-      "page": "https://commons.wikimedia.org/wiki/File:0_Hyundai_Grandeur_Hybrid_(HG)_1.jpg",
-      "by": "Benespit",
-      "lic": "CC BY-SA 4.0",
-      "edit": "배경 지움, 번호판 가림"
-     },
-     "focus": null,
-     "encar": {
-      "t": "Y",
-      "mk": "현대",
-      "g": "그랜저",
-      "m": [
-       "그랜저 HG"
-      ]
-     },
-     "listings": {
-      "encar": 2092,
-      "kb": 2299
-     }
-    }
-   ]
+   }
   },
   {
    "ym": "2026-07",
    "fresh": {
-    "전체": [
-     {
-      "rank": 1,
-      "name": "테슬라 모델 Y",
-      "sold": 8705,
-      "seg": "외산 중형 SUV 1위",
-      "photo": {
-       "src": "assets/cars/MY.webp",
-       "page": "https://commons.wikimedia.org/wiki/File:2020_Tesla_Model_Y,_front_8.1.20.jpg",
-       "by": "Kevauto",
-       "lic": "CC BY-SA 4.0",
-       "edit": "배경 지움, 번호판 가림"
+    "all": {
+     "전체": [
+      {
+       "name": "테슬라 모델 Y",
+       "sold": 8705,
+       "seg": "수입 중형 SUV 1위",
+       "photo": {
+        "src": "assets/cars/MY.webp"
+       },
+       "focus": "modely",
+       "url": null
       },
-      "focus": "modely",
-      "url": null
+      {
+       "name": "기아 뉴 쏘렌토 하이브리드(MQ4)",
+       "sold": 5620,
+       "seg": "국산 중형 SUV 1위",
+       "photo": {
+        "src": "assets/cars/MQ4.webp"
+       },
+       "focus": "sorento",
+       "url": null
+      },
+      {
+       "name": "기아 뉴 카니발 하이브리드(KA4)",
+       "sold": 5580,
+       "seg": "국산 대형 RV 1위",
+       "photo": {
+        "src": "assets/cars/KA4.webp"
+       },
+       "focus": "carnival",
+       "url": null
+      }
+     ],
+     "경형": [
+      {
+       "name": "기아 뉴 레이",
+       "sold": 3391,
+       "seg": "국산 경형 RV 1위",
+       "photo": {
+        "src": "assets/cars/TAM2.webp"
+       },
+       "focus": "ray",
+       "url": null
+      },
+      {
+       "name": "기아 뉴 모닝(JA)",
+       "sold": 2960,
+       "seg": "국산 경형 해치백 1위",
+       "photo": {
+        "src": "assets/cars/JA.webp"
+       },
+       "focus": null,
+       "url": "https://www.kia.com/kr/vehicles/morning"
+      },
+      {
+       "name": "기아 뉴 레이 EV",
+       "sold": 1374,
+       "seg": "국산 경형 RV 2위",
+       "photo": {
+        "src": "assets/cars/TAM2.webp"
+       },
+       "focus": "ray",
+       "url": null
+      }
+     ],
+     "소형": [
+      {
+       "name": "기아 셀토스(SP3)",
+       "sold": 4883,
+       "seg": "국산 소형 SUV 1위",
+       "photo": {
+        "src": "assets/cars/SP3.webp"
+       },
+       "focus": "seltos",
+       "url": null
+      },
+      {
+       "name": "기아 EV3",
+       "sold": 3533,
+       "seg": "국산 소형 SUV 2위",
+       "photo": {
+        "src": "assets/cars/EV3.webp"
+       },
+       "focus": null,
+       "url": "https://www.kia.com/kr/vehicles/ev3"
+      },
+      {
+       "name": "기아 셀토스 하이브리드(SP3)",
+       "sold": 2720,
+       "seg": "국산 소형 SUV 3위",
+       "photo": {
+        "src": "assets/cars/SP3.webp"
+       },
+       "focus": "seltos",
+       "url": null
+      }
+     ],
+     "준중형": [
+      {
+       "name": "기아 뉴 스포티지(NQ5)",
+       "sold": 3823,
+       "seg": "국산 준중형 SUV 1위",
+       "photo": {
+        "src": "assets/cars/NQ5.webp"
+       },
+       "focus": "sportage",
+       "url": null
+      },
+      {
+       "name": "기아 EV5",
+       "sold": 3573,
+       "seg": "국산 준중형 SUV 2위",
+       "photo": {
+        "src": "assets/cars/EV5.webp"
+       },
+       "focus": null,
+       "url": "https://www.kia.com/kr/vehicles/ev5"
+      },
+      {
+       "name": "현대 뉴 아반떼(CN7)",
+       "sold": 2638,
+       "seg": "국산 준중형 세단 1위",
+       "photo": {
+        "src": "assets/cars/CN7.webp"
+       },
+       "focus": "avante",
+       "url": null
+      }
+     ],
+     "중형": [
+      {
+       "name": "테슬라 모델 Y",
+       "sold": 8705,
+       "seg": "수입 중형 SUV 1위",
+       "photo": {
+        "src": "assets/cars/MY.webp"
+       },
+       "focus": "modely",
+       "url": null
+      },
+      {
+       "name": "기아 뉴 쏘렌토 하이브리드(MQ4)",
+       "sold": 5620,
+       "seg": "국산 중형 SUV 1위",
+       "photo": {
+        "src": "assets/cars/MQ4.webp"
+       },
+       "focus": "sorento",
+       "url": null
+      },
+      {
+       "name": "현대 뉴 쏘나타(DN8)",
+       "sold": 4332,
+       "seg": "국산 중형 세단 1위",
+       "photo": {
+        "src": "assets/cars/DN8.webp"
+       },
+       "focus": "sonata",
+       "url": null
+      }
+     ],
+     "준대형": [
+      {
+       "name": "현대 뉴 그랜저(GN7)",
+       "sold": 3654,
+       "seg": "국산 준대형 세단 1위",
+       "photo": {
+        "src": "assets/cars/GN7.webp"
+       },
+       "focus": "grandeur",
+       "url": null
+      },
+      {
+       "name": "현대 뉴 그랜저 하이브리드(GN7)",
+       "sold": 3453,
+       "seg": "국산 준대형 세단 2위",
+       "photo": {
+        "src": "assets/cars/GN7.webp"
+       },
+       "focus": "grandeur",
+       "url": null
+      },
+      {
+       "name": "제네시스 뉴 G80(RG3)",
+       "sold": 2156,
+       "seg": "국산 준대형 세단 3위",
+       "photo": {
+        "src": "assets/cars/RG3.webp"
+       },
+       "focus": null,
+       "url": "https://www.genesis.com/kr/ko/models/g80"
+      }
+     ],
+     "대형": [
+      {
+       "name": "기아 뉴 카니발 하이브리드(KA4)",
+       "sold": 5580,
+       "seg": "국산 대형 RV 1위",
+       "photo": {
+        "src": "assets/cars/KA4.webp"
+       },
+       "focus": "carnival",
+       "url": null
+      },
+      {
+       "name": "현대 팰리세이드 하이브리드(LX3)",
+       "sold": 2355,
+       "seg": "국산 대형 SUV 1위",
+       "photo": {
+        "src": "assets/cars/LX3.webp"
+       },
+       "focus": "palisade",
+       "url": null
+      },
+      {
+       "name": "현대 아이오닉 9",
+       "sold": 1359,
+       "seg": "국산 대형 SUV 2위",
+       "photo": {
+        "src": "assets/cars/IONIQ9.webp"
+       },
+       "focus": null,
+       "url": "https://www.hyundai.com/kr/ko/e/vehicles/ioniq9/intro"
+      }
+     ]
+    },
+    "kr": {
+     "전체": [
+      {
+       "name": "기아 뉴 쏘렌토 하이브리드(MQ4)",
+       "sold": 5620,
+       "seg": "국산 중형 SUV 1위",
+       "photo": {
+        "src": "assets/cars/MQ4.webp"
+       },
+       "focus": "sorento",
+       "url": null
+      },
+      {
+       "name": "기아 뉴 카니발 하이브리드(KA4)",
+       "sold": 5580,
+       "seg": "국산 대형 RV 1위",
+       "photo": {
+        "src": "assets/cars/KA4.webp"
+       },
+       "focus": "carnival",
+       "url": null
+      },
+      {
+       "name": "기아 셀토스(SP3)",
+       "sold": 4883,
+       "seg": "국산 소형 SUV 1위",
+       "photo": {
+        "src": "assets/cars/SP3.webp"
+       },
+       "focus": "seltos",
+       "url": null
+      }
+     ],
+     "경형": [
+      {
+       "name": "기아 뉴 레이",
+       "sold": 3391,
+       "seg": "국산 경형 RV 1위",
+       "photo": {
+        "src": "assets/cars/TAM2.webp"
+       },
+       "focus": "ray",
+       "url": null
+      },
+      {
+       "name": "기아 뉴 모닝(JA)",
+       "sold": 2960,
+       "seg": "국산 경형 해치백 1위",
+       "photo": {
+        "src": "assets/cars/JA.webp"
+       },
+       "focus": null,
+       "url": "https://www.kia.com/kr/vehicles/morning"
+      },
+      {
+       "name": "기아 뉴 레이 EV",
+       "sold": 1374,
+       "seg": "국산 경형 RV 2위",
+       "photo": {
+        "src": "assets/cars/TAM2.webp"
+       },
+       "focus": "ray",
+       "url": null
+      }
+     ],
+     "소형": [
+      {
+       "name": "기아 셀토스(SP3)",
+       "sold": 4883,
+       "seg": "국산 소형 SUV 1위",
+       "photo": {
+        "src": "assets/cars/SP3.webp"
+       },
+       "focus": "seltos",
+       "url": null
+      },
+      {
+       "name": "기아 EV3",
+       "sold": 3533,
+       "seg": "국산 소형 SUV 2위",
+       "photo": {
+        "src": "assets/cars/EV3.webp"
+       },
+       "focus": null,
+       "url": "https://www.kia.com/kr/vehicles/ev3"
+      },
+      {
+       "name": "기아 셀토스 하이브리드(SP3)",
+       "sold": 2720,
+       "seg": "국산 소형 SUV 3위",
+       "photo": {
+        "src": "assets/cars/SP3.webp"
+       },
+       "focus": "seltos",
+       "url": null
+      }
+     ],
+     "준중형": [
+      {
+       "name": "기아 뉴 스포티지(NQ5)",
+       "sold": 3823,
+       "seg": "국산 준중형 SUV 1위",
+       "photo": {
+        "src": "assets/cars/NQ5.webp"
+       },
+       "focus": "sportage",
+       "url": null
+      },
+      {
+       "name": "기아 EV5",
+       "sold": 3573,
+       "seg": "국산 준중형 SUV 2위",
+       "photo": {
+        "src": "assets/cars/EV5.webp"
+       },
+       "focus": null,
+       "url": "https://www.kia.com/kr/vehicles/ev5"
+      },
+      {
+       "name": "현대 뉴 아반떼(CN7)",
+       "sold": 2638,
+       "seg": "국산 준중형 세단 1위",
+       "photo": {
+        "src": "assets/cars/CN7.webp"
+       },
+       "focus": "avante",
+       "url": null
+      }
+     ],
+     "중형": [
+      {
+       "name": "기아 뉴 쏘렌토 하이브리드(MQ4)",
+       "sold": 5620,
+       "seg": "국산 중형 SUV 1위",
+       "photo": {
+        "src": "assets/cars/MQ4.webp"
+       },
+       "focus": "sorento",
+       "url": null
+      },
+      {
+       "name": "현대 뉴 쏘나타(DN8)",
+       "sold": 4332,
+       "seg": "국산 중형 세단 1위",
+       "photo": {
+        "src": "assets/cars/DN8.webp"
+       },
+       "focus": "sonata",
+       "url": null
+      },
+      {
+       "name": "현대 싼타페 하이브리드(MX5)",
+       "sold": 3126,
+       "seg": "국산 중형 SUV 2위",
+       "photo": {
+        "src": "assets/cars/MX5.webp"
+       },
+       "focus": "santafe",
+       "url": null
+      }
+     ],
+     "준대형": [
+      {
+       "name": "현대 뉴 그랜저(GN7)",
+       "sold": 3654,
+       "seg": "국산 준대형 세단 1위",
+       "photo": {
+        "src": "assets/cars/GN7.webp"
+       },
+       "focus": "grandeur",
+       "url": null
+      },
+      {
+       "name": "현대 뉴 그랜저 하이브리드(GN7)",
+       "sold": 3453,
+       "seg": "국산 준대형 세단 2위",
+       "photo": {
+        "src": "assets/cars/GN7.webp"
+       },
+       "focus": "grandeur",
+       "url": null
+      },
+      {
+       "name": "제네시스 뉴 G80(RG3)",
+       "sold": 2156,
+       "seg": "국산 준대형 세단 3위",
+       "photo": {
+        "src": "assets/cars/RG3.webp"
+       },
+       "focus": null,
+       "url": "https://www.genesis.com/kr/ko/models/g80"
+      }
+     ],
+     "대형": [
+      {
+       "name": "기아 뉴 카니발 하이브리드(KA4)",
+       "sold": 5580,
+       "seg": "국산 대형 RV 1위",
+       "photo": {
+        "src": "assets/cars/KA4.webp"
+       },
+       "focus": "carnival",
+       "url": null
+      },
+      {
+       "name": "현대 팰리세이드 하이브리드(LX3)",
+       "sold": 2355,
+       "seg": "국산 대형 SUV 1위",
+       "photo": {
+        "src": "assets/cars/LX3.webp"
+       },
+       "focus": "palisade",
+       "url": null
+      },
+      {
+       "name": "현대 아이오닉 9",
+       "sold": 1359,
+       "seg": "국산 대형 SUV 2위",
+       "photo": {
+        "src": "assets/cars/IONIQ9.webp"
+       },
+       "focus": null,
+       "url": "https://www.hyundai.com/kr/ko/e/vehicles/ioniq9/intro"
+      }
+     ]
+    },
+    "im": {
+     "전체": [
+      {
+       "name": "테슬라 모델 Y",
+       "sold": 8705,
+       "seg": "수입 중형 SUV 1위",
+       "photo": {
+        "src": "assets/cars/MY.webp"
+       },
+       "focus": "modely",
+       "url": null
+      },
+      {
+       "name": "BMW 5시리즈(8세대)",
+       "sold": 1919,
+       "seg": "수입 중형 세단 1위",
+       "photo": {
+        "src": "assets/cars/G60.webp"
+       },
+       "focus": "bmw5",
+       "url": null
+      },
+      {
+       "name": "테슬라 모델 3",
+       "sold": 1531,
+       "seg": "수입 준중형 세단 1위",
+       "photo": {
+        "src": "assets/cars/M3.webp"
+       },
+       "focus": "model3",
+       "url": null
+      }
+     ],
+     "경형": [],
+     "소형": [
+      {
+       "name": "비야디 아토 3",
+       "sold": 333,
+       "seg": "수입 소형 SUV 1위",
+       "photo": null,
+       "focus": null,
+       "url": null
+      }
+     ],
+     "준중형": [
+      {
+       "name": "테슬라 모델 3",
+       "sold": 1531,
+       "seg": "수입 준중형 세단 1위",
+       "photo": {
+        "src": "assets/cars/M3.webp"
+       },
+       "focus": "model3",
+       "url": null
+      },
+      {
+       "name": "비야디 돌핀",
+       "sold": 1264,
+       "seg": "수입 준중형 해치백 1위",
+       "photo": null,
+       "focus": null,
+       "url": null
+      },
+      {
+       "name": "벤츠 GLC(3세대)",
+       "sold": 658,
+       "seg": "수입 준중형 SUV 1위",
+       "photo": null,
+       "focus": null,
+       "url": null
+      }
+     ],
+     "중형": [
+      {
+       "name": "테슬라 모델 Y",
+       "sold": 8705,
+       "seg": "수입 중형 SUV 1위",
+       "photo": {
+        "src": "assets/cars/MY.webp"
+       },
+       "focus": "modely",
+       "url": null
+      },
+      {
+       "name": "BMW 5시리즈(8세대)",
+       "sold": 1919,
+       "seg": "수입 중형 세단 1위",
+       "photo": {
+        "src": "assets/cars/G60.webp"
+       },
+       "focus": "bmw5",
+       "url": null
+      },
+      {
+       "name": "벤츠 E클래스(6세대)",
+       "sold": 1425,
+       "seg": "수입 중형 세단 2위",
+       "photo": {
+        "src": "assets/cars/W214.webp"
+       },
+       "focus": "eclass",
+       "url": null
+      }
+     ],
+     "준대형": [],
+     "대형": [
+      {
+       "name": "BMW 7시리즈(7세대)",
+       "sold": 443,
+       "seg": "수입 대형 세단 1위",
+       "photo": null,
+       "focus": null,
+       "url": null
+      },
+      {
+       "name": "BMW X7",
+       "sold": 293,
+       "seg": "수입 대형 SUV 1위",
+       "photo": null,
+       "focus": null,
+       "url": null
+      },
+      {
+       "name": "토요타 알파드(4세대)",
+       "sold": 160,
+       "seg": "수입 대형 RV 1위",
+       "photo": null,
+       "focus": null,
+       "url": null
+      }
+     ]
+    }
+   },
+   "used": {
+    "kr": [
+     {
+      "name": "기아 모닝(TA)",
+      "sold": 3721,
+      "seg": "국산 경형",
+      "cls": "경형",
+      "photo": {
+       "src": "assets/cars/TA.webp"
+      },
+      "focus": "TA",
+      "encar": null,
+      "listings": {
+       "encar": 1732,
+       "kb": 2317
+      }
      },
      {
-      "rank": 2,
-      "name": "기아 뉴 쏘렌토 하이브리드(MQ4)",
-      "sold": 5620,
-      "seg": "국산 중형 SUV 1위",
-      "photo": {
-       "src": "assets/cars/MQ4.webp",
-       "page": "https://commons.wikimedia.org/wiki/File:Kia_Sorento_MQ4_front_view_(South_Korea)_03.png",
-       "by": "차,또바기",
-       "lic": "CC BY-SA 4.0",
-       "edit": "배경 지움, 번호판 가림"
-      },
-      "focus": "sorento",
-      "url": null
-     },
-     {
-      "rank": 3,
-      "name": "기아 뉴 카니발 하이브리드(KA4)",
-      "sold": 5580,
-      "seg": "국산 대형 RV 1위",
-      "photo": {
-       "src": "assets/cars/KA4.webp",
-       "page": "https://commons.wikimedia.org/wiki/File:0_Kia_Carnival_(KA4)_1.jpg",
-       "by": "Benespit",
-       "lic": "CC BY-SA 4.0",
-       "edit": "배경 지움, 번호판 가림"
-      },
-      "focus": "carnival",
-      "url": null
-     }
-    ],
-    "경형": [
-     {
-      "rank": 1,
       "name": "기아 뉴 레이",
-      "sold": 3391,
-      "seg": "국산 경형 RV 1위",
+      "sold": 3438,
+      "seg": "국산 경형 RV",
+      "cls": "경형",
       "photo": {
-       "src": "assets/cars/TAM2.webp",
-       "page": "https://commons.wikimedia.org/wiki/File:Kia_RAY_TAM_PE2.jpg",
-       "by": "Avante2025",
-       "lic": "CC BY 4.0",
-       "edit": "배경 지움, 번호판 가림, 좌우 반전"
+       "src": "assets/cars/TAM1.webp"
       },
-      "focus": "ray",
-      "url": null
+      "focus": "TAM1",
+      "encar": null,
+      "listings": {
+       "encar": 3275,
+       "kb": 2123
+      }
      },
      {
-      "rank": 2,
-      "name": "기아 뉴 모닝(JA)",
-      "sold": 2960,
-      "seg": "국산 경형 해치백 1위",
+      "name": "쉐보레 스파크",
+      "sold": 3423,
+      "seg": "국산 경형",
+      "cls": "경형",
       "photo": {
-       "src": "assets/cars/JA.webp",
-       "page": "https://commons.wikimedia.org/wiki/File:2017_Kia_Picanto_GT-Line_S_1.2_Front.jpg",
-       "by": "Vauxford",
-       "lic": "CC BY-SA 4.0",
-       "edit": "배경 지움, 번호판 가림, 좌우 반전"
+       "src": "assets/cars/SPARK.webp"
       },
       "focus": null,
-      "url": "https://www.kia.com/kr/vehicles/morning"
-     },
-     {
-      "rank": 3,
-      "name": "기아 뉴 레이 EV",
-      "sold": 1374,
-      "seg": "국산 경형 RV 2위",
-      "photo": {
-       "src": "assets/cars/TAM2.webp",
-       "page": "https://commons.wikimedia.org/wiki/File:Kia_RAY_TAM_PE2.jpg",
-       "by": "Avante2025",
-       "lic": "CC BY 4.0",
-       "edit": "배경 지움, 번호판 가림, 좌우 반전"
+      "encar": {
+       "t": "Y",
+       "mk": "쉐보레(GM대우)",
+       "g": "스파크",
+       "m": []
       },
-      "focus": "ray",
-      "url": null
+      "listings": {
+       "encar": 2244
+      }
      }
     ],
-    "소형": [
+    "im": [
      {
-      "rank": 1,
-      "name": "기아 셀토스(SP3)",
-      "sold": 4883,
-      "seg": "국산 소형 SUV 1위",
+      "name": "벤츠 E클래스(5세대)",
+      "sold": 1723,
+      "seg": "수입 중형 세단",
+      "cls": "중형",
       "photo": {
-       "src": "assets/cars/SP3.webp",
-       "page": "https://commons.wikimedia.org/wiki/File:Kia_Seltos_(SP3)_IMG_7812.jpg",
-       "by": "Alexander Migl",
-       "lic": "CC BY-SA 4.0",
-       "edit": "배경 지움, 번호판 가림"
+       "src": "assets/cars/W213.webp"
       },
-      "focus": "seltos",
-      "url": null
+      "focus": "W213",
+      "encar": null,
+      "listings": {
+       "encar": 3136,
+       "kb": 1923
+      }
      },
      {
-      "rank": 2,
-      "name": "기아 EV3",
-      "sold": 3533,
-      "seg": "국산 소형 SUV 2위",
+      "name": "BMW 5시리즈(7세대)",
+      "sold": 1081,
+      "seg": "수입 중형 세단",
+      "cls": "중형",
       "photo": {
-       "src": "assets/cars/EV3.webp",
-       "page": "https://commons.wikimedia.org/wiki/File:24_Kia_EV3_1.jpg",
-       "by": "Benespit",
-       "lic": "CC BY-SA 4.0",
-       "edit": "배경 지움, 번호판 가림"
+       "src": "assets/cars/G30.webp"
       },
-      "focus": null,
-      "url": "https://www.kia.com/kr/vehicles/ev3"
+      "focus": "G30",
+      "encar": null,
+      "listings": {
+       "encar": 2154,
+       "kb": 1361
+      }
      },
      {
-      "rank": 3,
-      "name": "기아 셀토스 하이브리드(SP3)",
-      "sold": 2720,
-      "seg": "국산 소형 SUV 3위",
-      "photo": {
-       "src": "assets/cars/SP3.webp",
-       "page": "https://commons.wikimedia.org/wiki/File:Kia_Seltos_(SP3)_IMG_7812.jpg",
-       "by": "Alexander Migl",
-       "lic": "CC BY-SA 4.0",
-       "edit": "배경 지움, 번호판 가림"
-      },
-      "focus": "seltos",
-      "url": null
-     }
-    ],
-    "준중형": [
-     {
-      "rank": 1,
-      "name": "기아 뉴 스포티지(NQ5)",
-      "sold": 3823,
-      "seg": "국산 준중형 SUV 1위",
-      "photo": {
-       "src": "assets/cars/NQ5.webp",
-       "page": "https://commons.wikimedia.org/wiki/File:Kia_Sportage_1.6_T-GDI_HEV_2WD_(2022)_(cropped).jpg",
-       "by": "Charles",
-       "lic": "CC BY 2.0",
-       "edit": "배경 지움, 번호판 가림"
-      },
-      "focus": "sportage",
-      "url": null
-     },
-     {
-      "rank": 2,
-      "name": "기아 EV5",
-      "sold": 3573,
-      "seg": "국산 준중형 SUV 2위",
-      "photo": {
-       "src": "assets/cars/EV5.webp",
-       "page": "https://commons.wikimedia.org/wiki/File:Kia_EV5_GT_Auto_Zuerich_2026_IMG_8749.jpg",
-       "by": "Alexander Migl",
-       "lic": "CC BY-SA 4.0",
-       "edit": "배경 지움, 번호판 가림"
-      },
-      "focus": null,
-      "url": "https://www.kia.com/kr/vehicles/ev5"
-     },
-     {
-      "rank": 3,
-      "name": "현대 뉴 아반떼(CN7)",
-      "sold": 2638,
-      "seg": "국산 준중형 세단 1위",
-      "photo": {
-       "src": "assets/cars/CN7.webp",
-       "page": "https://commons.wikimedia.org/wiki/File:Hyundai_Avante_CN7_Facelift_in_Seoul_2024_front.jpg",
-       "by": "Nord794ub",
-       "lic": "CC BY-SA 4.0",
-       "edit": "배경 지움, 번호판 가림, 좌우 반전"
-      },
-      "focus": "avante",
-      "url": null
-     }
-    ],
-    "중형": [
-     {
-      "rank": 1,
       "name": "테슬라 모델 Y",
-      "sold": 8705,
-      "seg": "외산 중형 SUV 1위",
+      "sold": 893,
+      "seg": "수입 중형 SUV",
+      "cls": "중형",
       "photo": {
-       "src": "assets/cars/MY.webp",
-       "page": "https://commons.wikimedia.org/wiki/File:2020_Tesla_Model_Y,_front_8.1.20.jpg",
-       "by": "Kevauto",
-       "lic": "CC BY-SA 4.0",
-       "edit": "배경 지움, 번호판 가림"
+       "src": "assets/cars/MY.webp"
       },
-      "focus": "modely",
-      "url": null
-     },
-     {
-      "rank": 2,
-      "name": "기아 뉴 쏘렌토 하이브리드(MQ4)",
-      "sold": 5620,
-      "seg": "국산 중형 SUV 1위",
-      "photo": {
-       "src": "assets/cars/MQ4.webp",
-       "page": "https://commons.wikimedia.org/wiki/File:Kia_Sorento_MQ4_front_view_(South_Korea)_03.png",
-       "by": "차,또바기",
-       "lic": "CC BY-SA 4.0",
-       "edit": "배경 지움, 번호판 가림"
-      },
-      "focus": "sorento",
-      "url": null
-     },
-     {
-      "rank": 3,
-      "name": "현대 뉴 쏘나타(DN8)",
-      "sold": 4332,
-      "seg": "국산 중형 세단 1위",
-      "photo": {
-       "src": "assets/cars/DN8.webp",
-       "page": "https://commons.wikimedia.org/wiki/File:2020_Hyundai_Sonata_SEL_(Quartz_White),_front_right.jpg",
-       "by": "Mr.choppers",
-       "lic": "CC BY-SA 3.0",
-       "edit": "배경 지움, 번호판 가림, 좌우 반전"
-      },
-      "focus": "sonata",
-      "url": null
-     }
-    ],
-    "준대형": [
-     {
-      "rank": 1,
-      "name": "현대 뉴 그랜저(GN7)",
-      "sold": 3654,
-      "seg": "국산 준대형 세단 1위",
-      "photo": {
-       "src": "assets/cars/GN7.webp",
-       "page": "https://commons.wikimedia.org/wiki/File:01_Hyundai_Grandeur_(GN7).jpg",
-       "by": "Benespit",
-       "lic": "CC BY-SA 4.0",
-       "edit": "배경 지움, 번호판 가림"
-      },
-      "focus": "grandeur",
-      "url": null
-     },
-     {
-      "rank": 2,
-      "name": "현대 뉴 그랜저 하이브리드(GN7)",
-      "sold": 3453,
-      "seg": "국산 준대형 세단 2위",
-      "photo": {
-       "src": "assets/cars/GN7.webp",
-       "page": "https://commons.wikimedia.org/wiki/File:01_Hyundai_Grandeur_(GN7).jpg",
-       "by": "Benespit",
-       "lic": "CC BY-SA 4.0",
-       "edit": "배경 지움, 번호판 가림"
-      },
-      "focus": "grandeur",
-      "url": null
-     },
-     {
-      "rank": 3,
-      "name": "제네시스 뉴 G80(RG3)",
-      "sold": 2156,
-      "seg": "국산 준대형 세단 3위",
-      "photo": {
-       "src": "assets/cars/RG3.webp",
-       "page": "https://commons.wikimedia.org/wiki/File:2021_Genesis_G80_(United_States)_front_view_02.png",
-       "by": "Gold Pony",
-       "lic": "CC BY 3.0",
-       "edit": "배경 지움, 번호판 가림"
-      },
-      "focus": null,
-      "url": "https://www.genesis.com/kr/ko/models/g80"
-     }
-    ],
-    "대형": [
-     {
-      "rank": 1,
-      "name": "기아 뉴 카니발 하이브리드(KA4)",
-      "sold": 5580,
-      "seg": "국산 대형 RV 1위",
-      "photo": {
-       "src": "assets/cars/KA4.webp",
-       "page": "https://commons.wikimedia.org/wiki/File:0_Kia_Carnival_(KA4)_1.jpg",
-       "by": "Benespit",
-       "lic": "CC BY-SA 4.0",
-       "edit": "배경 지움, 번호판 가림"
-      },
-      "focus": "carnival",
-      "url": null
-     },
-     {
-      "rank": 2,
-      "name": "현대 팰리세이드 하이브리드(LX3)",
-      "sold": 2355,
-      "seg": "국산 대형 SUV 1위",
-      "photo": {
-       "src": "assets/cars/LX3.webp",
-       "page": "https://commons.wikimedia.org/wiki/File:Hyundai_Palisade_LX3_2.5_HEV_Black.jpg",
-       "by": "Avante2025",
-       "lic": "CC BY 4.0",
-       "edit": "배경 지움, 번호판 가림"
-      },
-      "focus": "palisade",
-      "url": null
-     },
-     {
-      "rank": 3,
-      "name": "현대 아이오닉 9",
-      "sold": 1359,
-      "seg": "국산 대형 SUV 2위",
-      "photo": {
-       "src": "assets/cars/IONIQ9.webp",
-       "page": "https://commons.wikimedia.org/wiki/File:2026_Hyundai_IONIQ_9_Preferred_AWD%2B_Ultimate_Calligraphy_Package_in_Celadon_Grey,_front_right,_2025-09-07.jpg",
-       "by": "Elise240SX",
-       "lic": "CC BY-SA 4.0",
-       "edit": "배경 지움, 번호판 가림, 좌우 반전"
-      },
-      "focus": null,
-      "url": "https://www.hyundai.com/kr/ko/e/vehicles/ioniq9/intro"
+      "focus": "MY",
+      "encar": null,
+      "listings": {
+       "encar": 1156,
+       "kb": 448
+      }
      }
     ]
-   },
-   "used": [
-    {
-     "rank": 1,
-     "name": "기아 모닝(TA)",
-     "sold": 3721,
-     "seg": "국산 경형",
-     "photo": {
-      "src": "assets/cars/TA.webp",
-      "page": "https://commons.wikimedia.org/wiki/File:2014_Kia_Picanto_Front_1.jpg",
-      "by": "Areaseven",
-      "lic": "CC BY-SA 3.0",
-      "edit": "배경 지움, 번호판 가림"
-     },
-     "focus": "TA",
-     "encar": null,
-     "listings": {
-      "encar": 1732,
-      "kb": 2317
-     }
-    },
-    {
-     "rank": 2,
-     "name": "기아 뉴 레이",
-     "sold": 3438,
-     "seg": "국산 경형 RV",
-     "photo": {
-      "src": "assets/cars/TAM1.webp",
-      "page": "https://commons.wikimedia.org/wiki/File:KIA_THE_NEW_RAY_201806_001.jpg",
-      "by": "CEFICEFI",
-      "lic": "CC BY-SA 4.0",
-      "edit": "배경 지움, 번호판 가림, 좌우 반전"
-     },
-     "focus": "TAM1",
-     "encar": null,
-     "listings": {
-      "encar": 3275,
-      "kb": 2123
-     }
-    },
-    {
-     "rank": 3,
-     "name": "쉐보레 스파크",
-     "sold": 3423,
-     "seg": "국산 경형",
-     "photo": {
-      "src": "assets/cars/SPARK.webp",
-      "page": "https://commons.wikimedia.org/wiki/File:Chevrolet_Spark_(M400)_Facelift_IMG_9084.jpg",
-      "by": "Alexander-93",
-      "lic": "CC BY-SA 4.0",
-      "edit": "배경 지움, 번호판 가림"
-     },
-     "focus": null,
-     "encar": {
-      "t": "Y",
-      "mk": "쉐보레(GM대우)",
-      "g": "스파크",
-      "m": []
-     },
-     "listings": {
-      "encar": 2244
-     }
-    }
-   ]
+   }
   },
   {
    "ym": "2026-06",
    "fresh": {
-    "전체": [
-     {
-      "rank": 1,
-      "name": "테슬라 모델 Y",
-      "sold": 9188,
-      "seg": "외산 중형 SUV 1위",
-      "photo": {
-       "src": "assets/cars/MY.webp",
-       "page": "https://commons.wikimedia.org/wiki/File:2020_Tesla_Model_Y,_front_8.1.20.jpg",
-       "by": "Kevauto",
-       "lic": "CC BY-SA 4.0",
-       "edit": "배경 지움, 번호판 가림"
+    "all": {
+     "전체": [
+      {
+       "name": "테슬라 모델 Y",
+       "sold": 9188,
+       "seg": "수입 중형 SUV 1위",
+       "photo": {
+        "src": "assets/cars/MY.webp"
+       },
+       "focus": "modely",
+       "url": null
       },
-      "focus": "modely",
-      "url": null
+      {
+       "name": "기아 뉴 쏘렌토 하이브리드(MQ4)",
+       "sold": 7802,
+       "seg": "국산 중형 SUV 1위",
+       "photo": {
+        "src": "assets/cars/MQ4.webp"
+       },
+       "focus": "sorento",
+       "url": null
+      },
+      {
+       "name": "기아 뉴 카니발 하이브리드(KA4)",
+       "sold": 5522,
+       "seg": "국산 대형 RV 1위",
+       "photo": {
+        "src": "assets/cars/KA4.webp"
+       },
+       "focus": "carnival",
+       "url": null
+      }
+     ],
+     "경형": [
+      {
+       "name": "기아 뉴 레이",
+       "sold": 3170,
+       "seg": "국산 경형 RV 1위",
+       "photo": {
+        "src": "assets/cars/TAM2.webp"
+       },
+       "focus": "ray",
+       "url": null
+      },
+      {
+       "name": "기아 뉴 모닝(JA)",
+       "sold": 1863,
+       "seg": "국산 경형 해치백 1위",
+       "photo": {
+        "src": "assets/cars/JA.webp"
+       },
+       "focus": null,
+       "url": "https://www.kia.com/kr/vehicles/morning"
+      },
+      {
+       "name": "기아 뉴 레이 EV",
+       "sold": 1349,
+       "seg": "국산 경형 RV 2위",
+       "photo": {
+        "src": "assets/cars/TAM2.webp"
+       },
+       "focus": "ray",
+       "url": null
+      }
+     ],
+     "소형": [
+      {
+       "name": "기아 셀토스(SP3)",
+       "sold": 4225,
+       "seg": "국산 소형 SUV 1위",
+       "photo": {
+        "src": "assets/cars/SP3.webp"
+       },
+       "focus": "seltos",
+       "url": null
+      },
+      {
+       "name": "기아 EV3",
+       "sold": 3403,
+       "seg": "국산 소형 SUV 2위",
+       "photo": {
+        "src": "assets/cars/EV3.webp"
+       },
+       "focus": null,
+       "url": "https://www.kia.com/kr/vehicles/ev3"
+      },
+      {
+       "name": "기아 뉴 니로(SG2)",
+       "sold": 1819,
+       "seg": "국산 소형 SUV 3위",
+       "photo": {
+        "src": "assets/cars/NIRO.webp"
+       },
+       "focus": null,
+       "url": "https://www.kia.com/kr/vehicles/niro"
+      }
+     ],
+     "준중형": [
+      {
+       "name": "기아 뉴 스포티지(NQ5)",
+       "sold": 3875,
+       "seg": "국산 준중형 SUV 1위",
+       "photo": {
+        "src": "assets/cars/NQ5.webp"
+       },
+       "focus": "sportage",
+       "url": null
+      },
+      {
+       "name": "현대 뉴 아반떼(CN7)",
+       "sold": 3327,
+       "seg": "국산 준중형 세단 1위",
+       "photo": {
+        "src": "assets/cars/CN7.webp"
+       },
+       "focus": "avante",
+       "url": null
+      },
+      {
+       "name": "기아 EV5",
+       "sold": 3226,
+       "seg": "국산 준중형 SUV 2위",
+       "photo": {
+        "src": "assets/cars/EV5.webp"
+       },
+       "focus": null,
+       "url": "https://www.kia.com/kr/vehicles/ev5"
+      }
+     ],
+     "중형": [
+      {
+       "name": "테슬라 모델 Y",
+       "sold": 9188,
+       "seg": "수입 중형 SUV 1위",
+       "photo": {
+        "src": "assets/cars/MY.webp"
+       },
+       "focus": "modely",
+       "url": null
+      },
+      {
+       "name": "기아 뉴 쏘렌토 하이브리드(MQ4)",
+       "sold": 7802,
+       "seg": "국산 중형 SUV 1위",
+       "photo": {
+        "src": "assets/cars/MQ4.webp"
+       },
+       "focus": "sorento",
+       "url": null
+      },
+      {
+       "name": "현대 뉴 쏘나타(DN8)",
+       "sold": 3993,
+       "seg": "국산 중형 세단 1위",
+       "photo": {
+        "src": "assets/cars/DN8.webp"
+       },
+       "focus": "sonata",
+       "url": null
+      }
+     ],
+     "준대형": [
+      {
+       "name": "현대 뉴 그랜저(GN7)",
+       "sold": 5296,
+       "seg": "국산 준대형 세단 1위",
+       "photo": {
+        "src": "assets/cars/GN7.webp"
+       },
+       "focus": "grandeur",
+       "url": null
+      },
+      {
+       "name": "제네시스 뉴 G80(RG3)",
+       "sold": 3093,
+       "seg": "국산 준대형 세단 2위",
+       "photo": {
+        "src": "assets/cars/RG3.webp"
+       },
+       "focus": null,
+       "url": "https://www.genesis.com/kr/ko/models/g80"
+      },
+      {
+       "name": "현대 그랜저 하이브리드(GN7)",
+       "sold": 2913,
+       "seg": "국산 준대형 세단 3위",
+       "photo": {
+        "src": "assets/cars/GN7.webp"
+       },
+       "focus": "grandeur",
+       "url": null
+      }
+     ],
+     "대형": [
+      {
+       "name": "기아 뉴 카니발 하이브리드(KA4)",
+       "sold": 5522,
+       "seg": "국산 대형 RV 1위",
+       "photo": {
+        "src": "assets/cars/KA4.webp"
+       },
+       "focus": "carnival",
+       "url": null
+      },
+      {
+       "name": "현대 팰리세이드 하이브리드(LX3)",
+       "sold": 3272,
+       "seg": "국산 대형 SUV 1위",
+       "photo": {
+        "src": "assets/cars/LX3.webp"
+       },
+       "focus": "palisade",
+       "url": null
+      },
+      {
+       "name": "현대 아이오닉 9",
+       "sold": 1485,
+       "seg": "국산 대형 SUV 2위",
+       "photo": {
+        "src": "assets/cars/IONIQ9.webp"
+       },
+       "focus": null,
+       "url": "https://www.hyundai.com/kr/ko/e/vehicles/ioniq9/intro"
+      }
+     ]
+    },
+    "kr": {
+     "전체": [
+      {
+       "name": "기아 뉴 쏘렌토 하이브리드(MQ4)",
+       "sold": 7802,
+       "seg": "국산 중형 SUV 1위",
+       "photo": {
+        "src": "assets/cars/MQ4.webp"
+       },
+       "focus": "sorento",
+       "url": null
+      },
+      {
+       "name": "기아 뉴 카니발 하이브리드(KA4)",
+       "sold": 5522,
+       "seg": "국산 대형 RV 1위",
+       "photo": {
+        "src": "assets/cars/KA4.webp"
+       },
+       "focus": "carnival",
+       "url": null
+      },
+      {
+       "name": "현대 뉴 그랜저(GN7)",
+       "sold": 5296,
+       "seg": "국산 준대형 세단 1위",
+       "photo": {
+        "src": "assets/cars/GN7.webp"
+       },
+       "focus": "grandeur",
+       "url": null
+      }
+     ],
+     "경형": [
+      {
+       "name": "기아 뉴 레이",
+       "sold": 3170,
+       "seg": "국산 경형 RV 1위",
+       "photo": {
+        "src": "assets/cars/TAM2.webp"
+       },
+       "focus": "ray",
+       "url": null
+      },
+      {
+       "name": "기아 뉴 모닝(JA)",
+       "sold": 1863,
+       "seg": "국산 경형 해치백 1위",
+       "photo": {
+        "src": "assets/cars/JA.webp"
+       },
+       "focus": null,
+       "url": "https://www.kia.com/kr/vehicles/morning"
+      },
+      {
+       "name": "기아 뉴 레이 EV",
+       "sold": 1349,
+       "seg": "국산 경형 RV 2위",
+       "photo": {
+        "src": "assets/cars/TAM2.webp"
+       },
+       "focus": "ray",
+       "url": null
+      }
+     ],
+     "소형": [
+      {
+       "name": "기아 셀토스(SP3)",
+       "sold": 4225,
+       "seg": "국산 소형 SUV 1위",
+       "photo": {
+        "src": "assets/cars/SP3.webp"
+       },
+       "focus": "seltos",
+       "url": null
+      },
+      {
+       "name": "기아 EV3",
+       "sold": 3403,
+       "seg": "국산 소형 SUV 2위",
+       "photo": {
+        "src": "assets/cars/EV3.webp"
+       },
+       "focus": null,
+       "url": "https://www.kia.com/kr/vehicles/ev3"
+      },
+      {
+       "name": "기아 뉴 니로(SG2)",
+       "sold": 1819,
+       "seg": "국산 소형 SUV 3위",
+       "photo": {
+        "src": "assets/cars/NIRO.webp"
+       },
+       "focus": null,
+       "url": "https://www.kia.com/kr/vehicles/niro"
+      }
+     ],
+     "준중형": [
+      {
+       "name": "기아 뉴 스포티지(NQ5)",
+       "sold": 3875,
+       "seg": "국산 준중형 SUV 1위",
+       "photo": {
+        "src": "assets/cars/NQ5.webp"
+       },
+       "focus": "sportage",
+       "url": null
+      },
+      {
+       "name": "현대 뉴 아반떼(CN7)",
+       "sold": 3327,
+       "seg": "국산 준중형 세단 1위",
+       "photo": {
+        "src": "assets/cars/CN7.webp"
+       },
+       "focus": "avante",
+       "url": null
+      },
+      {
+       "name": "기아 EV5",
+       "sold": 3226,
+       "seg": "국산 준중형 SUV 2위",
+       "photo": {
+        "src": "assets/cars/EV5.webp"
+       },
+       "focus": null,
+       "url": "https://www.kia.com/kr/vehicles/ev5"
+      }
+     ],
+     "중형": [
+      {
+       "name": "기아 뉴 쏘렌토 하이브리드(MQ4)",
+       "sold": 7802,
+       "seg": "국산 중형 SUV 1위",
+       "photo": {
+        "src": "assets/cars/MQ4.webp"
+       },
+       "focus": "sorento",
+       "url": null
+      },
+      {
+       "name": "현대 뉴 쏘나타(DN8)",
+       "sold": 3993,
+       "seg": "국산 중형 세단 1위",
+       "photo": {
+        "src": "assets/cars/DN8.webp"
+       },
+       "focus": "sonata",
+       "url": null
+      },
+      {
+       "name": "현대 싼타페 하이브리드(MX5)",
+       "sold": 3424,
+       "seg": "국산 중형 SUV 2위",
+       "photo": {
+        "src": "assets/cars/MX5.webp"
+       },
+       "focus": "santafe",
+       "url": null
+      }
+     ],
+     "준대형": [
+      {
+       "name": "현대 뉴 그랜저(GN7)",
+       "sold": 5296,
+       "seg": "국산 준대형 세단 1위",
+       "photo": {
+        "src": "assets/cars/GN7.webp"
+       },
+       "focus": "grandeur",
+       "url": null
+      },
+      {
+       "name": "제네시스 뉴 G80(RG3)",
+       "sold": 3093,
+       "seg": "국산 준대형 세단 2위",
+       "photo": {
+        "src": "assets/cars/RG3.webp"
+       },
+       "focus": null,
+       "url": "https://www.genesis.com/kr/ko/models/g80"
+      },
+      {
+       "name": "현대 그랜저 하이브리드(GN7)",
+       "sold": 2913,
+       "seg": "국산 준대형 세단 3위",
+       "photo": {
+        "src": "assets/cars/GN7.webp"
+       },
+       "focus": "grandeur",
+       "url": null
+      }
+     ],
+     "대형": [
+      {
+       "name": "기아 뉴 카니발 하이브리드(KA4)",
+       "sold": 5522,
+       "seg": "국산 대형 RV 1위",
+       "photo": {
+        "src": "assets/cars/KA4.webp"
+       },
+       "focus": "carnival",
+       "url": null
+      },
+      {
+       "name": "현대 팰리세이드 하이브리드(LX3)",
+       "sold": 3272,
+       "seg": "국산 대형 SUV 1위",
+       "photo": {
+        "src": "assets/cars/LX3.webp"
+       },
+       "focus": "palisade",
+       "url": null
+      },
+      {
+       "name": "현대 아이오닉 9",
+       "sold": 1485,
+       "seg": "국산 대형 SUV 2위",
+       "photo": {
+        "src": "assets/cars/IONIQ9.webp"
+       },
+       "focus": null,
+       "url": "https://www.hyundai.com/kr/ko/e/vehicles/ioniq9/intro"
+      }
+     ]
+    },
+    "im": {
+     "전체": [
+      {
+       "name": "테슬라 모델 Y",
+       "sold": 9188,
+       "seg": "수입 중형 SUV 1위",
+       "photo": {
+        "src": "assets/cars/MY.webp"
+       },
+       "focus": "modely",
+       "url": null
+      },
+      {
+       "name": "비야디 돌핀",
+       "sold": 2828,
+       "seg": "수입 준중형 해치백 1위",
+       "photo": null,
+       "focus": null,
+       "url": null
+      },
+      {
+       "name": "BMW 5시리즈(8세대)",
+       "sold": 2266,
+       "seg": "수입 중형 세단 1위",
+       "photo": {
+        "src": "assets/cars/G60.webp"
+       },
+       "focus": "bmw5",
+       "url": null
+      }
+     ],
+     "경형": [],
+     "소형": [
+      {
+       "name": "볼보 EX30",
+       "sold": 624,
+       "seg": "수입 소형 SUV 1위",
+       "photo": null,
+       "focus": null,
+       "url": null
+      },
+      {
+       "name": "비야디 아토 3",
+       "sold": 503,
+       "seg": "수입 소형 SUV 2위",
+       "photo": null,
+       "focus": null,
+       "url": null
+      },
+      {
+       "name": "볼보 EX30 크로스 컨트리",
+       "sold": 322,
+       "seg": "수입 소형 SUV 3위",
+       "photo": null,
+       "focus": null,
+       "url": null
+      }
+     ],
+     "준중형": [
+      {
+       "name": "비야디 돌핀",
+       "sold": 2828,
+       "seg": "수입 준중형 해치백 1위",
+       "photo": null,
+       "focus": null,
+       "url": null
+      },
+      {
+       "name": "벤츠 GLC(3세대)",
+       "sold": 1221,
+       "seg": "수입 준중형 SUV 1위",
+       "photo": null,
+       "focus": null,
+       "url": null
+      },
+      {
+       "name": "토요타 RAV4(6세대)",
+       "sold": 674,
+       "seg": "수입 준중형 SUV 2위",
+       "photo": null,
+       "focus": null,
+       "url": null
+      }
+     ],
+     "중형": [
+      {
+       "name": "테슬라 모델 Y",
+       "sold": 9188,
+       "seg": "수입 중형 SUV 1위",
+       "photo": {
+        "src": "assets/cars/MY.webp"
+       },
+       "focus": "modely",
+       "url": null
+      },
+      {
+       "name": "BMW 5시리즈(8세대)",
+       "sold": 2266,
+       "seg": "수입 중형 세단 1위",
+       "photo": {
+        "src": "assets/cars/G60.webp"
+       },
+       "focus": "bmw5",
+       "url": null
+      },
+      {
+       "name": "벤츠 E클래스(6세대)",
+       "sold": 2114,
+       "seg": "수입 중형 세단 2위",
+       "photo": {
+        "src": "assets/cars/W214.webp"
+       },
+       "focus": "eclass",
+       "url": null
+      }
+     ],
+     "준대형": [
+      {
+       "name": "포르쉐 타이칸",
+       "sold": 196,
+       "seg": "수입 준대형 세단 1위",
+       "photo": null,
+       "focus": null,
+       "url": null
+      }
+     ],
+     "대형": [
+      {
+       "name": "테슬라 모델 X",
+       "sold": 1028,
+       "seg": "수입 대형 SUV 1위",
+       "photo": null,
+       "focus": null,
+       "url": null
+      },
+      {
+       "name": "BMW 7시리즈(7세대)",
+       "sold": 427,
+       "seg": "수입 대형 세단 1위",
+       "photo": null,
+       "focus": null,
+       "url": null
+      },
+      {
+       "name": "BMW X7",
+       "sold": 305,
+       "seg": "수입 대형 SUV 2위",
+       "photo": null,
+       "focus": null,
+       "url": null
+      }
+     ]
+    }
+   },
+   "used": {
+    "kr": [
+     {
+      "name": "기아 모닝(TA)",
+      "sold": 3574,
+      "seg": "국산 경형",
+      "cls": "경형",
+      "photo": {
+       "src": "assets/cars/TA.webp"
+      },
+      "focus": "TA",
+      "encar": null,
+      "listings": {
+       "encar": 1732,
+       "kb": 2317
+      }
      },
      {
-      "rank": 2,
-      "name": "기아 뉴 쏘렌토 하이브리드(MQ4)",
-      "sold": 7802,
-      "seg": "국산 중형 SUV 1위",
+      "name": "쉐보레 스파크",
+      "sold": 3359,
+      "seg": "국산 경형",
+      "cls": "경형",
       "photo": {
-       "src": "assets/cars/MQ4.webp",
-       "page": "https://commons.wikimedia.org/wiki/File:Kia_Sorento_MQ4_front_view_(South_Korea)_03.png",
-       "by": "차,또바기",
-       "lic": "CC BY-SA 4.0",
-       "edit": "배경 지움, 번호판 가림"
+       "src": "assets/cars/SPARK.webp"
       },
-      "focus": "sorento",
-      "url": null
+      "focus": null,
+      "encar": {
+       "t": "Y",
+       "mk": "쉐보레(GM대우)",
+       "g": "스파크",
+       "m": []
+      },
+      "listings": {
+       "encar": 2244
+      }
      },
      {
-      "rank": 3,
-      "name": "기아 뉴 카니발 하이브리드(KA4)",
-      "sold": 5522,
-      "seg": "국산 대형 RV 1위",
-      "photo": {
-       "src": "assets/cars/KA4.webp",
-       "page": "https://commons.wikimedia.org/wiki/File:0_Kia_Carnival_(KA4)_1.jpg",
-       "by": "Benespit",
-       "lic": "CC BY-SA 4.0",
-       "edit": "배경 지움, 번호판 가림"
-      },
-      "focus": "carnival",
-      "url": null
-     }
-    ],
-    "경형": [
-     {
-      "rank": 1,
       "name": "기아 뉴 레이",
-      "sold": 3170,
-      "seg": "국산 경형 RV 1위",
+      "sold": 3150,
+      "seg": "국산 경형 RV",
+      "cls": "경형",
       "photo": {
-       "src": "assets/cars/TAM2.webp",
-       "page": "https://commons.wikimedia.org/wiki/File:Kia_RAY_TAM_PE2.jpg",
-       "by": "Avante2025",
-       "lic": "CC BY 4.0",
-       "edit": "배경 지움, 번호판 가림, 좌우 반전"
+       "src": "assets/cars/TAM1.webp"
       },
-      "focus": "ray",
-      "url": null
-     },
-     {
-      "rank": 2,
-      "name": "기아 뉴 모닝(JA)",
-      "sold": 1863,
-      "seg": "국산 경형 해치백 1위",
-      "photo": {
-       "src": "assets/cars/JA.webp",
-       "page": "https://commons.wikimedia.org/wiki/File:2017_Kia_Picanto_GT-Line_S_1.2_Front.jpg",
-       "by": "Vauxford",
-       "lic": "CC BY-SA 4.0",
-       "edit": "배경 지움, 번호판 가림, 좌우 반전"
-      },
-      "focus": null,
-      "url": "https://www.kia.com/kr/vehicles/morning"
-     },
-     {
-      "rank": 3,
-      "name": "기아 뉴 레이 EV",
-      "sold": 1349,
-      "seg": "국산 경형 RV 2위",
-      "photo": {
-       "src": "assets/cars/TAM2.webp",
-       "page": "https://commons.wikimedia.org/wiki/File:Kia_RAY_TAM_PE2.jpg",
-       "by": "Avante2025",
-       "lic": "CC BY 4.0",
-       "edit": "배경 지움, 번호판 가림, 좌우 반전"
-      },
-      "focus": "ray",
-      "url": null
+      "focus": "TAM1",
+      "encar": null,
+      "listings": {
+       "encar": 3275,
+       "kb": 2123
+      }
      }
     ],
-    "소형": [
+    "im": [
      {
-      "rank": 1,
-      "name": "기아 셀토스(SP3)",
-      "sold": 4225,
-      "seg": "국산 소형 SUV 1위",
+      "name": "벤츠 E클래스(5세대)",
+      "sold": 1778,
+      "seg": "수입 중형 세단",
+      "cls": "중형",
       "photo": {
-       "src": "assets/cars/SP3.webp",
-       "page": "https://commons.wikimedia.org/wiki/File:Kia_Seltos_(SP3)_IMG_7812.jpg",
-       "by": "Alexander Migl",
-       "lic": "CC BY-SA 4.0",
-       "edit": "배경 지움, 번호판 가림"
+       "src": "assets/cars/W213.webp"
       },
-      "focus": "seltos",
-      "url": null
+      "focus": "W213",
+      "encar": null,
+      "listings": {
+       "encar": 3136,
+       "kb": 1923
+      }
      },
      {
-      "rank": 2,
-      "name": "기아 EV3",
-      "sold": 3403,
-      "seg": "국산 소형 SUV 2위",
+      "name": "BMW 5시리즈(7세대)",
+      "sold": 1030,
+      "seg": "수입 중형 세단",
+      "cls": "중형",
       "photo": {
-       "src": "assets/cars/EV3.webp",
-       "page": "https://commons.wikimedia.org/wiki/File:24_Kia_EV3_1.jpg",
-       "by": "Benespit",
-       "lic": "CC BY-SA 4.0",
-       "edit": "배경 지움, 번호판 가림"
+       "src": "assets/cars/G30.webp"
       },
-      "focus": null,
-      "url": "https://www.kia.com/kr/vehicles/ev3"
+      "focus": "G30",
+      "encar": null,
+      "listings": {
+       "encar": 2154,
+       "kb": 1361
+      }
      },
      {
-      "rank": 3,
-      "name": "기아 뉴 니로(SG2)",
-      "sold": 1819,
-      "seg": "국산 소형 SUV 3위",
-      "photo": {
-       "src": "assets/cars/NIRO.webp",
-       "page": "https://commons.wikimedia.org/wiki/File:Kia_Niro_(SG2)_PHEV_1X7A6014.jpg",
-       "by": "Alexander Migl",
-       "lic": "CC BY-SA 4.0",
-       "edit": "배경 지움, 번호판 가림"
-      },
-      "focus": null,
-      "url": "https://www.kia.com/kr/vehicles/niro"
-     }
-    ],
-    "준중형": [
-     {
-      "rank": 1,
-      "name": "기아 뉴 스포티지(NQ5)",
-      "sold": 3875,
-      "seg": "국산 준중형 SUV 1위",
-      "photo": {
-       "src": "assets/cars/NQ5.webp",
-       "page": "https://commons.wikimedia.org/wiki/File:Kia_Sportage_1.6_T-GDI_HEV_2WD_(2022)_(cropped).jpg",
-       "by": "Charles",
-       "lic": "CC BY 2.0",
-       "edit": "배경 지움, 번호판 가림"
-      },
-      "focus": "sportage",
-      "url": null
-     },
-     {
-      "rank": 2,
-      "name": "현대 뉴 아반떼(CN7)",
-      "sold": 3327,
-      "seg": "국산 준중형 세단 1위",
-      "photo": {
-       "src": "assets/cars/CN7.webp",
-       "page": "https://commons.wikimedia.org/wiki/File:Hyundai_Avante_CN7_Facelift_in_Seoul_2024_front.jpg",
-       "by": "Nord794ub",
-       "lic": "CC BY-SA 4.0",
-       "edit": "배경 지움, 번호판 가림, 좌우 반전"
-      },
-      "focus": "avante",
-      "url": null
-     },
-     {
-      "rank": 3,
-      "name": "기아 EV5",
-      "sold": 3226,
-      "seg": "국산 준중형 SUV 2위",
-      "photo": {
-       "src": "assets/cars/EV5.webp",
-       "page": "https://commons.wikimedia.org/wiki/File:Kia_EV5_GT_Auto_Zuerich_2026_IMG_8749.jpg",
-       "by": "Alexander Migl",
-       "lic": "CC BY-SA 4.0",
-       "edit": "배경 지움, 번호판 가림"
-      },
-      "focus": null,
-      "url": "https://www.kia.com/kr/vehicles/ev5"
-     }
-    ],
-    "중형": [
-     {
-      "rank": 1,
       "name": "테슬라 모델 Y",
-      "sold": 9188,
-      "seg": "외산 중형 SUV 1위",
+      "sold": 776,
+      "seg": "수입 중형 SUV",
+      "cls": "중형",
       "photo": {
-       "src": "assets/cars/MY.webp",
-       "page": "https://commons.wikimedia.org/wiki/File:2020_Tesla_Model_Y,_front_8.1.20.jpg",
-       "by": "Kevauto",
-       "lic": "CC BY-SA 4.0",
-       "edit": "배경 지움, 번호판 가림"
+       "src": "assets/cars/MY.webp"
       },
-      "focus": "modely",
-      "url": null
-     },
-     {
-      "rank": 2,
-      "name": "기아 뉴 쏘렌토 하이브리드(MQ4)",
-      "sold": 7802,
-      "seg": "국산 중형 SUV 1위",
-      "photo": {
-       "src": "assets/cars/MQ4.webp",
-       "page": "https://commons.wikimedia.org/wiki/File:Kia_Sorento_MQ4_front_view_(South_Korea)_03.png",
-       "by": "차,또바기",
-       "lic": "CC BY-SA 4.0",
-       "edit": "배경 지움, 번호판 가림"
-      },
-      "focus": "sorento",
-      "url": null
-     },
-     {
-      "rank": 3,
-      "name": "현대 뉴 쏘나타(DN8)",
-      "sold": 3993,
-      "seg": "국산 중형 세단 1위",
-      "photo": {
-       "src": "assets/cars/DN8.webp",
-       "page": "https://commons.wikimedia.org/wiki/File:2020_Hyundai_Sonata_SEL_(Quartz_White),_front_right.jpg",
-       "by": "Mr.choppers",
-       "lic": "CC BY-SA 3.0",
-       "edit": "배경 지움, 번호판 가림, 좌우 반전"
-      },
-      "focus": "sonata",
-      "url": null
-     }
-    ],
-    "준대형": [
-     {
-      "rank": 1,
-      "name": "현대 뉴 그랜저(GN7)",
-      "sold": 5296,
-      "seg": "국산 준대형 세단 1위",
-      "photo": {
-       "src": "assets/cars/GN7.webp",
-       "page": "https://commons.wikimedia.org/wiki/File:01_Hyundai_Grandeur_(GN7).jpg",
-       "by": "Benespit",
-       "lic": "CC BY-SA 4.0",
-       "edit": "배경 지움, 번호판 가림"
-      },
-      "focus": "grandeur",
-      "url": null
-     },
-     {
-      "rank": 2,
-      "name": "제네시스 뉴 G80(RG3)",
-      "sold": 3093,
-      "seg": "국산 준대형 세단 2위",
-      "photo": {
-       "src": "assets/cars/RG3.webp",
-       "page": "https://commons.wikimedia.org/wiki/File:2021_Genesis_G80_(United_States)_front_view_02.png",
-       "by": "Gold Pony",
-       "lic": "CC BY 3.0",
-       "edit": "배경 지움, 번호판 가림"
-      },
-      "focus": null,
-      "url": "https://www.genesis.com/kr/ko/models/g80"
-     },
-     {
-      "rank": 3,
-      "name": "현대 그랜저 하이브리드(GN7)",
-      "sold": 2913,
-      "seg": "국산 준대형 세단 3위",
-      "photo": {
-       "src": "assets/cars/GN7.webp",
-       "page": "https://commons.wikimedia.org/wiki/File:01_Hyundai_Grandeur_(GN7).jpg",
-       "by": "Benespit",
-       "lic": "CC BY-SA 4.0",
-       "edit": "배경 지움, 번호판 가림"
-      },
-      "focus": "grandeur",
-      "url": null
-     }
-    ],
-    "대형": [
-     {
-      "rank": 1,
-      "name": "기아 뉴 카니발 하이브리드(KA4)",
-      "sold": 5522,
-      "seg": "국산 대형 RV 1위",
-      "photo": {
-       "src": "assets/cars/KA4.webp",
-       "page": "https://commons.wikimedia.org/wiki/File:0_Kia_Carnival_(KA4)_1.jpg",
-       "by": "Benespit",
-       "lic": "CC BY-SA 4.0",
-       "edit": "배경 지움, 번호판 가림"
-      },
-      "focus": "carnival",
-      "url": null
-     },
-     {
-      "rank": 2,
-      "name": "현대 팰리세이드 하이브리드(LX3)",
-      "sold": 3272,
-      "seg": "국산 대형 SUV 1위",
-      "photo": {
-       "src": "assets/cars/LX3.webp",
-       "page": "https://commons.wikimedia.org/wiki/File:Hyundai_Palisade_LX3_2.5_HEV_Black.jpg",
-       "by": "Avante2025",
-       "lic": "CC BY 4.0",
-       "edit": "배경 지움, 번호판 가림"
-      },
-      "focus": "palisade",
-      "url": null
-     },
-     {
-      "rank": 3,
-      "name": "현대 아이오닉 9",
-      "sold": 1485,
-      "seg": "국산 대형 SUV 2위",
-      "photo": {
-       "src": "assets/cars/IONIQ9.webp",
-       "page": "https://commons.wikimedia.org/wiki/File:2026_Hyundai_IONIQ_9_Preferred_AWD%2B_Ultimate_Calligraphy_Package_in_Celadon_Grey,_front_right,_2025-09-07.jpg",
-       "by": "Elise240SX",
-       "lic": "CC BY-SA 4.0",
-       "edit": "배경 지움, 번호판 가림, 좌우 반전"
-      },
-      "focus": null,
-      "url": "https://www.hyundai.com/kr/ko/e/vehicles/ioniq9/intro"
+      "focus": "MY",
+      "encar": null,
+      "listings": {
+       "encar": 1156,
+       "kb": 448
+      }
      }
     ]
-   },
-   "used": [
-    {
-     "rank": 1,
-     "name": "기아 모닝(TA)",
-     "sold": 3574,
-     "seg": "국산 경형",
-     "photo": {
-      "src": "assets/cars/TA.webp",
-      "page": "https://commons.wikimedia.org/wiki/File:2014_Kia_Picanto_Front_1.jpg",
-      "by": "Areaseven",
-      "lic": "CC BY-SA 3.0",
-      "edit": "배경 지움, 번호판 가림"
-     },
-     "focus": "TA",
-     "encar": null,
-     "listings": {
-      "encar": 1732,
-      "kb": 2317
-     }
-    },
-    {
-     "rank": 2,
-     "name": "쉐보레 스파크",
-     "sold": 3359,
-     "seg": "국산 경형",
-     "photo": {
-      "src": "assets/cars/SPARK.webp",
-      "page": "https://commons.wikimedia.org/wiki/File:Chevrolet_Spark_(M400)_Facelift_IMG_9084.jpg",
-      "by": "Alexander-93",
-      "lic": "CC BY-SA 4.0",
-      "edit": "배경 지움, 번호판 가림"
-     },
-     "focus": null,
-     "encar": {
-      "t": "Y",
-      "mk": "쉐보레(GM대우)",
-      "g": "스파크",
-      "m": []
-     },
-     "listings": {
-      "encar": 2244
-     }
-    },
-    {
-     "rank": 3,
-     "name": "기아 뉴 레이",
-     "sold": 3150,
-     "seg": "국산 경형 RV",
-     "photo": {
-      "src": "assets/cars/TAM1.webp",
-      "page": "https://commons.wikimedia.org/wiki/File:KIA_THE_NEW_RAY_201806_001.jpg",
-      "by": "CEFICEFI",
-      "lic": "CC BY-SA 4.0",
-      "edit": "배경 지움, 번호판 가림, 좌우 반전"
-     },
-     "focus": "TAM1",
-     "encar": null,
-     "listings": {
-      "encar": 3275,
-      "kb": 2123
-     }
-    }
-   ]
+   }
   },
   {
    "ym": "2026-05",
    "fresh": {
-    "전체": [
-     {
-      "rank": 1,
-      "name": "테슬라 모델 Y",
-      "sold": 8762,
-      "seg": "외산 중형 SUV 1위",
-      "photo": {
-       "src": "assets/cars/MY.webp",
-       "page": "https://commons.wikimedia.org/wiki/File:2020_Tesla_Model_Y,_front_8.1.20.jpg",
-       "by": "Kevauto",
-       "lic": "CC BY-SA 4.0",
-       "edit": "배경 지움, 번호판 가림"
+    "all": {
+     "전체": [
+      {
+       "name": "테슬라 모델 Y",
+       "sold": 8762,
+       "seg": "수입 중형 SUV 1위",
+       "photo": {
+        "src": "assets/cars/MY.webp"
+       },
+       "focus": "modely",
+       "url": null
       },
-      "focus": "modely",
-      "url": null
-     },
-     {
-      "rank": 2,
-      "name": "기아 뉴 쏘렌토 하이브리드(MQ4)",
-      "sold": 7086,
-      "seg": "국산 중형 SUV 1위",
-      "photo": {
-       "src": "assets/cars/MQ4.webp",
-       "page": "https://commons.wikimedia.org/wiki/File:Kia_Sorento_MQ4_front_view_(South_Korea)_03.png",
-       "by": "차,또바기",
-       "lic": "CC BY-SA 4.0",
-       "edit": "배경 지움, 번호판 가림"
+      {
+       "name": "기아 뉴 쏘렌토 하이브리드(MQ4)",
+       "sold": 7086,
+       "seg": "국산 중형 SUV 1위",
+       "photo": {
+        "src": "assets/cars/MQ4.webp"
+       },
+       "focus": "sorento",
+       "url": null
       },
-      "focus": "sorento",
-      "url": null
-     },
-     {
-      "rank": 3,
-      "name": "현대 뉴 쏘나타(DN8)",
-      "sold": 4110,
-      "seg": "국산 중형 세단 1위",
-      "photo": {
-       "src": "assets/cars/DN8.webp",
-       "page": "https://commons.wikimedia.org/wiki/File:2020_Hyundai_Sonata_SEL_(Quartz_White),_front_right.jpg",
-       "by": "Mr.choppers",
-       "lic": "CC BY-SA 3.0",
-       "edit": "배경 지움, 번호판 가림, 좌우 반전"
+      {
+       "name": "현대 뉴 쏘나타(DN8)",
+       "sold": 4110,
+       "seg": "국산 중형 세단 1위",
+       "photo": {
+        "src": "assets/cars/DN8.webp"
+       },
+       "focus": "sonata",
+       "url": null
+      }
+     ],
+     "경형": [
+      {
+       "name": "기아 뉴 레이",
+       "sold": 2608,
+       "seg": "국산 경형 RV 1위",
+       "photo": {
+        "src": "assets/cars/TAM2.webp"
+       },
+       "focus": "ray",
+       "url": null
       },
-      "focus": "sonata",
-      "url": null
-     }
-    ],
-    "경형": [
-     {
-      "rank": 1,
-      "name": "기아 뉴 레이",
-      "sold": 2608,
-      "seg": "국산 경형 RV 1위",
-      "photo": {
-       "src": "assets/cars/TAM2.webp",
-       "page": "https://commons.wikimedia.org/wiki/File:Kia_RAY_TAM_PE2.jpg",
-       "by": "Avante2025",
-       "lic": "CC BY 4.0",
-       "edit": "배경 지움, 번호판 가림, 좌우 반전"
+      {
+       "name": "기아 뉴 모닝(JA)",
+       "sold": 2408,
+       "seg": "국산 경형 해치백 1위",
+       "photo": {
+        "src": "assets/cars/JA.webp"
+       },
+       "focus": null,
+       "url": "https://www.kia.com/kr/vehicles/morning"
       },
-      "focus": "ray",
-      "url": null
-     },
-     {
-      "rank": 2,
-      "name": "기아 뉴 모닝(JA)",
-      "sold": 2408,
-      "seg": "국산 경형 해치백 1위",
-      "photo": {
-       "src": "assets/cars/JA.webp",
-       "page": "https://commons.wikimedia.org/wiki/File:2017_Kia_Picanto_GT-Line_S_1.2_Front.jpg",
-       "by": "Vauxford",
-       "lic": "CC BY-SA 4.0",
-       "edit": "배경 지움, 번호판 가림, 좌우 반전"
+      {
+       "name": "기아 뉴 레이 EV",
+       "sold": 873,
+       "seg": "국산 경형 RV 2위",
+       "photo": {
+        "src": "assets/cars/TAM2.webp"
+       },
+       "focus": "ray",
+       "url": null
+      }
+     ],
+     "소형": [
+      {
+       "name": "기아 EV3",
+       "sold": 2441,
+       "seg": "국산 소형 SUV 1위",
+       "photo": {
+        "src": "assets/cars/EV3.webp"
+       },
+       "focus": null,
+       "url": "https://www.kia.com/kr/vehicles/ev3"
       },
-      "focus": null,
-      "url": "https://www.kia.com/kr/vehicles/morning"
-     },
-     {
-      "rank": 3,
-      "name": "기아 뉴 레이 EV",
-      "sold": 873,
-      "seg": "국산 경형 RV 2위",
-      "photo": {
-       "src": "assets/cars/TAM2.webp",
-       "page": "https://commons.wikimedia.org/wiki/File:Kia_RAY_TAM_PE2.jpg",
-       "by": "Avante2025",
-       "lic": "CC BY 4.0",
-       "edit": "배경 지움, 번호판 가림, 좌우 반전"
+      {
+       "name": "기아 셀토스(SP3)",
+       "sold": 2018,
+       "seg": "국산 소형 SUV 2위",
+       "photo": {
+        "src": "assets/cars/SP3.webp"
+       },
+       "focus": "seltos",
+       "url": null
       },
-      "focus": "ray",
-      "url": null
-     }
-    ],
-    "소형": [
-     {
-      "rank": 1,
-      "name": "기아 EV3",
-      "sold": 2441,
-      "seg": "국산 소형 SUV 1위",
-      "photo": {
-       "src": "assets/cars/EV3.webp",
-       "page": "https://commons.wikimedia.org/wiki/File:24_Kia_EV3_1.jpg",
-       "by": "Benespit",
-       "lic": "CC BY-SA 4.0",
-       "edit": "배경 지움, 번호판 가림"
+      {
+       "name": "현대 코나(SX2)",
+       "sold": 1527,
+       "seg": "국산 소형 SUV 3위",
+       "photo": {
+        "src": "assets/cars/KONA.webp"
+       },
+       "focus": null,
+       "url": "https://www.hyundai.com/kr/ko/e/vehicles/kona/intro"
+      }
+     ],
+     "준중형": [
+      {
+       "name": "현대 뉴 아반떼(CN7)",
+       "sold": 3852,
+       "seg": "국산 준중형 세단 1위",
+       "photo": {
+        "src": "assets/cars/CN7.webp"
+       },
+       "focus": "avante",
+       "url": null
       },
-      "focus": null,
-      "url": "https://www.kia.com/kr/vehicles/ev3"
-     },
-     {
-      "rank": 2,
-      "name": "기아 셀토스(SP3)",
-      "sold": 2018,
-      "seg": "국산 소형 SUV 2위",
-      "photo": {
-       "src": "assets/cars/SP3.webp",
-       "page": "https://commons.wikimedia.org/wiki/File:Kia_Seltos_(SP3)_IMG_7812.jpg",
-       "by": "Alexander Migl",
-       "lic": "CC BY-SA 4.0",
-       "edit": "배경 지움, 번호판 가림"
+      {
+       "name": "기아 뉴 스포티지(NQ5)",
+       "sold": 3190,
+       "seg": "국산 준중형 SUV 1위",
+       "photo": {
+        "src": "assets/cars/NQ5.webp"
+       },
+       "focus": "sportage",
+       "url": null
       },
-      "focus": "seltos",
-      "url": null
-     },
-     {
-      "rank": 3,
-      "name": "현대 코나(SX2)",
-      "sold": 1527,
-      "seg": "국산 소형 SUV 3위",
-      "photo": {
-       "src": "assets/cars/KONA.webp",
-       "page": "https://commons.wikimedia.org/wiki/File:2024_Hyundai_Kona_N_Line_AWD_in_Meta_Blue,_Front_Right,_09-30-2023.jpg",
-       "by": "Elise240SX",
-       "lic": "CC BY-SA 4.0",
-       "edit": "배경 지움, 번호판 가림, 좌우 반전"
+      {
+       "name": "기아 EV5",
+       "sold": 2302,
+       "seg": "국산 준중형 SUV 2위",
+       "photo": {
+        "src": "assets/cars/EV5.webp"
+       },
+       "focus": null,
+       "url": "https://www.kia.com/kr/vehicles/ev5"
+      }
+     ],
+     "중형": [
+      {
+       "name": "테슬라 모델 Y",
+       "sold": 8762,
+       "seg": "수입 중형 SUV 1위",
+       "photo": {
+        "src": "assets/cars/MY.webp"
+       },
+       "focus": "modely",
+       "url": null
       },
-      "focus": null,
-      "url": "https://www.hyundai.com/kr/ko/e/vehicles/kona/intro"
-     }
-    ],
-    "준중형": [
-     {
-      "rank": 1,
-      "name": "현대 뉴 아반떼(CN7)",
-      "sold": 3852,
-      "seg": "국산 준중형 세단 1위",
-      "photo": {
-       "src": "assets/cars/CN7.webp",
-       "page": "https://commons.wikimedia.org/wiki/File:Hyundai_Avante_CN7_Facelift_in_Seoul_2024_front.jpg",
-       "by": "Nord794ub",
-       "lic": "CC BY-SA 4.0",
-       "edit": "배경 지움, 번호판 가림, 좌우 반전"
+      {
+       "name": "기아 뉴 쏘렌토 하이브리드(MQ4)",
+       "sold": 7086,
+       "seg": "국산 중형 SUV 1위",
+       "photo": {
+        "src": "assets/cars/MQ4.webp"
+       },
+       "focus": "sorento",
+       "url": null
       },
-      "focus": "avante",
-      "url": null
-     },
-     {
-      "rank": 2,
-      "name": "기아 뉴 스포티지(NQ5)",
-      "sold": 3190,
-      "seg": "국산 준중형 SUV 1위",
-      "photo": {
-       "src": "assets/cars/NQ5.webp",
-       "page": "https://commons.wikimedia.org/wiki/File:Kia_Sportage_1.6_T-GDI_HEV_2WD_(2022)_(cropped).jpg",
-       "by": "Charles",
-       "lic": "CC BY 2.0",
-       "edit": "배경 지움, 번호판 가림"
+      {
+       "name": "현대 뉴 쏘나타(DN8)",
+       "sold": 4110,
+       "seg": "국산 중형 세단 1위",
+       "photo": {
+        "src": "assets/cars/DN8.webp"
+       },
+       "focus": "sonata",
+       "url": null
+      }
+     ],
+     "준대형": [
+      {
+       "name": "현대 그랜저 하이브리드(GN7)",
+       "sold": 2200,
+       "seg": "국산 준대형 세단 1위",
+       "photo": {
+        "src": "assets/cars/GN7.webp"
+       },
+       "focus": "grandeur",
+       "url": null
       },
-      "focus": "sportage",
-      "url": null
-     },
-     {
-      "rank": 3,
-      "name": "기아 EV5",
-      "sold": 2302,
-      "seg": "국산 준중형 SUV 2위",
-      "photo": {
-       "src": "assets/cars/EV5.webp",
-       "page": "https://commons.wikimedia.org/wiki/File:Kia_EV5_GT_Auto_Zuerich_2026_IMG_8749.jpg",
-       "by": "Alexander Migl",
-       "lic": "CC BY-SA 4.0",
-       "edit": "배경 지움, 번호판 가림"
+      {
+       "name": "제네시스 뉴 G80(RG3)",
+       "sold": 1722,
+       "seg": "국산 준대형 세단 2위",
+       "photo": {
+        "src": "assets/cars/RG3.webp"
+       },
+       "focus": null,
+       "url": "https://www.genesis.com/kr/ko/models/g80"
       },
-      "focus": null,
-      "url": "https://www.kia.com/kr/vehicles/ev5"
-     }
-    ],
-    "중형": [
-     {
-      "rank": 1,
-      "name": "테슬라 모델 Y",
-      "sold": 8762,
-      "seg": "외산 중형 SUV 1위",
-      "photo": {
-       "src": "assets/cars/MY.webp",
-       "page": "https://commons.wikimedia.org/wiki/File:2020_Tesla_Model_Y,_front_8.1.20.jpg",
-       "by": "Kevauto",
-       "lic": "CC BY-SA 4.0",
-       "edit": "배경 지움, 번호판 가림"
+      {
+       "name": "현대 그랜저(GN7)",
+       "sold": 1687,
+       "seg": "국산 준대형 세단 3위",
+       "photo": {
+        "src": "assets/cars/GN7.webp"
+       },
+       "focus": "grandeur",
+       "url": null
+      }
+     ],
+     "대형": [
+      {
+       "name": "기아 뉴 카니발 하이브리드(KA4)",
+       "sold": 4024,
+       "seg": "국산 대형 RV 1위",
+       "photo": {
+        "src": "assets/cars/KA4.webp"
+       },
+       "focus": "carnival",
+       "url": null
       },
-      "focus": "modely",
-      "url": null
-     },
-     {
-      "rank": 2,
-      "name": "기아 뉴 쏘렌토 하이브리드(MQ4)",
-      "sold": 7086,
-      "seg": "국산 중형 SUV 1위",
-      "photo": {
-       "src": "assets/cars/MQ4.webp",
-       "page": "https://commons.wikimedia.org/wiki/File:Kia_Sorento_MQ4_front_view_(South_Korea)_03.png",
-       "by": "차,또바기",
-       "lic": "CC BY-SA 4.0",
-       "edit": "배경 지움, 번호판 가림"
+      {
+       "name": "현대 아이오닉 9",
+       "sold": 1331,
+       "seg": "국산 대형 SUV 1위",
+       "photo": {
+        "src": "assets/cars/IONIQ9.webp"
+       },
+       "focus": null,
+       "url": "https://www.hyundai.com/kr/ko/e/vehicles/ioniq9/intro"
       },
-      "focus": "sorento",
-      "url": null
-     },
-     {
-      "rank": 3,
-      "name": "현대 뉴 쏘나타(DN8)",
-      "sold": 4110,
-      "seg": "국산 중형 세단 1위",
-      "photo": {
-       "src": "assets/cars/DN8.webp",
-       "page": "https://commons.wikimedia.org/wiki/File:2020_Hyundai_Sonata_SEL_(Quartz_White),_front_right.jpg",
-       "by": "Mr.choppers",
-       "lic": "CC BY-SA 3.0",
-       "edit": "배경 지움, 번호판 가림, 좌우 반전"
-      },
-      "focus": "sonata",
-      "url": null
-     }
-    ],
-    "준대형": [
-     {
-      "rank": 1,
-      "name": "현대 그랜저 하이브리드(GN7)",
-      "sold": 2200,
-      "seg": "국산 준대형 세단 1위",
-      "photo": {
-       "src": "assets/cars/GN7.webp",
-       "page": "https://commons.wikimedia.org/wiki/File:01_Hyundai_Grandeur_(GN7).jpg",
-       "by": "Benespit",
-       "lic": "CC BY-SA 4.0",
-       "edit": "배경 지움, 번호판 가림"
-      },
-      "focus": "grandeur",
-      "url": null
-     },
-     {
-      "rank": 2,
-      "name": "제네시스 뉴 G80(RG3)",
-      "sold": 1722,
-      "seg": "국산 준대형 세단 2위",
-      "photo": {
-       "src": "assets/cars/RG3.webp",
-       "page": "https://commons.wikimedia.org/wiki/File:2021_Genesis_G80_(United_States)_front_view_02.png",
-       "by": "Gold Pony",
-       "lic": "CC BY 3.0",
-       "edit": "배경 지움, 번호판 가림"
-      },
-      "focus": null,
-      "url": "https://www.genesis.com/kr/ko/models/g80"
-     },
-     {
-      "rank": 3,
-      "name": "현대 그랜저(GN7)",
-      "sold": 1687,
-      "seg": "국산 준대형 세단 3위",
-      "photo": {
-       "src": "assets/cars/GN7.webp",
-       "page": "https://commons.wikimedia.org/wiki/File:01_Hyundai_Grandeur_(GN7).jpg",
-       "by": "Benespit",
-       "lic": "CC BY-SA 4.0",
-       "edit": "배경 지움, 번호판 가림"
-      },
-      "focus": "grandeur",
-      "url": null
-     }
-    ],
-    "대형": [
-     {
-      "rank": 1,
-      "name": "기아 뉴 카니발 하이브리드(KA4)",
-      "sold": 4024,
-      "seg": "국산 대형 RV 1위",
-      "photo": {
-       "src": "assets/cars/KA4.webp",
-       "page": "https://commons.wikimedia.org/wiki/File:0_Kia_Carnival_(KA4)_1.jpg",
-       "by": "Benespit",
-       "lic": "CC BY-SA 4.0",
-       "edit": "배경 지움, 번호판 가림"
-      },
-      "focus": "carnival",
-      "url": null
-     },
-     {
-      "rank": 2,
-      "name": "현대 아이오닉 9",
-      "sold": 1331,
-      "seg": "국산 대형 SUV 1위",
-      "photo": {
-       "src": "assets/cars/IONIQ9.webp",
-       "page": "https://commons.wikimedia.org/wiki/File:2026_Hyundai_IONIQ_9_Preferred_AWD%2B_Ultimate_Calligraphy_Package_in_Celadon_Grey,_front_right,_2025-09-07.jpg",
-       "by": "Elise240SX",
-       "lic": "CC BY-SA 4.0",
-       "edit": "배경 지움, 번호판 가림, 좌우 반전"
-      },
-      "focus": null,
-      "url": "https://www.hyundai.com/kr/ko/e/vehicles/ioniq9/intro"
-     },
-     {
-      "rank": 3,
-      "name": "현대 팰리세이드 하이브리드(LX3)",
-      "sold": 1001,
-      "seg": "국산 대형 SUV 2위",
-      "photo": {
-       "src": "assets/cars/LX3.webp",
-       "page": "https://commons.wikimedia.org/wiki/File:Hyundai_Palisade_LX3_2.5_HEV_Black.jpg",
-       "by": "Avante2025",
-       "lic": "CC BY 4.0",
-       "edit": "배경 지움, 번호판 가림"
-      },
-      "focus": "palisade",
-      "url": null
-     }
-    ]
-   },
-   "used": [
-    {
-     "rank": 1,
-     "name": "기아 모닝(TA)",
-     "sold": 3069,
-     "seg": "국산 경형",
-     "photo": {
-      "src": "assets/cars/TA.webp",
-      "page": "https://commons.wikimedia.org/wiki/File:2014_Kia_Picanto_Front_1.jpg",
-      "by": "Areaseven",
-      "lic": "CC BY-SA 3.0",
-      "edit": "배경 지움, 번호판 가림"
-     },
-     "focus": "TA",
-     "encar": null,
-     "listings": {
-      "encar": 1732,
-      "kb": 2317
-     }
+      {
+       "name": "현대 팰리세이드 하이브리드(LX3)",
+       "sold": 1001,
+       "seg": "국산 대형 SUV 2위",
+       "photo": {
+        "src": "assets/cars/LX3.webp"
+       },
+       "focus": "palisade",
+       "url": null
+      }
+     ]
     },
-    {
-     "rank": 2,
-     "name": "쉐보레 스파크",
-     "sold": 2781,
-     "seg": "국산 경형",
-     "photo": {
-      "src": "assets/cars/SPARK.webp",
-      "page": "https://commons.wikimedia.org/wiki/File:Chevrolet_Spark_(M400)_Facelift_IMG_9084.jpg",
-      "by": "Alexander-93",
-      "lic": "CC BY-SA 4.0",
-      "edit": "배경 지움, 번호판 가림"
-     },
-     "focus": null,
-     "encar": {
-      "t": "Y",
-      "mk": "쉐보레(GM대우)",
-      "g": "스파크",
-      "m": []
-     },
-     "listings": {
-      "encar": 2244
-     }
+    "kr": {
+     "전체": [
+      {
+       "name": "기아 뉴 쏘렌토 하이브리드(MQ4)",
+       "sold": 7086,
+       "seg": "국산 중형 SUV 1위",
+       "photo": {
+        "src": "assets/cars/MQ4.webp"
+       },
+       "focus": "sorento",
+       "url": null
+      },
+      {
+       "name": "현대 뉴 쏘나타(DN8)",
+       "sold": 4110,
+       "seg": "국산 중형 세단 1위",
+       "photo": {
+        "src": "assets/cars/DN8.webp"
+       },
+       "focus": "sonata",
+       "url": null
+      },
+      {
+       "name": "기아 뉴 카니발 하이브리드(KA4)",
+       "sold": 4024,
+       "seg": "국산 대형 RV 1위",
+       "photo": {
+        "src": "assets/cars/KA4.webp"
+       },
+       "focus": "carnival",
+       "url": null
+      }
+     ],
+     "경형": [
+      {
+       "name": "기아 뉴 레이",
+       "sold": 2608,
+       "seg": "국산 경형 RV 1위",
+       "photo": {
+        "src": "assets/cars/TAM2.webp"
+       },
+       "focus": "ray",
+       "url": null
+      },
+      {
+       "name": "기아 뉴 모닝(JA)",
+       "sold": 2408,
+       "seg": "국산 경형 해치백 1위",
+       "photo": {
+        "src": "assets/cars/JA.webp"
+       },
+       "focus": null,
+       "url": "https://www.kia.com/kr/vehicles/morning"
+      },
+      {
+       "name": "기아 뉴 레이 EV",
+       "sold": 873,
+       "seg": "국산 경형 RV 2위",
+       "photo": {
+        "src": "assets/cars/TAM2.webp"
+       },
+       "focus": "ray",
+       "url": null
+      }
+     ],
+     "소형": [
+      {
+       "name": "기아 EV3",
+       "sold": 2441,
+       "seg": "국산 소형 SUV 1위",
+       "photo": {
+        "src": "assets/cars/EV3.webp"
+       },
+       "focus": null,
+       "url": "https://www.kia.com/kr/vehicles/ev3"
+      },
+      {
+       "name": "기아 셀토스(SP3)",
+       "sold": 2018,
+       "seg": "국산 소형 SUV 2위",
+       "photo": {
+        "src": "assets/cars/SP3.webp"
+       },
+       "focus": "seltos",
+       "url": null
+      },
+      {
+       "name": "현대 코나(SX2)",
+       "sold": 1527,
+       "seg": "국산 소형 SUV 3위",
+       "photo": {
+        "src": "assets/cars/KONA.webp"
+       },
+       "focus": null,
+       "url": "https://www.hyundai.com/kr/ko/e/vehicles/kona/intro"
+      }
+     ],
+     "준중형": [
+      {
+       "name": "현대 뉴 아반떼(CN7)",
+       "sold": 3852,
+       "seg": "국산 준중형 세단 1위",
+       "photo": {
+        "src": "assets/cars/CN7.webp"
+       },
+       "focus": "avante",
+       "url": null
+      },
+      {
+       "name": "기아 뉴 스포티지(NQ5)",
+       "sold": 3190,
+       "seg": "국산 준중형 SUV 1위",
+       "photo": {
+        "src": "assets/cars/NQ5.webp"
+       },
+       "focus": "sportage",
+       "url": null
+      },
+      {
+       "name": "기아 EV5",
+       "sold": 2302,
+       "seg": "국산 준중형 SUV 2위",
+       "photo": {
+        "src": "assets/cars/EV5.webp"
+       },
+       "focus": null,
+       "url": "https://www.kia.com/kr/vehicles/ev5"
+      }
+     ],
+     "중형": [
+      {
+       "name": "기아 뉴 쏘렌토 하이브리드(MQ4)",
+       "sold": 7086,
+       "seg": "국산 중형 SUV 1위",
+       "photo": {
+        "src": "assets/cars/MQ4.webp"
+       },
+       "focus": "sorento",
+       "url": null
+      },
+      {
+       "name": "현대 뉴 쏘나타(DN8)",
+       "sold": 4110,
+       "seg": "국산 중형 세단 1위",
+       "photo": {
+        "src": "assets/cars/DN8.webp"
+       },
+       "focus": "sonata",
+       "url": null
+      },
+      {
+       "name": "현대 싼타페 하이브리드(MX5)",
+       "sold": 2296,
+       "seg": "국산 중형 SUV 2위",
+       "photo": {
+        "src": "assets/cars/MX5.webp"
+       },
+       "focus": "santafe",
+       "url": null
+      }
+     ],
+     "준대형": [
+      {
+       "name": "현대 그랜저 하이브리드(GN7)",
+       "sold": 2200,
+       "seg": "국산 준대형 세단 1위",
+       "photo": {
+        "src": "assets/cars/GN7.webp"
+       },
+       "focus": "grandeur",
+       "url": null
+      },
+      {
+       "name": "제네시스 뉴 G80(RG3)",
+       "sold": 1722,
+       "seg": "국산 준대형 세단 2위",
+       "photo": {
+        "src": "assets/cars/RG3.webp"
+       },
+       "focus": null,
+       "url": "https://www.genesis.com/kr/ko/models/g80"
+      },
+      {
+       "name": "현대 그랜저(GN7)",
+       "sold": 1687,
+       "seg": "국산 준대형 세단 3위",
+       "photo": {
+        "src": "assets/cars/GN7.webp"
+       },
+       "focus": "grandeur",
+       "url": null
+      }
+     ],
+     "대형": [
+      {
+       "name": "기아 뉴 카니발 하이브리드(KA4)",
+       "sold": 4024,
+       "seg": "국산 대형 RV 1위",
+       "photo": {
+        "src": "assets/cars/KA4.webp"
+       },
+       "focus": "carnival",
+       "url": null
+      },
+      {
+       "name": "현대 아이오닉 9",
+       "sold": 1331,
+       "seg": "국산 대형 SUV 1위",
+       "photo": {
+        "src": "assets/cars/IONIQ9.webp"
+       },
+       "focus": null,
+       "url": "https://www.hyundai.com/kr/ko/e/vehicles/ioniq9/intro"
+      },
+      {
+       "name": "현대 팰리세이드 하이브리드(LX3)",
+       "sold": 1001,
+       "seg": "국산 대형 SUV 2위",
+       "photo": {
+        "src": "assets/cars/LX3.webp"
+       },
+       "focus": "palisade",
+       "url": null
+      }
+     ]
     },
-    {
-     "rank": 3,
-     "name": "기아 뉴 레이",
-     "sold": 2756,
-     "seg": "국산 경형 RV",
-     "photo": {
-      "src": "assets/cars/TAM1.webp",
-      "page": "https://commons.wikimedia.org/wiki/File:KIA_THE_NEW_RAY_201806_001.jpg",
-      "by": "CEFICEFI",
-      "lic": "CC BY-SA 4.0",
-      "edit": "배경 지움, 번호판 가림, 좌우 반전"
-     },
-     "focus": "TAM1",
-     "encar": null,
-     "listings": {
-      "encar": 3275,
-      "kb": 2123
-     }
+    "im": {
+     "전체": [
+      {
+       "name": "테슬라 모델 Y",
+       "sold": 8762,
+       "seg": "수입 중형 SUV 1위",
+       "photo": {
+        "src": "assets/cars/MY.webp"
+       },
+       "focus": "modely",
+       "url": null
+      },
+      {
+       "name": "BMW 5시리즈(8세대)",
+       "sold": 2060,
+       "seg": "수입 중형 세단 1위",
+       "photo": {
+        "src": "assets/cars/G60.webp"
+       },
+       "focus": "bmw5",
+       "url": null
+      },
+      {
+       "name": "테슬라 모델 3",
+       "sold": 1301,
+       "seg": "수입 준중형 세단 1위",
+       "photo": {
+        "src": "assets/cars/M3.webp"
+       },
+       "focus": "model3",
+       "url": null
+      }
+     ],
+     "경형": [],
+     "소형": [
+      {
+       "name": "볼보 EX30",
+       "sold": 317,
+       "seg": "수입 소형 SUV 1위",
+       "photo": null,
+       "focus": null,
+       "url": null
+      }
+     ],
+     "준중형": [
+      {
+       "name": "테슬라 모델 3",
+       "sold": 1301,
+       "seg": "수입 준중형 세단 1위",
+       "photo": {
+        "src": "assets/cars/M3.webp"
+       },
+       "focus": "model3",
+       "url": null
+      },
+      {
+       "name": "BMW X3(4세대)",
+       "sold": 743,
+       "seg": "수입 준중형 SUV 1위",
+       "photo": null,
+       "focus": null,
+       "url": null
+      },
+      {
+       "name": "벤츠 GLC(3세대)",
+       "sold": 560,
+       "seg": "수입 준중형 SUV 2위",
+       "photo": null,
+       "focus": null,
+       "url": null
+      }
+     ],
+     "중형": [
+      {
+       "name": "테슬라 모델 Y",
+       "sold": 8762,
+       "seg": "수입 중형 SUV 1위",
+       "photo": {
+        "src": "assets/cars/MY.webp"
+       },
+       "focus": "modely",
+       "url": null
+      },
+      {
+       "name": "BMW 5시리즈(8세대)",
+       "sold": 2060,
+       "seg": "수입 중형 세단 1위",
+       "photo": {
+        "src": "assets/cars/G60.webp"
+       },
+       "focus": "bmw5",
+       "url": null
+      },
+      {
+       "name": "벤츠 E클래스(6세대)",
+       "sold": 1285,
+       "seg": "수입 중형 세단 2위",
+       "photo": {
+        "src": "assets/cars/W214.webp"
+       },
+       "focus": "eclass",
+       "url": null
+      }
+     ],
+     "준대형": [
+      {
+       "name": "토요타 크라운",
+       "sold": 161,
+       "seg": "수입 준대형 세단 1위",
+       "photo": null,
+       "focus": null,
+       "url": null
+      },
+      {
+       "name": "볼보 XC90(2세대)",
+       "sold": 134,
+       "seg": "수입 준대형 SUV 1위",
+       "photo": null,
+       "focus": null,
+       "url": null
+      }
+     ],
+     "대형": [
+      {
+       "name": "테슬라 모델 X",
+       "sold": 508,
+       "seg": "수입 대형 SUV 1위",
+       "photo": null,
+       "focus": null,
+       "url": null
+      },
+      {
+       "name": "BMW 7시리즈(7세대)",
+       "sold": 373,
+       "seg": "수입 대형 세단 1위",
+       "photo": null,
+       "focus": null,
+       "url": null
+      },
+      {
+       "name": "BMW X7",
+       "sold": 355,
+       "seg": "수입 대형 SUV 2위",
+       "photo": null,
+       "focus": null,
+       "url": null
+      }
+     ]
     }
-   ]
+   },
+   "used": {
+    "kr": [
+     {
+      "name": "기아 모닝(TA)",
+      "sold": 3069,
+      "seg": "국산 경형",
+      "cls": "경형",
+      "photo": {
+       "src": "assets/cars/TA.webp"
+      },
+      "focus": "TA",
+      "encar": null,
+      "listings": {
+       "encar": 1732,
+       "kb": 2317
+      }
+     },
+     {
+      "name": "쉐보레 스파크",
+      "sold": 2781,
+      "seg": "국산 경형",
+      "cls": "경형",
+      "photo": {
+       "src": "assets/cars/SPARK.webp"
+      },
+      "focus": null,
+      "encar": {
+       "t": "Y",
+       "mk": "쉐보레(GM대우)",
+       "g": "스파크",
+       "m": []
+      },
+      "listings": {
+       "encar": 2244
+      }
+     },
+     {
+      "name": "기아 뉴 레이",
+      "sold": 2756,
+      "seg": "국산 경형 RV",
+      "cls": "경형",
+      "photo": {
+       "src": "assets/cars/TAM1.webp"
+      },
+      "focus": "TAM1",
+      "encar": null,
+      "listings": {
+       "encar": 3275,
+       "kb": 2123
+      }
+     }
+    ],
+    "im": []
+   }
   }
  ],
- "usedCls": {
-  "경형": [
-   {
-    "rank": 1,
-    "name": "기아 레이 더 뉴 레이",
-    "sold": 5398,
-    "seg": "국산 경차",
-    "photo": {
-     "src": "assets/cars/TAM1.webp",
-     "page": "https://commons.wikimedia.org/wiki/File:KIA_THE_NEW_RAY_201806_001.jpg",
-     "by": "CEFICEFI",
-     "lic": "CC BY-SA 4.0",
-     "edit": "배경 지움, 번호판 가림, 좌우 반전"
-    },
-    "focus": "TAM1",
-    "listings": {
-     "encar": 3275,
-     "kb": 2123
-    }
-   },
-   {
-    "rank": 2,
-    "name": "기아 모닝 2세대 (TA)",
-    "sold": 4049,
-    "seg": "국산 경차",
-    "photo": {
-     "src": "assets/cars/TA.webp",
-     "page": "https://commons.wikimedia.org/wiki/File:2014_Kia_Picanto_Front_1.jpg",
-     "by": "Areaseven",
-     "lic": "CC BY-SA 3.0",
-     "edit": "배경 지움, 번호판 가림"
-    },
-    "focus": "TA",
-    "listings": {
-     "encar": 1732,
-     "kb": 2317
-    }
-   },
-   {
-    "rank": 3,
-    "name": "기아 모닝 3세대 (JA)",
-    "sold": 3824,
-    "seg": "국산 경차",
-    "photo": {
-     "src": "assets/cars/JA.webp",
-     "page": "https://commons.wikimedia.org/wiki/File:2017_Kia_Picanto_GT-Line_S_1.2_Front.jpg",
-     "by": "Vauxford",
-     "lic": "CC BY-SA 4.0",
-     "edit": "배경 지움, 번호판 가림, 좌우 반전"
-    },
-    "focus": "JA",
-    "listings": {
-     "encar": 2050,
-     "kb": 1774
-    }
-   }
-  ],
-  "소형": [
-   {
-    "rank": 1,
-    "name": "기아 셀토스 1세대 (SP2)",
-    "sold": 3135,
-    "seg": "국산 소형 SUV",
-    "photo": {
-     "src": "assets/cars/SP2.webp",
-     "page": "https://commons.wikimedia.org/wiki/File:White_KIA_Seltos_(Front).jpg",
-     "by": "Benespit",
-     "lic": "CC BY-SA 4.0",
-     "edit": "배경 지움, 번호판 가림"
-    },
-    "focus": "SP2",
-    "listings": {
-     "encar": 1823,
-     "kb": 1312
-    }
-   },
-   {
-    "rank": 2,
-    "name": "미니 쿠퍼 3세대 (F56)",
-    "sold": 1419,
-    "seg": "수입 수입 소형 해치백",
-    "photo": {
-     "src": "assets/cars/F56.webp",
-     "page": "https://commons.wikimedia.org/wiki/File:2018_Mini_Cooper_S_Seven_2.0_Front.jpg",
-     "by": "Vauxford",
-     "lic": "CC BY-SA 4.0",
-     "edit": "배경 지움, 번호판 가림, 좌우 반전"
-    },
-    "focus": "F56",
-    "listings": {
-     "encar": 922,
-     "kb": 497
-    }
-   },
-   {
-    "rank": 3,
-    "name": "현대 캐스퍼 일렉트릭",
-    "sold": 397,
-    "seg": "국산 경형 SUV",
-    "photo": {
-     "src": "assets/cars/AX1E.webp",
-     "page": "https://commons.wikimedia.org/wiki/File:Hyundai_Inster_Auto_Zuerich_2024_DSC_6286.jpg",
-     "by": "Alexander-93",
-     "lic": "CC BY-SA 4.0",
-     "edit": "배경 지움, 번호판 가림, 좌우 반전"
-    },
-    "focus": "AX1E",
-    "listings": {
-     "encar": 274,
-     "kb": 123
-    }
-   }
-  ],
-  "준중형": [
-   {
-    "rank": 1,
-    "name": "현대 아반떼 7세대 (CN7)",
-    "sold": 4684,
-    "seg": "국산 준중형 세단",
-    "photo": {
-     "src": "assets/cars/CN7.webp",
-     "page": "https://commons.wikimedia.org/wiki/File:Hyundai_Avante_CN7_Facelift_in_Seoul_2024_front.jpg",
-     "by": "Nord794ub",
-     "lic": "CC BY-SA 4.0",
-     "edit": "배경 지움, 번호판 가림, 좌우 반전"
-    },
-    "focus": "CN7",
-    "listings": {
-     "encar": 2777,
-     "kb": 1907
-    }
-   },
-   {
-    "rank": 2,
-    "name": "현대 아반떼 6세대 (AD)",
-    "sold": 4067,
-    "seg": "국산 준중형 세단",
-    "photo": {
-     "src": "assets/cars/AD.webp",
-     "page": "https://commons.wikimedia.org/wiki/File:20181112_Hyundai_AVANTE_Front-side.png",
-     "by": "Ki hoon",
-     "lic": "CC BY-SA 4.0",
-     "edit": "배경 지움, 번호판 가림"
-    },
-    "focus": "AD",
-    "listings": {
-     "encar": 2101,
-     "kb": 1966
-    }
-   },
-   {
-    "rank": 3,
-    "name": "기아 스포티지 4세대 (QL)",
-    "sold": 2758,
-    "seg": "국산 준중형 SUV",
-    "photo": {
-     "src": "assets/cars/QL.webp",
-     "page": "https://commons.wikimedia.org/wiki/File:Kia_Sportage_(QL)_Front_(cropped).jpg",
-     "by": "Milhouse35",
-     "lic": "CC BY-SA 4.0",
-     "edit": "배경 지움, 번호판 가림, 좌우 반전"
-    },
-    "focus": "QL",
-    "listings": {
-     "encar": 1469,
-     "kb": 1289
-    }
-   }
-  ],
-  "중형": [
-   {
-    "rank": 1,
-    "name": "기아 쏘렌토 4세대 (MQ4)",
-    "sold": 5584,
-    "seg": "국산 중형 SUV",
-    "photo": {
-     "src": "assets/cars/MQ4.webp",
-     "page": "https://commons.wikimedia.org/wiki/File:Kia_Sorento_MQ4_front_view_(South_Korea)_03.png",
-     "by": "차,또바기",
-     "lic": "CC BY-SA 4.0",
-     "edit": "배경 지움, 번호판 가림"
-    },
-    "focus": "MQ4",
-    "listings": {
-     "encar": 3565,
-     "kb": 2019
-    }
-   },
-   {
-    "rank": 2,
-    "name": "벤츠 E-클래스 5세대 (W213)",
-    "sold": 5059,
-    "seg": "수입 수입 준대형 세단",
-    "photo": {
-     "src": "assets/cars/W213.webp",
-     "page": "https://commons.wikimedia.org/wiki/File:Mercedes-Benz_W213_Facelift_IMG_5257.jpg",
-     "by": "Alexander Migl",
-     "lic": "CC BY-SA 4.0",
-     "edit": "배경 지움, 번호판 가림"
-    },
-    "focus": "W213",
-    "listings": {
-     "encar": 3136,
-     "kb": 1923
-    }
-   },
-   {
-    "rank": 3,
-    "name": "현대 싼타페 4세대 (TM)",
-    "sold": 4391,
-    "seg": "국산 중형 SUV",
-    "photo": {
-     "src": "assets/cars/TM.webp",
-     "page": "https://commons.wikimedia.org/wiki/File:Hyundai_Santa_Fe_(TM)_PHEV_FL_1X7A7084.jpg",
-     "by": "Alexander-93",
-     "lic": "CC BY-SA 4.0",
-     "edit": "배경 지움, 번호판 가림"
-    },
-    "focus": "TM",
-    "listings": {
-     "encar": 2543,
-     "kb": 1848
-    }
-   }
-  ],
-  "준대형": [
-   {
-    "rank": 1,
-    "name": "현대 그랜저 6세대 (IG)",
-    "sold": 8594,
-    "seg": "국산 준대형 세단",
-    "photo": {
-     "src": "assets/cars/IG.webp",
-     "page": "https://commons.wikimedia.org/wiki/File:20191121_Hyundai_GRANDEUR_front-side.jpg",
-     "by": "Ki hoon",
-     "lic": "CC BY-SA 4.0",
-     "edit": "배경 지움, 번호판 가림, 좌우 반전"
-    },
-    "focus": "IG",
-    "listings": {
-     "encar": 4911,
-     "kb": 3683
-    }
-   },
-   {
-    "rank": 2,
-    "name": "제네시스 G80 2세대 (RG3)",
-    "sold": 4565,
-    "seg": "국산 준대형 고급 세단",
-    "photo": {
-     "src": "assets/cars/RG3.webp",
-     "page": "https://commons.wikimedia.org/wiki/File:2021_Genesis_G80_(United_States)_front_view_02.png",
-     "by": "Gold Pony",
-     "lic": "CC BY 3.0",
-     "edit": "배경 지움, 번호판 가림"
-    },
-    "focus": "RG3",
-    "listings": {
-     "encar": 2881,
-     "kb": 1684
-    }
-   },
-   {
-    "rank": 3,
-    "name": "현대 그랜저 7세대 (GN7)",
-    "sold": 3158,
-    "seg": "국산 준대형 세단",
-    "photo": {
-     "src": "assets/cars/GN7.webp",
-     "page": "https://commons.wikimedia.org/wiki/File:01_Hyundai_Grandeur_(GN7).jpg",
-     "by": "Benespit",
-     "lic": "CC BY-SA 4.0",
-     "edit": "배경 지움, 번호판 가림"
-    },
-    "focus": "GN7",
-    "listings": {
-     "encar": 2078,
-     "kb": 1080
-    }
-   }
-  ],
-  "대형": []
- },
  "used": [
   {
    "key": "JA",
@@ -6879,6 +8421,7 @@ window.CARS = {
    "price": 1546,
    "size": "경형 SUV",
    "cls": "경형",
+   "origin": "국내",
    "ages": [
     "20대",
     "30대"
@@ -6931,6 +8474,7 @@ window.CARS = {
    "price": 1480,
    "size": "경차",
    "cls": "경형",
+   "origin": "국내",
    "ages": [
     "20대",
     "30대"
@@ -6983,6 +8527,7 @@ window.CARS = {
    "price": 2398,
    "size": "준중형 세단",
    "cls": "준중형",
+   "origin": "국내",
    "ages": [
     "20대",
     "30대"
@@ -7035,6 +8580,7 @@ window.CARS = {
    "price": 2575,
    "size": "소형 SUV",
    "cls": "소형",
+   "origin": "국내",
    "ages": [
     "20대",
     "30대"
@@ -7087,6 +8633,7 @@ window.CARS = {
    "price": 2763,
    "size": "중형 세단",
    "cls": "중형",
+   "origin": "국내",
    "ages": [
     "20대",
     "30대",
@@ -7140,6 +8687,7 @@ window.CARS = {
    "price": 2876,
    "size": "중형 세단",
    "cls": "중형",
+   "origin": "국내",
    "ages": [
     "30대",
     "40대 이상"
@@ -7192,6 +8740,7 @@ window.CARS = {
    "price": 2944,
    "size": "준중형 SUV",
    "cls": "준중형",
+   "origin": "국내",
    "ages": [
     "30대",
     "40대 이상"
@@ -7244,6 +8793,7 @@ window.CARS = {
    "price": 3140,
    "size": "준중형 SUV",
    "cls": "준중형",
+   "origin": "국내",
    "ages": [
     "30대"
    ],
@@ -7295,6 +8845,7 @@ window.CARS = {
    "price": 3641,
    "size": "중형 SUV",
    "cls": "중형",
+   "origin": "국내",
    "ages": [
     "30대",
     "40대 이상"
@@ -7347,6 +8898,7 @@ window.CARS = {
    "price": 3657,
    "size": "중형 SUV",
    "cls": "중형",
+   "origin": "국내",
    "ages": [
     "30대",
     "40대 이상"
@@ -7399,6 +8951,7 @@ window.CARS = {
    "price": 4245,
    "size": "준대형 세단",
    "cls": "준대형",
+   "origin": "국내",
    "ages": [
     "40대 이상"
    ],
@@ -7450,6 +9003,7 @@ window.CARS = {
    "price": 4999,
    "size": "수입 전기 SUV",
    "cls": "중형",
+   "origin": "해외",
    "ages": [
     "30대"
    ],
@@ -7501,6 +9055,7 @@ window.CARS = {
    "price": 7750,
    "size": "수입 중형 세단",
    "cls": "중형",
+   "origin": "해외",
    "ages": [
     "40대 이상"
    ],
@@ -7552,6 +9107,7 @@ window.CARS = {
    "price": 7200,
    "size": "수입 중형 세단",
    "cls": "중형",
+   "origin": "해외",
    "ages": [
     "40대 이상"
    ],
@@ -7603,6 +9159,7 @@ window.CARS = {
    "price": 6080,
    "size": "수입 준중형 세단",
    "cls": "준중형",
+   "origin": "해외",
    "ages": [
     "30대"
    ],
@@ -7654,6 +9211,7 @@ window.CARS = {
    "price": 6510,
    "size": "수입 준중형 세단",
    "cls": "준중형",
+   "origin": "해외",
    "ages": [
     "30대"
    ],
@@ -7705,6 +9263,7 @@ window.CARS = {
    "price": 4699,
    "size": "수입 준중형 전기 세단",
    "cls": "준중형",
+   "origin": "해외",
    "ages": [
     "20대",
     "30대"
@@ -7757,6 +9316,7 @@ window.CARS = {
    "price": 3686,
    "size": "대형 RV",
    "cls": "대형",
+   "origin": "국내",
    "ages": [
     "30대",
     "40대 이상"
@@ -7803,6 +9363,7 @@ window.CARS = {
    "price": 4478,
    "size": "대형 SUV",
    "cls": "대형",
+   "origin": "국내",
    "ages": [
     "40대 이상"
    ],

@@ -573,6 +573,7 @@
   ];
   const SORTS = { views: '조회순', pop: '인기순', price: '금액순' };
   const TABS = { kr: '국산차', im: '수입차', tips: '구입 팁', how: '구입 방법', scam: '사기 예방' };
+  const NEWTABS = { all: '전체', kr: '국산차', im: '수입차' };
 
   const play = '<svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M8 5.5v13l10.5-6.5z"/></svg>';
   const vids = (list) => `<ul class="vids">${list.map((v) => `
@@ -700,82 +701,94 @@
       </figure>`;
   }
 
-  /* 맨 위: 월별 신차 판매, 중고차 거래 베스트 3. 차급은 네이버 분류(전체, 경형, 소형, 준중형, 중형, 준대형, 대형) */
+  /* 맨 위: 월별 판매순위. 신차(네이버 판매량)와 중고차(카이즈유 실거래), 국산과 수입, 차급(네이버 분류) */
   const CLS = ['전체', '경형', '소형', '준중형', '중형', '준대형', '대형'];
+  const ORGS = [['all', '전체'], ['kr', '국산'], ['im', '수입']];
   const monthName = (ym) => `${ym.slice(0, 4)}년 ${+ym.slice(5)}월`;
+  const NO_PHOTO = '<span class="bcard__photo bcard__photo--none" aria-hidden="true"><svg viewBox="0 0 120 70" focusable="false"><path d="M14 50h92v-9c0-4-3-7-7-8l-16-4-13-12c-2-2-5-3-8-3H42c-4 0-7 2-9 5l-8 11-7 2c-3 1-5 4-5 7z"/><circle cx="34" cy="52" r="9"/><circle cx="88" cy="52" r="9"/></svg></span>';
   function bestSection() {
     const B = CARS.best || [];
     if (!B.length) return '';
+    const group = (cls, label, items, key) => `<div class="${cls}" role="group" aria-label="${label}">${items.map(([v, t], i) => `<button class="${cls}btn" type="button" data-${key}="${v}" aria-pressed="${i ? 'false' : 'true'}">${t}</button>`).join('')}</div>`;
     return `
       <section class="best" aria-labelledby="best-h" data-best>
         <div class="best__head">
-          <h2 id="best-h"><span data-best-month>${monthName(B[0].ym)}</span> 베스트 3</h2>
+          <h2 id="best-h">판매순위</h2>
           <div class="best__months" role="group" aria-label="달 고르기">${B.map((m, i) => `<button class="best__month" type="button" data-ym="${m.ym}" aria-pressed="${i ? 'false' : 'true'}">${+m.ym.slice(5)}월</button>`).join('')}</div>
         </div>
-        <div class="best__cls" role="group" aria-label="차급 고르기">${CLS.map((c, i) => `<button class="best__clsbtn" type="button" data-cls="${c}" aria-pressed="${i ? 'false' : 'true'}">${c}</button>`).join('')}</div>
-        <div class="best__cols">
-          <section class="best__col" aria-labelledby="best-new-h">
-            <h3 id="best-new-h">신차 판매</h3>
-            <ol class="best__list" data-best-list="fresh"></ol>
-            <p class="fineprint">네이버 국내 승용 자동차 판매량(국산과 수입). 정보 제공 카이즈유 데이터 연구소.</p>
-          </section>
-          <section class="best__col" aria-labelledby="best-used-h">
-            <h3 id="best-used-h" data-best-used-h>중고차 거래</h3>
-            <ol class="best__list" data-best-list="used"></ol>
-            <p class="fineprint" data-best-used-note></p>
-          </section>
+        ${group('best__kind', '신차와 중고차', [['fresh', '신차 판매'], ['used', '중고차 거래']], 'kind')}
+        <div class="best__filters">
+          ${group('best__org', '국산과 수입', ORGS, 'org')}
+          ${group('best__cls', '차급 고르기', CLS.map((c) => [c, c]), 'cls')}
         </div>
+        <p class="best__now" aria-live="polite" data-best-now></p>
+        <ol class="best__list" data-best-list></ol>
+        <p class="fineprint" data-best-note></p>
       </section>`;
   }
-  function bestCard(c, kind) {
-    const href = c.focus ? `#/singyu/car?kind=${kind === 'fresh' ? 'new' : `used&tab=${/^수입/.test(c.seg) ? 'im' : 'kr'}`}&focus=${c.focus}` : (c.url || (c.encar ? SITES.encar(c.encar) : '#'));
+  function bestCard(c, i, kind) {
+    const tab = /^수입/.test(c.seg) ? 'im' : 'kr';
+    const href = c.focus ? `#/singyu/car?kind=${kind === 'fresh' ? 'new' : `used&tab=${tab}`}&focus=${c.focus}`
+      : (c.url || (c.encar ? SITES.encar(c.encar) : `https://search.naver.com/search.naver?query=${encodeURIComponent(c.name)}`));
     const ext = !c.focus;
-    const live = c.listings && kind !== 'stock' ? `<span class="bcard__live">지금 매물 ${['encar', 'kb'].filter((k) => c.listings[k]).map((k) => `${SITE_NAMES[k]} ${num(c.listings[k])}대`).join(', ')}</span>` : '';
-    const stock = kind === 'stock' ? `<span class="bcard__live">엔카 ${num(c.listings.encar)}대, KB차차차 ${num(c.listings.kb)}대</span>` : '';
+    const L = c.listings || {};
+    const live = Object.keys(L).some((k) => L[k]) ? `<span class="bcard__live">지금 매물 ${['encar', 'kb'].filter((k) => L[k]).map((k) => `${SITE_NAMES[k]} ${num(L[k])}대`).join(', ')}</span>` : '';
     return `
       <li>
         <a class="bcard" href="${esc(href)}"${ext ? NEW_TAB : ''}>
-          <span class="bcard__rank num">${c.rank}</span>
+          <span class="bcard__rank num">${i + 1}</span>
           <span class="bcard__text">
             <b class="bcard__name">${esc(c.name)}${ext ? EXT : ''}</b>
             <span class="bcard__sold">${kind === 'stock' ? '매물 ' : ''}<span class="num" data-count>${num(c.sold)}</span>대</span>
             <span class="bcard__seg">${esc(c.seg)}</span>
-            ${live}${stock}
+            ${live}
           </span>
-          ${c.photo ? `<img class="bcard__photo" src="${esc(c.photo.src)}" alt="" width="720" height="420" loading="lazy">` : ''}
+          ${c.photo ? `<img class="bcard__photo" src="${esc(c.photo.src)}" alt="" width="720" height="420" loading="lazy">` : NO_PHOTO}
         </a>
       </li>`;
   }
   function bindBest(root) {
     const box = $('[data-best]', root);
     if (!box) return;
-    let ym = CARS.best[0].ym;
-    let cls = '전체';
-    const fill = (k, items, kind) => {
-      const list = $(`[data-best-list="${k}"]`, box);
-      list.innerHTML = items.length ? items.map((c) => bestCard(c, kind)).join('') : '<li class="best__none">이 차급은 아직 목록에 없습니다.</li>';
-      $$('li', list).forEach((li, i) => { li.dataset.reveal = ''; li.style.setProperty('--i', i); });
+    const st = { ym: CARS.best[0].ym, kind: 'fresh', org: 'all', cls: '전체' };
+    const ORG_NAME = { all: '', kr: '국산 ', im: '수입 ' };
+    /* 중고차 실거래 순위가 공개되지 않은 차급: 지금 엔카와 KB차차차 매물이 많은 세대 */
+    const stock = (org, cls) => CARS.used
+      .filter((u) => (org === 'all' || u.origin === (org === 'im' ? '해외' : '국내')) && (cls === '전체' || u.cls === cls))
+      .sort((a, b) => (b.stat.encar + b.stat.kb) - (a.stat.encar + a.stat.kb)).slice(0, 3)
+      .map((u) => ({ name: `${u.name} ${u.gen.replace(/^\S+\s/, '')}`, sold: u.stat.encar + u.stat.kb, seg: `${u.origin === '국내' ? '국산' : '수입'} ${u.size}`, photo: u.photo, focus: u.key, listings: { encar: u.stat.encar, kb: u.stat.kb } }));
+    const pick = (m) => {
+      if (st.kind === 'fresh') return { items: (m.fresh[st.org] || {})[st.cls] || [], kind: 'fresh' };
+      const pool = st.org === 'all' ? [...m.used.kr, ...m.used.im].sort((a, b) => b.sold - a.sold) : m.used[st.org];
+      const items = pool.filter((u) => st.cls === '전체' || u.cls === st.cls).slice(0, 3);
+      if (items.length) return { items, kind: 'used' };
+      if (st.org === 'im' && !m.used.im.length && st.cls === '전체') return { items: [], kind: 'used', none: '이달 수입 중고차 순위는 공개된 자료를 찾지 못했습니다.' };
+      return { items: stock(st.org, st.cls), kind: 'stock' };
     };
     const draw = () => {
-      const m = CARS.best.find((x) => x.ym === ym) || CARS.best[0];
-      $('[data-best-month]', box).textContent = monthName(m.ym);
-      fill('fresh', (m.fresh[cls] || []), 'fresh');
-      const all = cls === '전체';
-      fill('used', all ? m.used : ((CARS.usedCls || {})[cls] || []), all ? 'used' : 'stock');
-      $('[data-best-used-h]', box).textContent = all ? '중고차 거래' : '중고차 매물';
-      $('[data-best-used-note]', box).textContent = all
-        ? `카이즈유 데이터 연구소가 국토교통부 이전등록 자료로 센 그달 실거래 대수(국산 승용). 지금 매물 수는 엔카와 KB차차차, ${CARS.checked || ''} 기준.`
-        : `차급별 중고 실거래 순위는 공개 자료가 없어, 지금 엔카와 KB차차차에 올라온 매물이 많은 세대 순입니다(${CARS.checked || ''} 기준, 달과 무관).`;
-      $$('.best__month', box).forEach((b) => b.setAttribute('aria-pressed', String(b.dataset.ym === m.ym)));
-      $$('.best__clsbtn', box).forEach((b) => b.setAttribute('aria-pressed', String(b.dataset.cls === cls)));
+      const m = CARS.best.find((x) => x.ym === st.ym) || CARS.best[0];
+      const r = pick(m);
+      const list = $('[data-best-list]', box);
+      list.innerHTML = r.items.length ? r.items.map((c, i) => bestCard(c, i, r.kind)).join('')
+        : `<li class="best__none">${r.none || (st.kind === 'fresh' ? `이달 ${ORG_NAME[st.org]}${st.cls} 신차 판매 기록이 없습니다.` : '이 차급은 아직 목록에 없습니다.')}</li>`;
+      $$('li', list).forEach((li, i) => { li.dataset.reveal = ''; li.style.setProperty('--i', i); });
+      const what = r.kind === 'stock' ? '중고차 매물' : (st.kind === 'fresh' ? '신차 판매' : '중고차 거래');
+      $('[data-best-now]', box).textContent = `${r.kind === 'stock' ? '지금' : monthName(m.ym)} · ${ORG_NAME[st.org]}${st.cls === '전체' ? '' : `${st.cls} `}${what}`;
+      $('[data-best-note]', box).textContent = st.kind === 'fresh'
+        ? '네이버 국내 승용 자동차 판매량(정보 제공 카이즈유 데이터 연구소). 수입은 네이버 분류의 외산 차입니다.'
+        : r.kind === 'stock'
+          ? `이 차급의 그달 중고차 실거래 순위는 공개되지 않아, 지금 엔카와 KB차차차에 매물이 많은 세대 순으로 보여 줍니다(${CARS.checked || ''} 기준, 달과 무관).`
+          : '카이즈유 데이터 연구소가 국토교통부 이전등록 자료(매도, 알선, 개인 거래)로 센 그달 실거래 대수. 언론에 공개된 국산 상위 3~5위, 수입 상위 3위 안에서 고릅니다.';
+      [['month', 'ym'], ['kindbtn', 'kind'], ['orgbtn', 'org'], ['clsbtn', 'cls']].forEach(([c, k]) => $$(`.best__${c}`, box).forEach((b) => b.setAttribute('aria-pressed', String(b.dataset[k] === st[k]))));
       motion(box);
     };
     box.addEventListener('click', (e) => {
-      const mb = e.target.closest('.best__month');
-      const cb = e.target.closest('.best__clsbtn');
-      if (mb) ym = mb.dataset.ym;
-      if (cb) cls = cb.dataset.cls;
-      if (mb || cb) draw();
+      const b = e.target.closest('button');
+      if (!b || !box.contains(b)) return;
+      const k = ['ym', 'kind', 'org', 'cls'].find((x) => b.dataset[x] != null);
+      if (!k) return;
+      st[k] = b.dataset[k];
+      draw();
     });
     draw();
   }
@@ -902,7 +915,7 @@
         return `#/${path}${q ? `?${q}` : ''}`;
       };
       const remember = () => {
-        const keep = s.kind === 'new' ? { kind: 'new', cls: s.cls, age: s.age, band: s.band, sort: s.sort, dir: s.dir } : { kind: 'used', tab: s.tab, cls: s.cls, age: s.age, band: s.band, sort: s.sort, dir: s.dir };
+        const keep = s.kind === 'new' ? { kind: 'new', tab: s.tab === 'all' ? '' : s.tab, cls: s.cls, age: s.age, band: s.band, sort: s.sort, dir: s.dir } : { kind: 'used', tab: s.tab, cls: s.cls, age: s.age, band: s.band, sort: s.sort, dir: s.dir };
         if (s.kind === 'used' && !['kr', 'im'].includes(s.tab)) ['cls', 'age', 'band', 'sort', 'dir'].forEach((k) => delete keep[k]);
         history.replaceState(null, '', href(keep));
       };
@@ -910,7 +923,7 @@
       /* 주소의 ?조건 을 읽는다. 예전 주소(kind=신차, 중고)도 받는다 */
       const read = (p) => {
         const kind = { 신차: 'new', 중고: 'used' }[p.get('kind')] || (['new', 'used'].includes(p.get('kind')) ? p.get('kind') : 'used');
-        const tab = TABS[p.get('tab')] ? p.get('tab') : 'kr';
+        const tab = kind === 'new' ? (NEWTABS[p.get('tab')] ? p.get('tab') : 'all') : (TABS[p.get('tab')] ? p.get('tab') : 'kr');
         const pick = (k, list) => (list.includes(p.get(k)) ? p.get(k) : '');
         return {
           kind, tab,
@@ -920,7 +933,7 @@
         };
       };
 
-      const items = () => (s.kind === 'new' ? CARS.fresh : CARS.used.filter((u) => u.origin === (s.tab === 'im' ? '해외' : '국내')));
+      const items = () => (s.kind === 'new' ? CARS.fresh.filter((c) => s.tab === 'all' || c.origin === (s.tab === 'im' ? '해외' : '국내')) : CARS.used.filter((u) => u.origin === (s.tab === 'im' ? '해외' : '국내')));
       const priceOf = (c) => (s.kind === 'new' ? c.price : c.price.p50);
       const keyOf = (c) => (s.kind === 'new' ? c.id : c.key);
       const metric = (c) => {
@@ -931,8 +944,10 @@
 
       const drawNav = () => {
         kinds.innerHTML = [['new', '신차'], ['used', '중고차']].map(([k, t]) => `<a class="kind" href="${href({ kind: k })}"${s.kind === k ? ' aria-current="page"' : ''}>${t}<span class="kind__n num">${k === 'new' ? CARS.fresh.length : CARS.used.length}</span></a>`).join('');
-        usednav.hidden = s.kind !== 'used';
-        usednav.innerHTML = s.kind === 'used' ? `<ul>${Object.entries(TABS).map(([k, t]) => `<li><a class="usednav__item${['kr', 'im'].includes(k) ? '' : ' usednav__item--guide'}" href="${href({ kind: 'used', tab: k })}"${s.tab === k ? ' aria-current="page"' : ''}>${t}</a></li>`).join('')}</ul>` : '';
+        const isNew = s.kind === 'new';
+        usednav.classList.toggle('usednav--new', isNew);
+        usednav.setAttribute('aria-label', isNew ? '국산과 수입' : '중고차 메뉴');
+        usednav.innerHTML = `<ul>${Object.entries(isNew ? NEWTABS : TABS).map(([k, t]) => `<li><a class="usednav__item${isNew || ['kr', 'im'].includes(k) ? '' : ' usednav__item--guide'}" href="${href({ kind: s.kind, tab: isNew && k === 'all' ? '' : k })}"${s.tab === k ? ' aria-current="page"' : ''}>${t}${isNew ? `<span class="kind__n num">${CARS.fresh.filter((c) => k === 'all' || c.origin === (k === 'im' ? '해외' : '국내')).length}</span>` : ''}</a></li>`).join('')}</ul>`;
       };
 
       /* 목록 그리기: 처음 한 번 카드를 만들고, 조건이 바뀌면 숨기고 순서만 바꾼다(움직임 포함) */
@@ -966,7 +981,7 @@
       };
 
       const drawView = () => {
-        const key = s.kind === 'new' ? 'new' : s.tab;
+        const key = s.kind === 'new' ? `new-${s.tab}` : s.tab;
         if (key !== shownView) {
           const isList = s.kind === 'new' || ['kr', 'im'].includes(s.tab);
           view.innerHTML = isList ? listView(s) : guideView(s.tab);
@@ -1014,6 +1029,7 @@
         if (focus) {
           const card = $(`[data-key="${CSS.escape(focus)}"]`, view);
           if (card && card.hidden) { s.cls = ''; s.age = ''; s.band = ''; drawList(false); }
+          if (!card && s.kind === 'new' && s.tab !== 'all') return draw(new URLSearchParams({ kind: 'new', focus }));
           remember();
           if (card) {
             card.classList.add('is-in', 'is-focus');
