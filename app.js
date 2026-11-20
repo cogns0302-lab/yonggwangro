@@ -648,6 +648,27 @@
       </li>`;
   }
 
+  /* 신차 트림과 선택품목 가격(만원). 엔진이 여럿이면 탭으로 고른다 */
+  function lineup(c) {
+    const L = c.lineup;
+    if (!L || !L.groups.length) return '';
+    const row = (x) => `<span class="lineup__name">${esc(x.name)}</span><span class="lineup__price"><b class="num">${num(x.price)}</b>만원${x.opts.length ? `<small>선택품목 ${x.opts.length}개</small>` : ''}</span>`;
+    const trims = L.groups.reduce((s, g) => s + g.trims.length, 0);
+    const hev = L.groups.some((g) => /하이브리드/.test(g.name));
+    return `
+      <details class="lineup" data-lineup>
+        <summary>트림 ${trims}개와 선택품목 가격</summary>
+        ${L.groups.length > 1 ? `<div class="lineup__tabs" role="group" aria-label="엔진과 인승">${L.groups.map((g, i) => `<button type="button" class="lineup__tab" data-lineup-tab="${i}" aria-pressed="${i ? 'false' : 'true'}">${esc(g.name)}</button>`).join('')}</div>` : ''}
+        ${L.groups.map((g, i) => `
+          <ul class="lineup__trims" data-lineup-panel="${i}"${i ? ' hidden' : ''}>
+            ${g.trims.map((x) => `<li>${x.opts.length
+              ? `<details class="lineup__trim"><summary>${row(x)}</summary><ul class="lineup__opts">${x.opts.map(([n, p]) => `<li><span>${esc(n)}</span><b>+${num(p)}만원</b></li>`).join('')}</ul></details>`
+              : `<div class="lineup__trim lineup__trim--flat">${row(x)}</div>`}</li>`).join('')}
+          </ul>`).join('')}
+        <p class="fineprint">${esc(L.date)} 기준 공식 가격(부가세 포함, 탁송료와 등록비 별도).${hev ? ' 하이브리드는 세제혜택 후 가격이 나와 있으면 그 값입니다.' : ''} ${esc(L.note || '')} <a href="${esc(L.src)}"${NEW_TAB}>공식 가격표${EXT}</a></p>
+      </details>`;
+  }
+
   function newCard(c) {
     return `
       <li class="car car--new" data-key="${esc(c.id)}" data-reveal>
@@ -658,6 +679,7 @@
           <div class="car__rate"><p class="pick__stars">${stars(c.stars)}</p><p class="car__why">${esc(c.why)}</p></div>
           <p class="car__feature">${esc(c.desc)}</p>
           <p class="price__head price__head--new"><span>시작 가격</span><b><span class="num" data-count>${num(c.price)}</span>만원부터</b></p>
+          ${lineup(c)}
         </div>
         <ul class="car__links"><li><a class="btn" href="${esc(c.buy)}"${NEW_TAB}><span class="visually-hidden">${esc(c.name)} </span>공식 홈페이지에서 보기${EXT}</a></li></ul>
         <details class="car__more" open>
@@ -1043,6 +1065,13 @@
 
       /* 영상: 누르면 그 자리에서 재생한다(유튜브 쿠키 없는 주소) */
       root.addEventListener('click', (e) => {
+        const tab = e.target.closest('[data-lineup-tab]');
+        if (tab) {
+          const box = tab.closest('[data-lineup]');
+          $$('[data-lineup-tab]', box).forEach((x) => x.setAttribute('aria-pressed', String(x === tab)));
+          $$('[data-lineup-panel]', box).forEach((p) => { p.hidden = p.dataset.lineupPanel !== tab.dataset.lineupTab; });
+          return;
+        }
         const b = e.target.closest('[data-yt]');
         if (!b) return;
         const frame = document.createElement('iframe');

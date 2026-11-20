@@ -695,3 +695,29 @@ a.door__row:hover { background: var(--color-paper-2); }
 }
 .usednav--new li:nth-child(3) { margin-left: 0; padding-left: 0; border-left: 0; }
 .usednav .kind__n { background: var(--color-paper-3); }
+
+/* 자동차: 신차 트림과 선택품목 가격 */
+.lineup { margin-top: var(--space-sm); border: var(--rule-hair) solid var(--color-rule); background: var(--color-paper); }
+.lineup > summary { display: flex; align-items: center; justify-content: space-between; gap: var(--space-xs); min-height: 3rem; padding: 0 var(--space-md); font-weight: 700; cursor: pointer; list-style: none; }
+.lineup > summary::-webkit-details-marker { display: none; }
+.lineup > summary::after { content: "+"; font: 700 var(--text-lg)/1 var(--font-figure); color: var(--color-field); }
+.lineup[open] > summary::after { content: "−"; }
+.lineup[open] > summary { border-bottom: var(--rule-hair) solid var(--color-rule); }
+.lineup__tabs { display: flex; flex-wrap: wrap; gap: var(--space-2xs); padding: var(--space-sm) var(--space-md) 0; }
+.lineup__tab { min-height: 2.5rem; padding: 0 var(--space-sm); border: var(--rule-hair) solid var(--color-muted); background: var(--color-paper); color: var(--color-ink); font: 700 var(--text-sm)/1 var(--font-body); cursor: pointer; }
+.lineup__tab:hover { background: var(--color-paper-3); }
+.lineup__tab[aria-pressed="true"] { border-color: var(--color-ink); background: var(--color-ink); color: var(--color-paper); }
+.lineup__trims { margin: 0; padding: var(--space-xs) var(--space-md) 0; list-style: none; }
+.lineup__trims > li + li { border-top: var(--rule-hair) solid var(--color-rule); }
+.lineup__trim > summary, .lineup__trim--flat { display: flex; align-items: center; justify-content: space-between; gap: var(--space-sm); min-height: 2.75rem; padding: var(--space-2xs) 0; cursor: pointer; list-style: none; }
+.lineup__trim--flat { cursor: default; }
+.lineup__trim > summary::-webkit-details-marker { display: none; }
+.lineup__name { font-weight: 700; }
+.lineup__price { display: inline-flex; align-items: baseline; gap: var(--space-2xs); flex-wrap: wrap; justify-content: flex-end; text-align: right; }
+.lineup__price b { font: 700 var(--text-lg)/1 var(--font-figure); font-variant-numeric: tabular-nums; }
+.lineup__price small { flex-basis: 100%; color: var(--color-field); font-size: var(--text-xs); font-weight: 700; }
+.lineup__trim[open] .lineup__price small { color: var(--color-muted); }
+.lineup__opts { display: grid; gap: var(--space-3xs); margin: 0 0 var(--space-sm); padding: var(--space-sm); background: var(--color-paper-2); list-style: none; }
+.lineup__opts li { display: flex; justify-content: space-between; gap: var(--space-sm); font-size: var(--text-sm); }
+.lineup__opts b { flex: none; font-variant-numeric: tabular-nums; }
+.lineup .fineprint { margin: 0; padding: var(--space-sm) var(--space-md) var(--space-md); }
