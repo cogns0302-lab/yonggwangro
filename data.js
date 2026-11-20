@@ -82,6 +82,15 @@ window.SITE = {
         { id: 'jobs', name: '기간제, 강사 구인구직', desc: '전국 교육청 채용 공고 모음, 바로쌤', url: 'https://barossam.com/?utm_source=kakao&utm_medium=openchat&utm_campaign=launch_202608&utm_content=tk' },
       ],
     },
+    {
+      id: 'haengjeong',
+      name: '행정실',
+      desc: '월급 계산과 자산 늘리기.',
+      menus: [
+        { id: 'pay', name: '급여 계산', desc: '봉급, 수당, 공제' },
+        { id: 'wealth', name: '자산 증식', desc: '재테크, 부동산, 주식' },
+      ],
+    },
   ],
 
   /*
@@ -92,7 +101,7 @@ window.SITE = {
    */
   org: {
     top: '교사개조 용광로',
-    side: ['gyomu', 'hongbo', 'cheyuk', 'pool'],
+    side: ['gyomu', 'hongbo', 'cheyuk', 'pool', 'haengjeong'],
     main: ['imyong', 'singyu', 'special'],
   },
 
