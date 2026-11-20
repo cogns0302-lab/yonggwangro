@@ -714,7 +714,7 @@
       <section class="best" aria-labelledby="best-h" data-best>
         <div class="best__head">
           <h2 id="best-h">판매순위</h2>
-          <div class="best__months" role="group" aria-label="달 고르기">${B.map((m, i) => `<button class="best__month" type="button" data-ym="${m.ym}" aria-pressed="${i ? 'false' : 'true'}">${+m.ym.slice(5)}월</button>`).join('')}</div>
+          <div class="best__months" role="group" aria-label="달 고르기">${B.map((m, i) => `<button class="best__month" type="button" data-ym="${m.ym}" aria-pressed="false">${m.label ? `${m.ym}년 누적` : `${+m.ym.slice(5)}월`}</button>`).join('')}</div>
         </div>
         ${group('best__kind', '신차와 중고차', [['fresh', '신차 판매'], ['used', '중고차 거래']], 'kind')}
         <div class="best__filters">
@@ -750,7 +750,7 @@
   function bindBest(root) {
     const box = $('[data-best]', root);
     if (!box) return;
-    const st = { ym: CARS.best[0].ym, kind: 'fresh', org: 'all', cls: '전체' };
+    const st = { ym: (CARS.best.find((x) => !x.label) || CARS.best[0]).ym, kind: 'fresh', org: 'all', cls: '전체' };
     const ORG_NAME = { all: '', kr: '국산 ', im: '수입 ' };
     /* 중고차 실거래 순위가 공개되지 않은 차급: 지금 엔카와 KB차차차 매물이 많은 세대 */
     const stock = (org, cls) => CARS.used
@@ -773,12 +773,12 @@
         : `<li class="best__none">${r.none || (st.kind === 'fresh' ? `이달 ${ORG_NAME[st.org]}${st.cls} 신차 판매 기록이 없습니다.` : '이 차급은 아직 목록에 없습니다.')}</li>`;
       $$('li', list).forEach((li, i) => { li.dataset.reveal = ''; li.style.setProperty('--i', i); });
       const what = r.kind === 'stock' ? '중고차 매물' : (st.kind === 'fresh' ? '신차 판매' : '중고차 거래');
-      $('[data-best-now]', box).textContent = `${r.kind === 'stock' ? '지금' : monthName(m.ym)} · ${ORG_NAME[st.org]}${st.cls === '전체' ? '' : `${st.cls} `}${what}`;
+      $('[data-best-now]', box).textContent = `${r.kind === 'stock' ? '지금' : (m.label ? m.label[st.kind] : monthName(m.ym))} · ${ORG_NAME[st.org]}${st.cls === '전체' ? '' : `${st.cls} `}${what}`;
       $('[data-best-note]', box).textContent = st.kind === 'fresh'
-        ? '네이버 국내 승용 자동차 판매량(정보 제공 카이즈유 데이터 연구소). 수입은 네이버 분류의 외산 차입니다.'
+        ? `네이버 국내 승용 자동차 판매량(정보 제공 카이즈유 데이터 연구소)${m.label ? '의 달마다 대수를 더한 값' : ''}. 수입은 네이버 분류의 외산 차입니다.`
         : r.kind === 'stock'
           ? `이 차급의 그달 중고차 실거래 순위는 공개되지 않아, 지금 엔카와 KB차차차에 매물이 많은 세대 순으로 보여 줍니다(${CARS.checked || ''} 기준, 달과 무관).`
-          : '카이즈유 데이터 연구소가 국토교통부 이전등록 자료(매도, 알선, 개인 거래)로 센 그달 실거래 대수. 언론에 공개된 국산 상위 3~5위, 수입 상위 3위 안에서 고릅니다.';
+          : m.label ? '카이즈유 데이터 연구소가 국토교통부 이전등록 자료(매도, 알선, 개인 거래)로 센 2026년 상반기 실거래 누계. 공개된 국산 10위, 수입 5위 안에서 고릅니다. 7월 이후를 더한 누계는 아직 공개되지 않았습니다.' : '카이즈유 데이터 연구소가 국토교통부 이전등록 자료(매도, 알선, 개인 거래)로 센 그달 실거래 대수. 언론에 공개된 국산 상위 3~5위, 수입 상위 3위 안에서 고릅니다.';
       [['month', 'ym'], ['kindbtn', 'kind'], ['orgbtn', 'org'], ['clsbtn', 'cls']].forEach(([c, k]) => $$(`.best__${c}`, box).forEach((b) => b.setAttribute('aria-pressed', String(b.dataset[k] === st[k]))));
       motion(box);
     };

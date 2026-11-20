@@ -17,6 +17,882 @@ window.CARS = {
  "checked": "2026년 11월 18일",
  "best": [
   {
+   "ym": "2026",
+   "label": {
+    "fresh": "2026년 1~10월 누적",
+    "used": "2026년 상반기(1~6월) 누적"
+   },
+   "fresh": {
+    "all": {
+     "전체": [
+      {
+       "name": "테슬라 모델 Y",
+       "sold": 78633,
+       "seg": "수입 중형 SUV",
+       "photo": {
+        "src": "assets/cars/MY.webp"
+       },
+       "focus": "modely",
+       "url": null
+      },
+      {
+       "name": "기아 뉴 쏘렌토 하이브리드(MQ4)",
+       "sold": 68271,
+       "seg": "국산 중형 SUV",
+       "photo": {
+        "src": "assets/cars/MQ4.webp"
+       },
+       "focus": "sorento",
+       "url": null
+      },
+      {
+       "name": "기아 뉴 카니발 하이브리드(KA4)",
+       "sold": 44000,
+       "seg": "국산 대형 RV",
+       "photo": {
+        "src": "assets/cars/KA4.webp"
+       },
+       "focus": "carnival",
+       "url": null
+      }
+     ],
+     "경형": [
+      {
+       "name": "기아 뉴 레이",
+       "sold": 32256,
+       "seg": "국산 경형 RV",
+       "photo": {
+        "src": "assets/cars/TAM2.webp"
+       },
+       "focus": "ray",
+       "url": null
+      },
+      {
+       "name": "기아 뉴 모닝(JA)",
+       "sold": 20913,
+       "seg": "국산 경형 해치백",
+       "photo": {
+        "src": "assets/cars/JA.webp"
+       },
+       "focus": null,
+       "url": "https://www.kia.com/kr/vehicles/morning"
+      },
+      {
+       "name": "기아 뉴 레이 EV",
+       "sold": 10263,
+       "seg": "국산 경형 RV",
+       "photo": {
+        "src": "assets/cars/TAM2.webp"
+       },
+       "focus": "ray",
+       "url": null
+      }
+     ],
+     "소형": [
+      {
+       "name": "기아 EV3",
+       "sold": 29045,
+       "seg": "국산 소형 SUV",
+       "photo": {
+        "src": "assets/cars/EV3.webp"
+       },
+       "focus": null,
+       "url": "https://www.kia.com/kr/vehicles/ev3"
+      },
+      {
+       "name": "기아 셀토스(SP3)",
+       "sold": 26589,
+       "seg": "국산 소형 SUV",
+       "photo": {
+        "src": "assets/cars/SP3.webp"
+       },
+       "focus": "seltos",
+       "url": null
+      },
+      {
+       "name": "현대 코나(SX2)",
+       "sold": 16753,
+       "seg": "국산 소형 SUV",
+       "photo": {
+        "src": "assets/cars/KONA.webp"
+       },
+       "focus": null,
+       "url": "https://www.hyundai.com/kr/ko/e/vehicles/kona/intro"
+      }
+     ],
+     "준중형": [
+      {
+       "name": "기아 뉴 스포티지(NQ5)",
+       "sold": 35228,
+       "seg": "국산 준중형 SUV",
+       "photo": {
+        "src": "assets/cars/NQ5.webp"
+       },
+       "focus": "sportage",
+       "url": null
+      },
+      {
+       "name": "현대 뉴 아반떼(CN7)",
+       "sold": 27703,
+       "seg": "국산 준중형 세단",
+       "photo": {
+        "src": "assets/cars/CN7.webp"
+       },
+       "focus": "avante",
+       "url": null
+      },
+      {
+       "name": "기아 EV5",
+       "sold": 27616,
+       "seg": "국산 준중형 SUV",
+       "photo": {
+        "src": "assets/cars/EV5.webp"
+       },
+       "focus": null,
+       "url": "https://www.kia.com/kr/vehicles/ev5"
+      }
+     ],
+     "중형": [
+      {
+       "name": "테슬라 모델 Y",
+       "sold": 70059,
+       "seg": "수입 중형 SUV",
+       "photo": {
+        "src": "assets/cars/MY.webp"
+       },
+       "focus": "modely",
+       "url": null
+      },
+      {
+       "name": "기아 뉴 쏘렌토 하이브리드(MQ4)",
+       "sold": 68271,
+       "seg": "국산 중형 SUV",
+       "photo": {
+        "src": "assets/cars/MQ4.webp"
+       },
+       "focus": "sorento",
+       "url": null
+      },
+      {
+       "name": "현대 뉴 쏘나타(DN8)",
+       "sold": 38782,
+       "seg": "국산 중형 세단",
+       "photo": {
+        "src": "assets/cars/DN8.webp"
+       },
+       "focus": "sonata",
+       "url": null
+      }
+     ],
+     "준대형": [
+      {
+       "name": "현대 그랜저 하이브리드(GN7)",
+       "sold": 23469,
+       "seg": "국산 준대형 세단",
+       "photo": {
+        "src": "assets/cars/GN7.webp"
+       },
+       "focus": "grandeur",
+       "url": null
+      },
+      {
+       "name": "제네시스 뉴 G80(RG3)",
+       "sold": 23356,
+       "seg": "국산 준대형 세단",
+       "photo": {
+        "src": "assets/cars/RG3.webp"
+       },
+       "focus": null,
+       "url": "https://www.genesis.com/kr/ko/models/g80"
+      },
+      {
+       "name": "제네시스 뉴 GV80",
+       "sold": 16010,
+       "seg": "국산 준대형 SUV",
+       "photo": null,
+       "focus": null,
+       "url": null
+      }
+     ],
+     "대형": [
+      {
+       "name": "기아 뉴 카니발 하이브리드(KA4)",
+       "sold": 44000,
+       "seg": "국산 대형 RV",
+       "photo": {
+        "src": "assets/cars/KA4.webp"
+       },
+       "focus": "carnival",
+       "url": null
+      },
+      {
+       "name": "현대 팰리세이드 하이브리드(LX3)",
+       "sold": 22884,
+       "seg": "국산 대형 SUV",
+       "photo": {
+        "src": "assets/cars/LX3.webp"
+       },
+       "focus": "palisade",
+       "url": null
+      },
+      {
+       "name": "현대 아이오닉 9",
+       "sold": 10717,
+       "seg": "국산 대형 SUV",
+       "photo": {
+        "src": "assets/cars/IONIQ9.webp"
+       },
+       "focus": null,
+       "url": "https://www.hyundai.com/kr/ko/e/vehicles/ioniq9/intro"
+      }
+     ]
+    },
+    "kr": {
+     "전체": [
+      {
+       "name": "기아 뉴 쏘렌토 하이브리드(MQ4)",
+       "sold": 68271,
+       "seg": "국산 중형 SUV",
+       "photo": {
+        "src": "assets/cars/MQ4.webp"
+       },
+       "focus": "sorento",
+       "url": null
+      },
+      {
+       "name": "기아 뉴 카니발 하이브리드(KA4)",
+       "sold": 44000,
+       "seg": "국산 대형 RV",
+       "photo": {
+        "src": "assets/cars/KA4.webp"
+       },
+       "focus": "carnival",
+       "url": null
+      },
+      {
+       "name": "현대 뉴 쏘나타(DN8)",
+       "sold": 38782,
+       "seg": "국산 중형 세단",
+       "photo": {
+        "src": "assets/cars/DN8.webp"
+       },
+       "focus": "sonata",
+       "url": null
+      }
+     ],
+     "경형": [
+      {
+       "name": "기아 뉴 레이",
+       "sold": 32256,
+       "seg": "국산 경형 RV",
+       "photo": {
+        "src": "assets/cars/TAM2.webp"
+       },
+       "focus": "ray",
+       "url": null
+      },
+      {
+       "name": "기아 뉴 모닝(JA)",
+       "sold": 20913,
+       "seg": "국산 경형 해치백",
+       "photo": {
+        "src": "assets/cars/JA.webp"
+       },
+       "focus": null,
+       "url": "https://www.kia.com/kr/vehicles/morning"
+      },
+      {
+       "name": "기아 뉴 레이 EV",
+       "sold": 10263,
+       "seg": "국산 경형 RV",
+       "photo": {
+        "src": "assets/cars/TAM2.webp"
+       },
+       "focus": "ray",
+       "url": null
+      }
+     ],
+     "소형": [
+      {
+       "name": "기아 EV3",
+       "sold": 29045,
+       "seg": "국산 소형 SUV",
+       "photo": {
+        "src": "assets/cars/EV3.webp"
+       },
+       "focus": null,
+       "url": "https://www.kia.com/kr/vehicles/ev3"
+      },
+      {
+       "name": "기아 셀토스(SP3)",
+       "sold": 26589,
+       "seg": "국산 소형 SUV",
+       "photo": {
+        "src": "assets/cars/SP3.webp"
+       },
+       "focus": "seltos",
+       "url": null
+      },
+      {
+       "name": "현대 코나(SX2)",
+       "sold": 16753,
+       "seg": "국산 소형 SUV",
+       "photo": {
+        "src": "assets/cars/KONA.webp"
+       },
+       "focus": null,
+       "url": "https://www.hyundai.com/kr/ko/e/vehicles/kona/intro"
+      }
+     ],
+     "준중형": [
+      {
+       "name": "기아 뉴 스포티지(NQ5)",
+       "sold": 35228,
+       "seg": "국산 준중형 SUV",
+       "photo": {
+        "src": "assets/cars/NQ5.webp"
+       },
+       "focus": "sportage",
+       "url": null
+      },
+      {
+       "name": "현대 뉴 아반떼(CN7)",
+       "sold": 27703,
+       "seg": "국산 준중형 세단",
+       "photo": {
+        "src": "assets/cars/CN7.webp"
+       },
+       "focus": "avante",
+       "url": null
+      },
+      {
+       "name": "기아 EV5",
+       "sold": 27616,
+       "seg": "국산 준중형 SUV",
+       "photo": {
+        "src": "assets/cars/EV5.webp"
+       },
+       "focus": null,
+       "url": "https://www.kia.com/kr/vehicles/ev5"
+      }
+     ],
+     "중형": [
+      {
+       "name": "기아 뉴 쏘렌토 하이브리드(MQ4)",
+       "sold": 68271,
+       "seg": "국산 중형 SUV",
+       "photo": {
+        "src": "assets/cars/MQ4.webp"
+       },
+       "focus": "sorento",
+       "url": null
+      },
+      {
+       "name": "현대 뉴 쏘나타(DN8)",
+       "sold": 38782,
+       "seg": "국산 중형 세단",
+       "photo": {
+        "src": "assets/cars/DN8.webp"
+       },
+       "focus": "sonata",
+       "url": null
+      },
+      {
+       "name": "현대 싼타페 하이브리드(MX5)",
+       "sold": 27023,
+       "seg": "국산 중형 SUV",
+       "photo": {
+        "src": "assets/cars/MX5.webp"
+       },
+       "focus": "santafe",
+       "url": null
+      }
+     ],
+     "준대형": [
+      {
+       "name": "현대 그랜저 하이브리드(GN7)",
+       "sold": 23469,
+       "seg": "국산 준대형 세단",
+       "photo": {
+        "src": "assets/cars/GN7.webp"
+       },
+       "focus": "grandeur",
+       "url": null
+      },
+      {
+       "name": "제네시스 뉴 G80(RG3)",
+       "sold": 23356,
+       "seg": "국산 준대형 세단",
+       "photo": {
+        "src": "assets/cars/RG3.webp"
+       },
+       "focus": null,
+       "url": "https://www.genesis.com/kr/ko/models/g80"
+      },
+      {
+       "name": "제네시스 뉴 GV80",
+       "sold": 16010,
+       "seg": "국산 준대형 SUV",
+       "photo": null,
+       "focus": null,
+       "url": null
+      }
+     ],
+     "대형": [
+      {
+       "name": "기아 뉴 카니발 하이브리드(KA4)",
+       "sold": 44000,
+       "seg": "국산 대형 RV",
+       "photo": {
+        "src": "assets/cars/KA4.webp"
+       },
+       "focus": "carnival",
+       "url": null
+      },
+      {
+       "name": "현대 팰리세이드 하이브리드(LX3)",
+       "sold": 22884,
+       "seg": "국산 대형 SUV",
+       "photo": {
+        "src": "assets/cars/LX3.webp"
+       },
+       "focus": "palisade",
+       "url": null
+      },
+      {
+       "name": "현대 아이오닉 9",
+       "sold": 10717,
+       "seg": "국산 대형 SUV",
+       "photo": {
+        "src": "assets/cars/IONIQ9.webp"
+       },
+       "focus": null,
+       "url": "https://www.hyundai.com/kr/ko/e/vehicles/ioniq9/intro"
+      }
+     ]
+    },
+    "im": {
+     "전체": [
+      {
+       "name": "테슬라 모델 Y",
+       "sold": 78633,
+       "seg": "수입 중형 SUV",
+       "photo": {
+        "src": "assets/cars/MY.webp"
+       },
+       "focus": "modely",
+       "url": null
+      },
+      {
+       "name": "벤츠 E클래스(6세대)",
+       "sold": 21200,
+       "seg": "수입 중형 세단",
+       "photo": {
+        "src": "assets/cars/W214.webp"
+       },
+       "focus": "eclass",
+       "url": null
+      },
+      {
+       "name": "BMW 5시리즈(8세대)",
+       "sold": 18917,
+       "seg": "수입 중형 세단",
+       "photo": {
+        "src": "assets/cars/G60.webp"
+       },
+       "focus": "bmw5",
+       "url": null
+      }
+     ],
+     "경형": [],
+     "소형": [
+      {
+       "name": "비야디 아토 3",
+       "sold": 2538,
+       "seg": "수입 소형 SUV",
+       "photo": null,
+       "focus": null,
+       "url": null
+      },
+      {
+       "name": "볼보 EX30",
+       "sold": 1939,
+       "seg": "수입 소형 SUV",
+       "photo": null,
+       "focus": null,
+       "url": null
+      },
+      {
+       "name": "볼보 EX30 크로스 컨트리",
+       "sold": 322,
+       "seg": "수입 소형 SUV",
+       "photo": null,
+       "focus": null,
+       "url": null
+      }
+     ],
+     "준중형": [
+      {
+       "name": "테슬라 모델 3",
+       "sold": 15438,
+       "seg": "수입 준중형 세단",
+       "photo": {
+        "src": "assets/cars/M3.webp"
+       },
+       "focus": "model3",
+       "url": null
+      },
+      {
+       "name": "비야디 돌핀",
+       "sold": 8857,
+       "seg": "수입 준중형 해치백",
+       "photo": null,
+       "focus": null,
+       "url": null
+      },
+      {
+       "name": "테슬라 모델 Y",
+       "sold": 8574,
+       "seg": "수입 준중형 SUV",
+       "photo": {
+        "src": "assets/cars/MY.webp"
+       },
+       "focus": "modely",
+       "url": null
+      }
+     ],
+     "중형": [
+      {
+       "name": "테슬라 모델 Y",
+       "sold": 70059,
+       "seg": "수입 중형 SUV",
+       "photo": {
+        "src": "assets/cars/MY.webp"
+       },
+       "focus": "modely",
+       "url": null
+      },
+      {
+       "name": "벤츠 E클래스(6세대)",
+       "sold": 21200,
+       "seg": "수입 중형 세단",
+       "photo": {
+        "src": "assets/cars/W214.webp"
+       },
+       "focus": "eclass",
+       "url": null
+      },
+      {
+       "name": "BMW 5시리즈(8세대)",
+       "sold": 18917,
+       "seg": "수입 중형 세단",
+       "photo": {
+        "src": "assets/cars/G60.webp"
+       },
+       "focus": "bmw5",
+       "url": null
+      }
+     ],
+     "준대형": [
+      {
+       "name": "포르쉐 타이칸",
+       "sold": 1247,
+       "seg": "수입 준대형 세단",
+       "photo": null,
+       "focus": null,
+       "url": null
+      },
+      {
+       "name": "볼보 XC90(2세대)",
+       "sold": 907,
+       "seg": "수입 준대형 SUV",
+       "photo": null,
+       "focus": null,
+       "url": null
+      },
+      {
+       "name": "볼보 S90",
+       "sold": 515,
+       "seg": "수입 준대형 세단",
+       "photo": null,
+       "focus": null,
+       "url": null
+      }
+     ],
+     "대형": [
+      {
+       "name": "BMW 7시리즈(7세대)",
+       "sold": 4319,
+       "seg": "수입 대형 세단",
+       "photo": null,
+       "focus": null,
+       "url": null
+      },
+      {
+       "name": "벤츠 S클래스(7세대)",
+       "sold": 3759,
+       "seg": "수입 대형 세단",
+       "photo": null,
+       "focus": null,
+       "url": null
+      },
+      {
+       "name": "BMW X7",
+       "sold": 3344,
+       "seg": "수입 대형 SUV",
+       "photo": null,
+       "focus": null,
+       "url": null
+      }
+     ]
+    }
+   },
+   "used": {
+    "kr": [
+     {
+      "name": "기아 모닝(TA)",
+      "sold": 21307,
+      "seg": "국산 경형",
+      "cls": "경형",
+      "photo": {
+       "src": "assets/cars/TA.webp"
+      },
+      "focus": "TA",
+      "encar": null,
+      "listings": {
+       "encar": 1732,
+       "kb": 2317
+      }
+     },
+     {
+      "name": "쉐보레 스파크",
+      "sold": 18818,
+      "seg": "국산 경형",
+      "cls": "경형",
+      "photo": {
+       "src": "assets/cars/SPARK.webp"
+      },
+      "focus": null,
+      "encar": {
+       "t": "Y",
+       "mk": "쉐보레(GM대우)",
+       "g": "스파크",
+       "m": []
+      },
+      "listings": {
+       "encar": 2244
+      }
+     },
+     {
+      "name": "현대 그랜저(HG)",
+      "sold": 18218,
+      "seg": "국산 준대형 세단",
+      "cls": "준대형",
+      "photo": {
+       "src": "assets/cars/HG.webp"
+      },
+      "focus": null,
+      "encar": {
+       "t": "Y",
+       "mk": "현대",
+       "g": "그랜저",
+       "m": [
+        "그랜저 HG"
+       ]
+      },
+      "listings": {
+       "encar": 2092,
+       "kb": 2299
+      }
+     },
+     {
+      "name": "기아 뉴 레이",
+      "sold": 18040,
+      "seg": "국산 경형 RV",
+      "cls": "경형",
+      "photo": {
+       "src": "assets/cars/TAM1.webp"
+      },
+      "focus": "TAM1",
+      "encar": null,
+      "listings": {
+       "encar": 3275,
+       "kb": 2123
+      }
+     },
+     {
+      "name": "기아 카니발(KA4)",
+      "sold": 15111,
+      "seg": "국산 대형 RV",
+      "cls": "대형",
+      "photo": {
+       "src": "assets/cars/KA4.webp"
+      },
+      "focus": null,
+      "encar": {
+       "t": "Y",
+       "mk": "기아",
+       "g": "카니발",
+       "m": []
+      },
+      "listings": null
+     },
+     {
+      "name": "제네시스 G80(RG3)",
+      "sold": 12704,
+      "seg": "국산 준대형 세단",
+      "cls": "준대형",
+      "photo": {
+       "src": "assets/cars/RG3.webp"
+      },
+      "focus": "RG3",
+      "encar": null,
+      "listings": {
+       "encar": 2881,
+       "kb": 1684
+      }
+     },
+     {
+      "name": "기아 레이",
+      "sold": 12482,
+      "seg": "국산 경형 RV",
+      "cls": "경형",
+      "photo": null,
+      "focus": null,
+      "encar": {
+       "t": "Y",
+       "mk": "기아",
+       "g": "레이",
+       "m": []
+      },
+      "listings": null
+     },
+     {
+      "name": "현대 뉴 그랜저(IG)",
+      "sold": 12198,
+      "seg": "국산 준대형 세단",
+      "cls": "준대형",
+      "photo": {
+       "src": "assets/cars/IG.webp"
+      },
+      "focus": "IG",
+      "encar": null,
+      "listings": {
+       "encar": 4911,
+       "kb": 3683
+      }
+     },
+     {
+      "name": "현대 아반떼(MD)",
+      "sold": 11057,
+      "seg": "국산 준중형 세단",
+      "cls": "준중형",
+      "photo": null,
+      "focus": null,
+      "encar": {
+       "t": "Y",
+       "mk": "현대",
+       "g": "아반떼",
+       "m": []
+      },
+      "listings": null
+     },
+     {
+      "name": "기아 카니발(YP)",
+      "sold": 10968,
+      "seg": "국산 대형 RV",
+      "cls": "대형",
+      "photo": null,
+      "focus": null,
+      "encar": {
+       "t": "Y",
+       "mk": "기아",
+       "g": "카니발",
+       "m": []
+      },
+      "listings": null
+     }
+    ],
+    "im": [
+     {
+      "name": "벤츠 E클래스(5세대)",
+      "sold": 10628,
+      "seg": "수입 중형 세단",
+      "cls": "중형",
+      "photo": {
+       "src": "assets/cars/W213.webp"
+      },
+      "focus": "W213",
+      "encar": null,
+      "listings": {
+       "encar": 3136,
+       "kb": 1923
+      }
+     },
+     {
+      "name": "BMW 5시리즈(7세대)",
+      "sold": 6371,
+      "seg": "수입 중형 세단",
+      "cls": "중형",
+      "photo": {
+       "src": "assets/cars/G30.webp"
+      },
+      "focus": "G30",
+      "encar": null,
+      "listings": {
+       "encar": 2154,
+       "kb": 1361
+      }
+     },
+     {
+      "name": "BMW 5시리즈(6세대)",
+      "sold": 4317,
+      "seg": "수입 중형 세단",
+      "cls": "중형",
+      "photo": null,
+      "focus": null,
+      "encar": {
+       "t": "N",
+       "mk": "BMW",
+       "g": "5시리즈",
+       "m": []
+      },
+      "listings": null
+     },
+     {
+      "name": "벤츠 S클래스(6세대)",
+      "sold": 3265,
+      "seg": "수입 대형 세단",
+      "cls": "대형",
+      "photo": null,
+      "focus": null,
+      "encar": {
+       "t": "N",
+       "mk": "벤츠",
+       "g": "S-클래스",
+       "m": []
+      },
+      "listings": null
+     },
+     {
+      "name": "테슬라 모델 Y",
+      "sold": 3142,
+      "seg": "수입 중형 SUV",
+      "cls": "중형",
+      "photo": {
+       "src": "assets/cars/MY.webp"
+      },
+      "focus": "MY",
+      "encar": null,
+      "listings": {
+       "encar": 1156,
+       "kb": 448
+      }
+     }
+    ]
+   }
+  },
+  {
    "ym": "2026-10",
    "fresh": {
     "all": {
@@ -2811,6 +3687,45 @@ window.CARS = {
       "listings": {
        "encar": 2244
       }
+     },
+     {
+      "name": "현대 그랜저(HG)",
+      "sold": 3366,
+      "seg": "국산 준대형 세단",
+      "cls": "준대형",
+      "photo": {
+       "src": "assets/cars/HG.webp"
+      },
+      "focus": null,
+      "encar": {
+       "t": "Y",
+       "mk": "현대",
+       "g": "그랜저",
+       "m": [
+        "그랜저 HG"
+       ]
+      },
+      "listings": {
+       "encar": 2092,
+       "kb": 2299
+      }
+     },
+     {
+      "name": "기아 카니발(KA4)",
+      "sold": 3290,
+      "seg": "국산 대형 RV",
+      "cls": "대형",
+      "photo": {
+       "src": "assets/cars/KA4.webp"
+      },
+      "focus": null,
+      "encar": {
+       "t": "Y",
+       "mk": "기아",
+       "g": "카니발",
+       "m": []
+      },
+      "listings": null
      }
     ],
     "im": [
