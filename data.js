@@ -91,6 +91,16 @@ window.SITE = {
         { id: 'wealth', name: '자산 증식', desc: '재테크, 부동산, 주식' },
       ],
     },
+    {
+      id: 'jeongbo',
+      name: '정보부',
+      desc: '수업과 업무에 쓰는 도구, 직접 만드는 교사들의 모임.',
+      menus: [
+        { id: 'moabatgi', name: '유튜브 모아받기', desc: '유튜브, 인스타그램, 스레드, 페이스북 공개 영상 링크를 여러 개 모아 MP4 또는 MP3로 한 번에 저장', url: 'https://moabatgi.higgsfield.app/' },
+        { id: 'tuilders', name: '개발자 교사모임 틸더스', desc: '교사 빌더들이 만든 수업, 업무 앱과 바이브 코딩 커뮤니티', url: 'https://tuilders.com/' },
+        { id: 'dorms', name: '개발자 교사모임 도름즈', desc: '교육과 AI를 잇는 교사 커뮤니티. 앱과 자료, 이야기, 배우기', url: 'https://dorms.school/' },
+      ],
+    },
   ],
 
   /*
@@ -101,7 +111,7 @@ window.SITE = {
    */
   org: {
     top: '교사개조 용광로',
-    side: ['gyomu', 'hongbo', 'cheyuk', 'pool', 'haengjeong'],
+    side: ['gyomu', 'hongbo', 'cheyuk', 'pool', 'haengjeong', 'jeongbo'],
     main: ['imyong', 'singyu', 'special'],
   },
 
